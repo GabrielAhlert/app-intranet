@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-width">
+        <title>Agenda - Intranet Cotrisoja</title>
+        <!-- <link rel="icon" href="https://sr-upsd-savein.cdn.jelastic.net/wp-content/uploads/sites/106/2021/01/cropped-favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" href="https://sr-upsd-savein.cdn.jelastic.net/wp-content/uploads/sites/106/2021/01/cropped-favicon-192x192.png" sizes="192x192" />
+        <link rel="apple-touch-icon" href="https://sr-upsd-savein.cdn.jelastic.net/wp-content/uploads/sites/106/2021/01/cropped-favicon-180x180.png" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
+        {% load static %}
+
+        <link rel="icon" href="{% static '/cropped-favicon-32x32' %}" sizes="32x32" />
+        <link rel="icon" href="{% static '/cropped-favicon-192x192' %}"sizes="192x192" />
+        <link rel="apple-touch-icon" href="{% static '/cropped-favicon-180x180' %}" />
+        <link href="{% static '/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="{% static 'agenda/style.css' %}">
+        <!-- <link rel="stylesheet" href="static/agenda/style.css"> -->
+    </head>
+    
+    <body style='background-image: url("{% static '/agenda/banner.jpg' %}");'>
+        <div class="header">
+            <div class="container p-0">
+                <div class="d-flex justify-content-between">
+                    <img src="{% static 'agenda/Logo Cotrisoja.png' %}" class="logo" alt="">
+                    <ul class="nav">
+                        <li><a href="/" >Página Inicial</a></li>
+                        <li><a href="/agenda" >Ramais</a></li>
+                        <li><a href="https://mail.cotrisoja.com.br/" target="_blank">E-mail</a></li>
+                        <li><a href="https://cotrisoja.com.br/" target="_blank">Site</a></li>
+                        <li><a href="http://chamados.cotrisoja.com.br/" target="_blank">Chamados</a></li>
+                        <li><a href="http://nfe/" target="_blank">Portal NFE</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container main h-75">
+            <div class="row">
+                <div class="col-12">
+                    <div class="main-header">
+                        <img src="{% static 'agenda/phone.png' %}" alt="">
+                        <h1 class="text-center">Agenda Telefônica</h1>
+                        <input class="txtSearch" type="text" placeholder="Buscar" aria-label="Search">
+                    </div>
+                    <table class="table table-borderless">
+                    <thead>
+                        <tr class="head">
+                            <th scope="col" class="table-col-1">Ramal</th>
+                            <th scope="col" class="table-col-2">Telefone</th>
+                            <th scope="col" class="table-col-3">Nome</th>
+                            <th scope="col" class="table-col-4">E-mail</th>
+                            <th scope="col" class="table-col-5">Cargo</th>
+                            <th scope="col" class="table-col-6">Unidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for contato in Contatos %}
+                        <tr>
+                            <th scope="row">{{contato.ramal}}</th>
+                            <td>{{contato.telefone}}</td>
+                            <td>{{contato.nome}}</td>
+                            <td>{{contato.email}}</td>
+                            <td>{{contato.funcao}}</td>
+                            <td>{{contato.unidade}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+        <div style="height: 10vh;">
+
+        </div>
+            
+
+        <div class="footer">
+            <p>© 2022 Cotrisoja. Todos os direitos reservados.</p>
+        </div>
+        <!-- <script src="https://kit.fontawesome.com/25f84d4372.js" crossorigin="anonymous"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> -->
+        <script src="{% static '/bootstrap.bundle.min.js' %}" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <script src="{% static 'agenda/filter.js' %}" crossorigin="anonymous"></script>
+        <!-- <script src="static/agenda/filter.js" crossorigin="anonymous"></script> -->
+    </body>
+</html>

@@ -1,52 +1,137 @@
-# Prerequisites
-*.d
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Backup files # 
+*.bak 
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# If you are using PyCharm # 
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
 
-# Precompiled Headers
-*.gch
-*.pch
+# AWS User-specific
+.idea/**/aws.xml
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# Generated files
+.idea/**/contentModel.xml
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+# File-based project format
+*.iws
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# IntelliJ
+out/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Python # 
+*.py[cod] 
+*$py.class 
+
+# Distribution / packaging 
+.Python build/ 
+develop-eggs/ 
+dist/ 
+downloads/ 
+eggs/ 
+.eggs/ 
+lib/ 
+lib64/ 
+parts/ 
+sdist/ 
+var/ 
+wheels/ 
+*.egg-info/ 
+.installed.cfg 
+*.egg 
+*.manifest 
+*.spec 
+
+# Installer logs 
+pip-log.txt 
+pip-delete-this-directory.txt 
+
+# Unit test / coverage reports 
+htmlcov/ 
+.tox/ 
+.coverage 
+.coverage.* 
+.cache 
+.pytest_cache/ 
+nosetests.xml 
+coverage.xml 
+*.cover 
+.hypothesis/ 
+
+# Jupyter Notebook 
+.ipynb_checkpoints 
+
+# pyenv 
+.python-version 
+
+# celery 
+celerybeat-schedule.* 
+
+# SageMath parsed files 
+*.sage.py 
+
+# Environments 
+.env 
+.venv 
+env/ 
+venv/ 
+ENV/ 
+env.bak/ 
+venv.bak/ 
+
+# mkdocs documentation 
+/site 
+
+# mypy 
+.mypy_cache/ 
+
+# Sublime Text # 
+*.tmlanguage.cache 
+*.tmPreferences.cache 
+*.stTheme.cache 
+*.sublime-workspace 
+*.sublime-project 
+
+# sftp configuration file 
+sftp-config.json 
+
+# Package control specific files Package 
+Control.last-run 
+Control.ca-list 
+Control.ca-bundle 
+Control.system-ca-bundle 
+GitHub.sublime-settings 
+
+# Visual Studio Code # 
+.vscode/* 
+!.vscode/settings.json 
+!.vscode/tasks.json 
+!.vscode/launch.json 
+!.vscode/extensions.json 
+.history
