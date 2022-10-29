@@ -21,9 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 #SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z+ac-!dk!)+8jal2y3)!t8efu2riml141tvy^k%bg2ipv5$x4$'
+#SECRET_KEY = 'django-insecure-z+ac-!dk!)+8jal2y3)!t8efu2riml141tvy^k%bg2ipv5$x4$'
 #with open( 'C:/secret_key.txt') as f:
 #    SECRET_KEY = f.read().strip()
+SECRET_KEY = 'Gim6pWfCBuDk@3C&hEfbBTu5zvH@&HXYfs6Vm5^CCkvPY6$bJ#Dtqy$#&GepWcmUXmPRzYTZGb6bN#VF^6Xjmgs78A$L5W^#b9pqJJTbWePbXsnqcT%r7ygx*5Jhy$&i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,12 +80,24 @@ WSGI_APPLICATION = 'intranet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'db_intranet',
+        'USER': 'db_intranet_user',
+        'PASSWORD': 'passdbintranet',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
 
 
 # Password validation
@@ -133,6 +146,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
 
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
