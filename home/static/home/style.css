@@ -6,8 +6,7 @@ html{
     width: 100%;
 }
 body{
-    /* background-image: url("/static/agenda/banner.jpg"); */
-    /* background-position: top 60px right 100%; */
+    background-image: url("/static/agenda/banner.jpg");
     background-size: 100%;
     background-attachment: fixed;
     background-color: #aaaaaa28; 
@@ -164,7 +163,6 @@ body{
   margin-top: 5%;
   margin-inline: 15%;
 }
-.div
 
 @font-face {
     font-family: 'Poppins';
