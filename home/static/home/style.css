@@ -159,6 +159,12 @@ body{
     padding-inline: 3.5vw;
     height: 100%;
 }
+#carousel-panel-right img{
+  width: 70%;
+  margin-top: 5%;
+  margin-inline: 15%;
+}
+.div
 
 @font-face {
     font-family: 'Poppins';
