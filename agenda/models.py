@@ -27,4 +27,4 @@ class Contato(models.Model):
     ramal_ativo = models.BooleanField(default=True)
     pessoa_ativo = models.BooleanField(default=True)
     def __str__(self):
-        return self.nome + ' | ' + self.funcao + ' | ' + self.ramal + ' | ' + self.telefone + ' | ' + self.email + ' | ' + self.unidade.nome
+        return self.nome +  ' | ' + self.ramal + ' | ' + self.telefone + ' | ' + self.email + ' | ' + self.unidade.nome
