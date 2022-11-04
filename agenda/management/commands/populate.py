@@ -28,6 +28,6 @@ class Command(BaseCommand):
                     
                     funcao, _ = Funcao.objects.get_or_create(nome=funcao)
                     unidade, _ = Unidade.objects.get_or_create(nome=unidade)
-                    Contato.objects.update_or_create(nome=nome, ramal=ramal, telefone=telefone, email=email, funcao=funcao, unidade=unidade, nascimento=nascimento, ramal_ativo=ramal_ativo, pessoa_ativo=pessoa_ativo)
+                    Contato.objects.update_or_create(nome=nome.title(), ramal=ramal, telefone=telefone, email=email, funcao=funcao, unidade=unidade, nascimento=nascimento, ramal_ativo=ramal_ativo, pessoa_ativo=pessoa_ativo)
 
         self.stdout.write(self.style.SUCCESS('Successfully populated the database'))
