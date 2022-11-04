@@ -25,6 +25,12 @@ class Command(BaseCommand):
                         pessoa_ativo = False
                     else:
                         nascimento = datetime.strptime(nascimento, '%d/%m/%Y').date()
+
+                    if telefone == None or telefone == '':
+                        telefone = '-'
+
+                    if email == None or email == '':
+                        email = '-'
                     
                     funcao, _ = Funcao.objects.get_or_create(nome=funcao)
                     unidade, _ = Unidade.objects.get_or_create(nome=unidade)
