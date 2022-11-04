@@ -127,9 +127,9 @@ body{
 }
 
 .table *{
-  font-size: 15px;
+  font-size: 13px;
   padding: 0px !important;
-  padding-bottom: 2px !important;
+  padding-bottom: 5px !important;
   margin-inline: 30px !important;
 }
 .head{
@@ -145,13 +145,13 @@ body{
   width: 23%;
 }
 .table-col-4{
-  width: 28%;
+  width: 25%;
 }
 .table-col-5{
-  width: 22%;
+  width: 21%;
 }
 .table-col-6{
-  width: 10%;
+  width: 14%;
 }
 
 @font-face {

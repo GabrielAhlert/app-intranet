@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default='Gim6pWfCBuDk@3C&hEfbBTu5zvH@&HXYfs6Vm5^CCkvPY6$bJ#Dtqy$#&GepWcmUXmPRzYTZGb6bN#VF^6Xjmgs78A$L5W^#b9pqJJTbWePbXsnqcT%r7ygx*5Jhy$&i')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
