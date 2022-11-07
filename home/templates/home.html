@@ -66,7 +66,7 @@
                             <div class="carousel-item" data-bs-interval="5000">
                                 <div class="w-100 d-inline div-carousel">{% endif %}
                                     <h1>{{recado.titulo}}</h1>
-                                    <h2>{{recado.texto}}</h2>
+                                    <h2>{{recado.texto|linebreaks}}</h2>
                                     {% if recado.image.url is not None %}
                                     <img src="{{recado.image.url}}" alt="{{recado.titulo}}">
                                     {% endif %}
