@@ -10,7 +10,7 @@
         <link rel="icon" href="{% static 'home/cropped-favicon-192x192.png' %}"sizes="192x192" />
         <link rel="apple-touch-icon" href="{% static 'home/cropped-favicon-180x180.png' %}" />
         <link href="{% static 'home/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous">
-
+        <link href="{% static 'home/lightbox/css/lightbox.css' %}" rel="stylesheet" crossorigin="anonymous">
 
         <link rel="stylesheet" href="{% static 'home/style.css' %}">
     </head>
@@ -68,7 +68,7 @@
                                     {% if recado.titulo != '' %}<h1>{{recado.titulo}}</h1> {% endif %}
                                     {% if recado.titulo != '' %}<h2>{{recado.texto|linebreaks}}</h2> {% endif %}
                                     {% if recado.image.url is not None %}
-                                    <img src="{{recado.image.url}}" alt="{{recado.titulo}}">
+                                    <a style="width: 100%;" href="{{recado.image.url}}" data-lightbox="image-1"><img src="{{recado.image.url}}" alt="{{recado.image.url}}"></a>
                                     {% endif %}
                                 </div>
                             </div>{% endfor %}
@@ -90,6 +90,7 @@
         <div class="footer">
             <p>© 2022 Cotrisoja. Todos os direitos reservados.</p>
         </div>
+        <script src="{% static 'home/lightbox/js/lightbox-plus-jquery.js' %}" crossorigin="anonymous"></script>
         <script src="{% static 'home/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
     </body>
 </html>
