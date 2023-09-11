@@ -16,7 +16,11 @@ class AgendaMonthFilter(admin.SimpleListFilter):
             return queryset
 
 class AgendaAdmin(admin.ModelAdmin):
+<<<<<<< HEAD
     list_filter = (AgendaMonthFilter ,'unidade','ramal_ativo', 'pessoa_ativo', 'funcao')
+=======
+    list_filter = (AgendaMonthFilter, 'unidade', 'ramal_ativo', 'pessoa_ativo', 'funcao')
+>>>>>>> 4a636ef58c02b76c4f4e89b29ab6b0d8cab2c210
     search_fields = ['nome', 'ramal', 'telefone', 'unidade__nome', 'funcao__nome']
     list_display = ('nome', 'ramal', 'telefone',  'ramal_ativo', 'pessoa_ativo', 'nascimento')
     list_max_show_all = 5000
