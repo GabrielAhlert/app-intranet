@@ -20,7 +20,7 @@ class Contato(models.Model):
     nome = models.CharField(max_length=128)
     ramal = models.CharField(max_length=16 , blank=True)
     telefone = models.CharField(max_length=16, default='-')
-    email = models.CharField(max_length=100, blank=True)
+    email = models.CharField(max_length=100, default='-')
     funcao = models.ForeignKey(Funcao, on_delete=models.RESTRICT, blank=True, null=True)
     unidade = models.ForeignKey(Unidade, on_delete=models.RESTRICT)
     nascimento = models.DateField(blank=True, null=True)
