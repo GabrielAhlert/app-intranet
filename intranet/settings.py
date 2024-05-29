@@ -58,7 +58,7 @@ ROOT_URLCONF = 'intranet.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / 'base/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -138,6 +138,7 @@ STATIC_ROOT =  "./static/"
 STATICFILES_DIRS = [
     './agenda/static/agenda/',
     './home/static/home/',
+    './base/static/',
 ]
 MEDIA_URL =  "/media/"
 MEDIA_ROOT =  "./media/"

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-width">
+        <title>{% block title %}Intranet Cotrisoja{% endblock %}</title>
+        {% load static %}
+
+        <link rel="icon" href="{% static 'base/cropped-favicon-32x32.png' %}" sizes="32x32" />
+        <link rel="icon" href="{% static 'base/cropped-favicon-192x192.png' %}"sizes="192x192" />
+        <link rel="apple-touch-icon" href="{% static 'base/cropped-favicon-180x180.png' %}" />
+        <link href="{% static 'base/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous">
+        {% block styles %}{% endblock %}
+
+        <link rel="stylesheet" href="{% static 'base/base_style.css' %}">
+    </head>
+    
+    <body>
+
+        <div class="header">
+            <div class="container p-0">
+                <div class="d-flex justify-content-between">
+                    <a href="/"><img src="{% static 'base/Logo Cotrisoja.png' %}" class="logo" alt=""></a>
+                    <ul class="nav">
+                        <li><a href="/" >Página Inicial</a></li>
+                        <li><a href="/agenda" >Ramais</a></li>
+                        <li><a href="https://mail.cotrisoja.com.br/" target="_blank">E-mail</a></li>
+                        <li><a href="https://cotrisoja.com.br/" target="_blank">Site</a></li>
+                        <li><a href="http://chamados.cotrisoja.com.br/" target="_blank">Chamados</a></li>
+                        <li><a href="http://nfe/" target="_blank">Portal NFE</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+        <div style="height: 10vh;">
+
+        </div>
+            
+
+        <div class="footer">
+            <p>© 2022 - {% now 'Y' %} Cotrisoja. Todos os direitos reservados.</p>
+        </div>
+        <script src="{% static 'base/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
+        {% block scripts %}{% endblock %}
+    </body>
+</html>
