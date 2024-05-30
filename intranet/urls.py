@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('agenda/', include('agenda.urls')),
     path('documentos/', include('documentos.urls')),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
 
 if settings.DEBUG:

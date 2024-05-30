@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+{% load static %}
+{% load django_browser_reload %}
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-width">
         <title>{% block title %}Intranet Cotrisoja{% endblock %}</title>
-        {% load static %}
 
         <link rel="icon" href="{% static 'base/cropped-favicon-32x32.png' %}" sizes="32x32" />
         <link rel="icon" href="{% static 'base/cropped-favicon-192x192.png' %}"sizes="192x192" />
@@ -25,6 +26,7 @@
                     <ul class="nav">
                         <li><a href="/" >Página Inicial</a></li>
                         <li><a href="/agenda" >Ramais</a></li>
+                        <li><a href="/documentos" >Doc</a></li>
                         <li><a href="https://mail.cotrisoja.com.br/" target="_blank">E-mail</a></li>
                         <li><a href="https://cotrisoja.com.br/" target="_blank">Site</a></li>
                         <li><a href="http://chamados.cotrisoja.com.br/" target="_blank">Chamados</a></li>
@@ -42,5 +44,6 @@
         </div>
         <script src="{% static 'base/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
         {% block scripts %}{% endblock %}
+        {% django_browser_reload_script %}
     </body>
 </html>
