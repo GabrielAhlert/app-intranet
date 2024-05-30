@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'recados.apps.RecadosConfig',
     'agenda.apps.AgendaConfig',
     'home.apps.HomeConfig',
+    'documentos.apps.DocumentosConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,6 +139,7 @@ STATIC_ROOT =  "./static/"
 STATICFILES_DIRS = [
     './agenda/static/agenda/',
     './home/static/home/',
+    './'
     './base/static/',
 ]
 MEDIA_URL =  "/media/"

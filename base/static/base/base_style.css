@@ -23,7 +23,7 @@ body{
     background-color: #01634a;
     text-align: center;
     align-items: center;
-    height: 10vh;
+    height: 50px;
 }
 .header ul{
     text-align: center;
@@ -39,7 +39,7 @@ body{
     transition: color 0.3s ease
 }
 .header .logo{
-    height: 10vh;
+    height: 50px;
 }
 .header li::before{
     content: "|";
@@ -52,7 +52,6 @@ body{
 .header a:hover{
     color: #26a861;
 }
-
 .footer{
     display: flex;
     background-color: #01634a;
