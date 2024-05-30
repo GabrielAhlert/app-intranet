@@ -16,8 +16,8 @@
             {% if categoria.parente == none %}
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="btn-toggle btn-nav" data-bs-toggle="collapse" aria-expanded="false" href="#{{categoria.nome}}">{{categoria.nome}}</a>
-                    <div class="collapse" id="{{categoria.nome}}" style="margin-left: 10px;">
+                    <a class="btn-toggle btn-nav" data-bs-toggle="collapse" aria-expanded="true" href="#{{categoria.nome}}">{{categoria.nome}}</a>
+                    <div class="collapse show" id="{{categoria.nome}}" style="margin-left: 10px;">
                     {% for categoria1 in categorias %}
                     {% if categoria1.parente == categoria %}
                     <ul class="nav flex-column">
