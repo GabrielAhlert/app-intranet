@@ -10,6 +10,45 @@
 
 {% block content %}
 <div class="container main">
+    <div class="row">
+        <div class="col-3 side-bar">
+            {% for categoria in categorias %}
+            {% if categoria.parente == none %}
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="btn-toggle btn-nav" data-bs-toggle="collapse" aria-expanded="false" href="#{{categoria.nome}}">{{categoria.nome}}</a>
+                    <div class="collapse" id="{{categoria.nome}}" style="margin-left: 10px;">
+                    {% for categoria1 in categorias %}
+                    {% if categoria1.parente == categoria %}
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="btn-toggle btn-nav" data-bs-toggle="collapse" aria-expanded="false" href="#{{categoria1.nome}}">{{categoria1.nome}}</a>
+                            <div class="collapse" id="{{categoria1.nome}}" style="margin-left: 10px;">
+                                {% for categoria2 in categorias %}
+                                {% if categoria2.parente == categoria1 %}
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="btn-nav" data-bs-toggle="collapse" aria-expanded="false" href="#{{categoria2.nome}}">{{categoria2.nome}}</a>
+                                        <div class="collapse" id="{{categoria2.nome}}">
+                                        </div>
+                                    </li>
+                                </ul>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                </li>
+            </ul>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="col-9 documentos">aa</div>
+        </div>
+    </div>
     
 </div>
 {% endblock %}

@@ -1,4 +1,40 @@
 .main{
     margin-top: 50px;
     margin-bottom: 50px;
+    background-color: #03300B;
+    min-height: 80vh;
+}
+.main > *{
+    color: white;
+}
+.side-bar{
+    background-color: #555;
+    color: white;
+    min-height: 80vh;
+    padding-top: 10px;
+}
+.btn-nav{
+    animation: none;
+    color: #fff;
+    text-decoration: none;
+    transition: color .35s ease;
+    text-align: center;
+}
+.btn-nav:hover{
+    color: rgba(0, 0, 0, .85);
+    transition: color .35s ease;
+}
+.btn-toggle::before {
+    content: url("/static/documentos/seta.svg");
+    transition: transform .35s ease;
+    transform-origin: .5em 50%;
+    margin-right: 5px;
+    vertical-align:middle;
+}
+.btn-toggle[aria-expanded="true"] {
+    color: rgba(0, 0, 0, .85);
+  }
+.btn-toggle[aria-expanded="true"]::before {
+    content: url("/static/documentos/seta rotated.svg");
+    transition: transform .35s ease;
 }

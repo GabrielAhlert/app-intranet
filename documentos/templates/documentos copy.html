@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Documentos - Intranet Cotrisoja{% endblock %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'documentos/documentos_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container main">
+    <div class="row">
+        <div class="col-3 side-bar">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="btn-toggle btn-nav" data-bs-toggle="collapse" aria-expanded="false" href="#Departamentos">Departamentos</a>
+                    <div class="collapse" id="Departamentos">
+                        <ul class="nav flex-column">
+                            <li class="nav-item" style="margin-left: 10px;">
+                                <a class="btn-toggle btn-nav" data-bs-toggle="collapse" aria-expanded="false" href="#Informatica">Informatica</a>
+                                <div class="collapse" id="Informatica">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item" style="margin-left: 20px;">
+                                            <a class="btn-nav" href="#">Documentos</a>
+                                        </li>
+                                        <li class="nav-item" style="margin-left: 20px;">
+                                            <a class="btn-nav" href="#">Manuais</a>
+                                        </li>
+                                        <li class="nav-item" style="margin-left: 20px;">
+                                            <a class="btn-nav" href="#">Procedimentos</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item" style="margin-left: 10px;">
+                                <a class="btn-toggle btn-nav" data-bs-toggle="collapse" aria-expanded="false" href="#Contabilidade">Contabilidade</a>
+                                <div class="collapse" id="Contabilidade">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item" style="margin-left: 20px;">
+                                            <a class="btn-nav" href="#">Documentos</a>
+                                        </li>
+                                        <li class="nav-item" style="margin-left: 20px;">
+                                            <a class="btn-nav" href="#">Manuais</a>
+                                        </li>
+                                        <li class="nav-item" style="margin-left: 20px;">
+                                            <a class="btn-nav" href="#">Procedimentos</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-9 documentos">aa</div>
+
+    </div>
+    
+</div>
+{% endblock %}
