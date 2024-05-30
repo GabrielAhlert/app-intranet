@@ -21,12 +21,10 @@ body{
     width: 100%;
     display: flex;
     background-color: #01634a;
-    text-align: center;
     align-items: center;
     height: 50px;
 }
 .header ul{
-    text-align: center;
     align-items: center;
 }
 .header a{
@@ -35,7 +33,6 @@ body{
     font-weight: 300;
     text-decoration: none;
     padding-inline: 16px;
-    vertical-align: 0.5vh;
     transition: color 0.3s ease
 }
 .header .logo{
@@ -51,6 +48,16 @@ body{
 }
 .header a:hover{
     color: #26a861;
+}
+.navbar-collapse{
+    display: flex;
+    flex-direction: column;
+    position:absolute;
+    top: 100%;
+    background-color: #01634a;
+}
+.navbar-collapse a{
+    margin: 5px;
 }
 .footer{
     display: flex;
