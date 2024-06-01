@@ -1,6 +1,7 @@
 
 .main{
-    background-color: #26a861;
+    background-color: #575757;
+    opacity: 0.75;
     margin-top: 50px;
     min-height: 86vh;
 }

@@ -1,7 +1,8 @@
 .main{
     margin-top: 50px;
     margin-bottom: 50px;
-    background-color: #03300B;
+    background-color: #575757;
+    opacity: 0.75;
     min-height: 80vh;
 }
 .main > *{

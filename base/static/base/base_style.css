@@ -6,7 +6,8 @@ html{
     width: 100%;
 }
 body{
-    background-image: url("/static/base/banner.jpg");
+    background-image: url("/static/base/bg.png");
+    background-color:azure !important;
     background-size: 100%;
     background-attachment: fixed;
     background-color: #aaaaaa28; 
@@ -23,6 +24,7 @@ body{
     background-color: #01634a;
     align-items: center;
     height: 50px;
+    z-index: 1000;
 }
 .header ul{
     align-items: center;
