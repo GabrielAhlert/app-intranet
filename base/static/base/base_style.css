@@ -52,12 +52,34 @@ body{
 .navbar-collapse{
     display: flex;
     flex-direction: column;
+    align-items: start;
     position:absolute;
     top: 100%;
     background-color: #01634a;
 }
 .navbar-collapse a{
     margin: 5px;
+}
+.navbar-collapse-button[aria-expanded="true"]{
+  color: #26a861;
+  transition: color .35s ease;
+}
+.collapse-button::before{
+  content: url("/static/base/seta.svg");
+  transition: transform .35s ease;
+  transform-origin: .5em 50%;
+  margin-right: 5px;
+  vertical-align:middle;
+}
+.collapse-button[aria-expanded="true"]::before {
+  content: url("/static/documentos/seta rotated.svg");
+  transition: transform .35s ease;
+}
+.navbar-collapse div{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+
 }
 .footer{
     display: flex;

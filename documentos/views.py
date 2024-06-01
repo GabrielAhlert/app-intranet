@@ -4,7 +4,7 @@ from django.template import loader
 from .models import Categoria
 #from .models import Contato
 
-def index(request):
+def index(request, Categorias_id):
     template = loader.get_template('documentos.html')
     context = {
         'categorias': Categoria.objects.all()
