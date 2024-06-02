@@ -4,6 +4,7 @@ from recados.models import Recado
 from agenda.models import Contato
 from django.http import HttpResponse
 from django.template import loader
+from .models import Banner
 
 
 # Create your views here.
@@ -15,6 +16,8 @@ def index(request):
     Pessoas = [data[x:x+12] for x in range(0, len(data), 12)]
     context = {
         'Recados': Recado.objects.filter(ativo=True, data_inicio__lte=today, data_fim__gte=today),
-        'Pessoas': Pessoas
+        'Pessoas': Pessoas,
+        'Banners': Banner.objects.all()
+
     }
     return HttpResponse(template.render(context, request))
