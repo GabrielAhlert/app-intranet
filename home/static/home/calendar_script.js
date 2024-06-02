@@ -9,7 +9,7 @@ currMonth = date.getMonth();
 const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
 async function put_event_badge(){
-    const events = await fetch(`/get_days_with_events/${currMonth+1}-${currYear}`);
+    const events = await fetch(`/get_days_with_events/${currMonth+1}-${currYear}/`);
     const eventsJson = await events.json();
     eventsJson.forEach(day => {
         const li = document.querySelector(`.days li[id="${day}"]`);
@@ -83,12 +83,12 @@ async function loadEvents(date){
     const h1 = document.getElementById("h1-eventos");
     const ul = document.getElementById("ul-eventos");
     h1.innerHTML = "Eventos do dia " + date.toLocaleDateString();
-    const events = await fetch(`/get_eventos/${date.toLocaleDateString().replace(/\//g, "-")}`);
+    const events = await fetch(`/get_eventos/${date.toLocaleDateString().replace(/\//g, "-")}/`);
     const eventsJson = await events.json();
     ul.innerHTML = "";
     eventsJson.forEach(event => {
         const li = document.createElement("li");
-        li.innerHTML = event.titulo + " - " + event.data + " - " + event.local;
+        li.innerHTML = event.titulo + " - " + event.local;
         ul.appendChild(li);
     });
 

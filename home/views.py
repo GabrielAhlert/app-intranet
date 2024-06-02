@@ -5,6 +5,7 @@ from agenda.models import Contato
 from django.http import HttpResponse
 from django.template import loader
 from .models import Banner, Evento
+from agenda.models import Contato
 import json
 
 
@@ -26,13 +27,20 @@ def index(request):
 def get_eventos(request, data):
     data1 = datetime.datetime.strptime(data, '%d-%m-%Y')
     eventos = Evento.objects.filter(data=data1)
+    aniversariantes = Contato.objects.filter(nascimento__day=data1.day, nascimento__month=data1.month)
     eventos_json = []
     for evento in eventos:
         eventos_json.append({
             'titulo': evento.titulo,
             'local': evento.local,
-            'data': evento.data.strftime('%d/%m/%y')
         })
+    for aniversariante in aniversariantes:
+        eventos_json.append({
+            'titulo': 'Aniversário de ' + aniversariante.nome,
+            'local': str(aniversariante.unidade.nome),
+        })
+
+    
     return HttpResponse(json.dumps(eventos_json), content_type='application/json')
 
 def get_days_with_events(request, month_year):
@@ -41,8 +49,13 @@ def get_days_with_events(request, month_year):
     month = int(month)
     year = int(year)
     eventos = Evento.objects.filter(data__month=month, data__year=year)
+    contato = Contato.objects.filter(nascimento__month=month)
     dias = []
     for evento in eventos:
-        dias.append(evento.data.day)
+        if evento.data.day not in dias:
+            dias.append(evento.data.day)
+    for pessoa in contato:
+        if pessoa.nascimento.day not in dias:
+            dias.append(pessoa.nascimento.day)
     return HttpResponse(json.dumps(dias), content_type='application/json')
 
