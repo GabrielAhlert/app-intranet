@@ -28,6 +28,12 @@
     width: 100%;
     object-fit: cover;
 }
+.eventos{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 20px;
+}
 .left-panel{
     background-color: #01634aee;
     font-size: 1.2vw;

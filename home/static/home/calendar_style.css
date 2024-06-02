@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 .wrapper {
+    min-width: 450px;
     width: 450px;
     background: #fff;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
-
 .wrapper header {
     color: #333;
     display: flex;
@@ -111,6 +111,17 @@ header .current-date {
     background: #f2f2f2;
 }
 
-.days li.active::before {
+.days li.SelectedDay::before {
     border: 1px solid #01634A;
+}
+
+.days li.day-with-event::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #01634A;
+    border-radius: 50%;
+    top: -10px;
+    right: 7px;
 }

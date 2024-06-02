@@ -9,3 +9,11 @@ class Banner(models.Model):
 
     def __str__(self):
         return self.titulo
+    
+class Evento(models.Model):
+    titulo = models.CharField(max_length=100, default='Evento '+str(timezone.now()))
+    local = models.CharField(max_length=100, default='Local '+str(timezone.now()))
+    data = models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return self.titulo

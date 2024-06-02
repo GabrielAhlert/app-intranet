@@ -8,6 +8,18 @@ currMonth = date.getMonth();
 
 const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
+async function put_event_badge(){
+    const events = await fetch(`/get_days_with_events/${currMonth+1}-${currYear}`);
+    const eventsJson = await events.json();
+    eventsJson.forEach(day => {
+        const li = document.querySelector(`.days li[id="${day}"]`);
+        li.classList.add("day-with-event");
+    });
+    console.log(eventsJson);
+}
+
+
+
 const renderCalendar = () => {
     let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(),
     lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
@@ -33,17 +45,18 @@ const renderCalendar = () => {
 
     days.forEach(day => {
         day.addEventListener("click", () => {
-            console.log(day.id);
             if (day.classList.contains("inactive")) return;
             try {
-                document.querySelector(".active").classList.remove("active");
+                document.querySelector(".SelectedDay").classList.remove("SelectedDay");
             } catch (error) {
-                console.log("No active class");
+                console.log("No SelectedDay class");
             }
-            day.classList.add("active");
+            day.classList.add("SelectedDay");
             loadEvents(new Date(currYear, currMonth, day.id));
         });
     });
+
+    put_event_badge();
 }
 renderCalendar();
 
@@ -67,9 +80,22 @@ prevNextIcon.forEach(icon => {
 });
 
 async function loadEvents(date){
-    console.log(date);
     const h1 = document.getElementById("h1-eventos");
+    const ul = document.getElementById("ul-eventos");
     h1.innerHTML = "Eventos do dia " + date.toLocaleDateString();
+    const events = await fetch(`/get_eventos/${date.toLocaleDateString().replace(/\//g, "-")}`);
+    const eventsJson = await events.json();
+    ul.innerHTML = "";
+    eventsJson.forEach(event => {
+        const li = document.createElement("li");
+        li.innerHTML = event.titulo + " - " + event.data + " - " + event.local;
+        ul.appendChild(li);
+    });
+
 }
+
+loadEvents(date);
+
+
 
 
