@@ -50,10 +50,7 @@
                 </div>
             </div>
             <div class="eventos">
-                <h1>Eventos</h1>
-                <ul>{% for evento in Eventos %}
-                    <li>{{evento.data.day|stringformat:"02d"}}/{{evento.data.month|stringformat:"02d"}} - {{evento.titulo}}</li>{% endfor %}
-                </ul>
+                <h1 id="h1-eventos">Eventos</h1>
             </div>
         </div>
     </div>
