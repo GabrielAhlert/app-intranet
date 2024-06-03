@@ -39,8 +39,6 @@ def get_eventos(request, data):
             'titulo': 'Aniversário de ' + aniversariante.nome,
             'local': str(aniversariante.unidade.nome),
         })
-
-    
     return HttpResponse(json.dumps(eventos_json), content_type='application/json')
 
 def get_days_with_events(request, month_year):
@@ -58,4 +56,26 @@ def get_days_with_events(request, month_year):
         if pessoa.nascimento.day not in dias:
             dias.append(pessoa.nascimento.day)
     return HttpResponse(json.dumps(dias), content_type='application/json')
+
+def get_eventos_mes(request, month_year):
+    month, year = month_year.split('-')
+    month = int(month)
+    year = int(year)
+    eventos = Evento.objects.filter(data__month=month, data__year=year)
+    aniversariantes = Contato.objects.filter(nascimento__month=month)
+    eventos_json = []
+    for evento in eventos:
+        eventos_json.append({
+            'titulo': evento.titulo,
+            'local': evento.local,
+            'data': evento.data.strftime('%d'),
+        })
+    for aniversariante in aniversariantes:
+        eventos_json.append({
+            'titulo': 'Aniversário de ' + aniversariante.nome,
+            'local': str(aniversariante.unidade.nome),
+            'data': aniversariante.nascimento.strftime('%d'),
+        })
+    return HttpResponse(json.dumps(eventos_json), content_type='application/json')
+
 

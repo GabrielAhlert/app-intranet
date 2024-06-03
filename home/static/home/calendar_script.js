@@ -8,6 +8,29 @@ currMonth = date.getMonth();
 
 const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
+async function put_event_popover(days){
+    const events = await fetch(`/get_eventos_mes/${currMonth+1}-${currYear}/`);
+    const eventsJson = await events.json();
+    days.forEach(day => {
+        const date = new Date(currYear, currMonth, day);
+        const events_day = eventsJson.filter(event => event.data == day);
+        const li = document.querySelector(`.days li[id="${day}"]`);
+        li.setAttribute("data-bs-toggle", "popover");
+        li.setAttribute("title", `Eventos do dia ${date.toLocaleDateString()}`);
+        let content = "";
+        events_day.forEach(event => {
+            content += `<p>${event.titulo} - ${event.local}</p>`;
+            });
+        li.setAttribute("data-bs-content", content);
+        li.setAttribute("data-bs-html", "true");
+        li.setAttribute("data-bs-placement", "top");
+        li.setAttribute("data-bs-trigger", "hover");
+    });
+
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+}
+
 async function put_event_badge(){
     const events = await fetch(`/get_days_with_events/${currMonth+1}-${currYear}/`);
     const eventsJson = await events.json();
@@ -15,8 +38,9 @@ async function put_event_badge(){
         const li = document.querySelector(`.days li[id="${day}"]`);
         li.classList.add("day-with-event");
     });
-    console.log(eventsJson);
+    //put_event_popover(eventsJson);
 }
+
 
 
 
@@ -32,7 +56,8 @@ const renderCalendar = () => {
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) {
-        let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "today" : ""; liTag += `<li class="${isToday}" id="${i}">${i}</li>`;
+        let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "today" : ""; 
+        liTag += `<li class="${isToday}" id="${i}">${i}</li>`;
     }
 
     for (let i = lastDayofMonth; i < 6; i++) {
@@ -55,7 +80,7 @@ const renderCalendar = () => {
             loadEvents(new Date(currYear, currMonth, day.id));
         });
     });
-
+    
     put_event_badge();
 }
 renderCalendar();

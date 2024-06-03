@@ -125,3 +125,8 @@ header .current-date {
     top: -10px;
     right: 7px;
 }
+.popover-header{
+    background-color: #01634A !important;
+    color: white;
+    z-index: 2000;
+}
