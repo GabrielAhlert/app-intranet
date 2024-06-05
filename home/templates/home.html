@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 d-flex">
+        <div class="col-4">
             <div class="wrapper">
                 <header>
                     <p class="current-date"></p>
@@ -49,66 +49,40 @@
                     <ul class="days"></ul>
                 </div>
             </div>
+        </div>
+        <div class="col-8">
             <div class="eventos">
                 <h1 id="h1-eventos">Eventos</h1>
                 <ul id="ul-eventos"></ul>
             </div>
         </div>
     </div>
-    <div class="row main-height">
-        <div class="col-8 left-panel main-height">
-            <div class="row justify-content-center"><img src="{% static 'home/bolo.png' %}" class="bolo" alt=""></div>
-            <h1 class="text-center h1-font-size">Aniversários</h1>
-            <div id="carousel-panel-left" class="carousel slide justify-content-center align-content-center" data-bs-ride="carousel">
-                <div class="carousel-inner">{% for pessoas in Pessoas %}{% if forloop.counter0 == 0 %}
-                    <div class="carousel-item active">
-                        <div class="margin-inline-7vw">{% else %}
-                        <div class="carousel-item">
-                            <div class="margin-inline-7vw">{% endif %}{% for pessoa in pessoas %}
-                            <div class="d-flex"> <h1>{{pessoa.nascimento.day|stringformat:"02d"}}/{{pessoa.nascimento.month|stringformat:"02d"}}</h1> <h2>{{pessoa.nome}}</h2> <h2>{{pessoa.unidade}}</h2> </div>{% endfor %}
-                        </div>
-                    </div>{% endfor %}
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-panel-left" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel-panel-left" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+    <div class="row">
+        <div class="col-4">
+            <h1 class="text-center">Aniversáriantes</h1>
             
         </div>
-        <div class="col-4 right-panel main-height">
-            <div class="row justify-content-center"><img src="{% static 'home/chat.png' %}" class="bolo" alt=""></div>
-            <h1 class="text-center h1-font-size">Recados</h1>
-            <div id="carousel-panel-right" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                <div class="carousel-inner">{% for recado in Recados %}{% if forloop.counter0 == 0 %}
-                    <div class="carousel-item active" data-bs-interval="5000">
-                        <div class="w-100 d-inline div-carousel">{% else %}
-                    <div class="carousel-item" data-bs-interval="5000">
-                        <div class="w-100 d-inline div-carousel">{% endif %}
-                            {% if recado.titulo != '' %}<h1>{{recado.titulo}}</h1> {% endif %}
-                            {% if recado.titulo != '' %}<h2>{{recado.texto|linebreaks}}</h2> {% endif %}
-                            {% if recado.image.url is not None %}
-                            <a style="width: 100%;" href="{{recado.image.url}}" data-lightbox="image-1"><img src="{{recado.image.url}}" alt="{{recado.image.url}}"></a>
-                            {% endif %}
-                        </div>
-                    </div>{% endfor %}
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-panel-right" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel-panel-right" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+        <div class="col-4">
+            <h1 class="text-center">Novos Colaboradores</h1>
         
         </div>
+        <div class="col-4">
+            <div class="card card-previsao">
+                <div class="card-body">
+                  <img src="{% static 'home/weather/chuva.gif' %}" alt="Previsão do tempo" class="img-fluid">
+                </div>
+              </div>
+            <div class="card card-previsao">
+                <div class="card-body">
+                </div>
+              </div>
+            <div class="card card-previsao">
+                <div class="card-body">
+                </div>
+              </div>
 
+        </div>
+        
     </div>
 </div>
 {% endblock content %}

@@ -2,29 +2,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 .wrapper {
-    min-width: 450px;
-    width: 450px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    aspect-ratio: 1 / 1.15;
     background: #fff;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    justify-content: space-evenly;
+    padding: 10px;
 }
 .wrapper header {
     color: #333;
     display: flex;
     align-items: center;
-    padding: 25px 30px 10px;
-    justify-content: space-between;
-}
-.eventos{
-    background-color: #aaa;
-    display: flex;
-    flex-grow: 100;
+    justify-content: space-evenly;
+    padding: 10px;
 }
 
-header .icons {
+.wrapper header .icons {
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-header .icons span {
+.wrapper header .icons span {
     height: 38px;
     width: 38px;
     margin: 0 1px;
@@ -36,22 +36,24 @@ header .icons span {
     user-select: none;
     border-radius: 50%;
 }
-
-.icons span:last-child {
-    margin-right: -10px;
-}
-
-header .icons span:hover {
+.wrapper header .icons span:hover {
     background: #f2f2f2;
 }
 
-header .current-date {
+.wrapper header .current-date {
     font-size: 1.45rem;
     font-weight: 500;
+    text-align: center;
+    margin: 0px;
+    width: 200px;
 }
 
 .calendar {
-    padding: 20px;
+    padding: 0px;
+    aspect-ratio: 1 / 1;
+}
+.calendar *{
+    padding: 0;
 }
 
 .calendar ul {
@@ -69,6 +71,10 @@ header .current-date {
     color: #333;
     width: calc(100% / 7);
     font-size: 1.07rem;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .calendar .weeks li {
@@ -80,7 +86,6 @@ header .current-date {
     z-index: 1;
     cursor: pointer;
     position: relative;
-    margin-top: 30px;
 }
 
 .days li.inactive {
@@ -96,8 +101,8 @@ header .current-date {
     content: "";
     left: 50%;
     top: 50%;
-    height: 40px;
-    width: 40px;
+    width: 80%;
+    height: 80%;
     z-index: -1;
     border-radius: 50%;
     transform: translate(-50%, -50%);
@@ -118,12 +123,12 @@ header .current-date {
 .days li.day-with-event::after {
     content: "";
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 10px;
+    height: 10px;
     background: #01634A;
     border-radius: 50%;
-    top: -10px;
-    right: 7px;
+    top: 10px;
+    right: 10px;
 }
 .popover-header{
     background-color: #01634A !important;

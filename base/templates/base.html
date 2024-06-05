@@ -25,8 +25,11 @@
                     <ul class="nav">
                         <li><a href="/" >Página Inicial</a></li>
                         <li><a href="/agenda" >Ramais</a></li>
+                        <li><a href="https://cotrisoja.com.br/" target="_blank">Site</a></li>
+                        <li><a href="https://mail.cotrisoja.com.br/" target="_blank">E-mails</a></li>
+                        <li><a href="http://nfe/" target="_blank">Portal NFE</a></li>
                         <li>
-                            <a class="navbar-collapse-button" href="#documentos" data-bs-toggle="collapse" aria-expanded="false">Documentos</a>
+                            <a class="navbar-collapse-button" href="#documentos" data-bs-toggle="collapse" aria-expanded="false">Documentações</a>
                             <div class="navbar-collapse collapse" id="documentos">
                             {% for categoria in categorias %}
                             {% if categoria.parente == none %}
@@ -49,15 +52,7 @@
                             {% endfor %}
                             </div>
                         </li>
-                        <li>
-                            <a class="navbar-collapse-button" href="#links" data-bs-toggle="collapse" aria-expanded="false">Acessos Cotrisoja</a>
-                            <div class="navbar-collapse collapse" id="links">
-                                <a href="https://cotrisoja.com.br/" target="_blank">Site Cotrisoja</a>
-                                <a href="https://mail.cotrisoja.com.br/" target="_blank">E-mail Cotriosja</a>
-                                <a href="http://chamados.cotrisoja.com.br/" target="_blank">Chamados Cotrisoja</a>
-                                <a href="http://nfe/" target="_blank">Portal NFE</a>
-                            </div>
-                        </li>
+                        <li><a href="http://chamados.cotrisoja.com.br/" target="_blank">Chamados</a></li>
                     </ul>
                 </div>
             </div>

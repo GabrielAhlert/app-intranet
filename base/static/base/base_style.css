@@ -6,8 +6,8 @@ html{
     width: 100%;
 }
 body{
-    background-image: url("/static/base/bg.png");
-    background-color:azure !important;
+    /* background-image: url("/static/base/bg.png"); */
+    background-color: #e6ebe8 !important;
     background-size: 100%;
     background-attachment: fixed;
     background-color: #aaaaaa28; 
@@ -83,6 +83,10 @@ body{
     margin-left: 15px;
 
 }
+.content{
+    min-height: calc(96vh);
+    display: flex;
+}
 .footer{
     display: flex;
     background-color: #01634a;
@@ -90,8 +94,6 @@ body{
     min-height: 25px;
     height: 4vh;
     min-width: 100%;
-    position: fixed;
-    bottom: 0;
     justify-content: center;
     align-items: center;
 }
