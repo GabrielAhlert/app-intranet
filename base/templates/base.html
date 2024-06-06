@@ -2,34 +2,91 @@
 {% load static %}
 {% load django_browser_reload %}
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-width">
-        <title>{% block title %}Intranet Cotrisoja{% endblock %}</title>
 
-        <link rel="icon" href="{% static 'base/cropped-favicon-32x32.png' %}" sizes="32x32" />
-        <link rel="icon" href="{% static 'base/cropped-favicon-192x192.png' %}"sizes="192x192" />
-        <link rel="apple-touch-icon" href="{% static 'base/cropped-favicon-180x180.png' %}" />
-        <link href="{% static 'base/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous">
-        {% block styles %}{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-width">
+    <title>{% block title %}Intranet Cotrisoja{% endblock %}</title>
 
-        <link rel="stylesheet" href="{% static 'base/base_style.css' %}">
-    </head>
-    
-    <body>
-        <div class="header">
-            <div class="container p-0">
-                <div class="d-flex justify-content-between">
-                    <a href="/"><img src="{% static 'base/Logo Cotrisoja.png' %}" class="logo" alt=""></a>
-                    <ul class="nav">
+    <link rel="icon" href="{% static 'base/cropped-favicon-32x32.png' %}" sizes="32x32" />
+    <link rel="icon" href="{% static 'base/cropped-favicon-192x192.png' %}" sizes="192x192" />
+    <link rel="apple-touch-icon" href="{% static 'base/cropped-favicon-180x180.png' %}" />
+    <link href="{% static 'base/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/2755f85e88.js" crossorigin="anonymous"></script>
+    {% block styles %}{% endblock %}
+
+    <link rel="stylesheet" href="{% static 'base/base_style.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a href="/">
+                <img src="{% static 'base/Logo Cotrisoja.png' %}" class="logo">
+            </a>
+            <div class="d-flex flex-wrap justify-content-center">          
+                <a href="#" class="text-center link_menu">  
+                    <i class="fa-regular fa-address-book"></i>
+                    <span>Ramais</span>
+                </a>
+                <a href="#" class="text-center link_menu">  
+                    <i class="fa-regular fa-envelope"></i>
+                    <span>E-mail</span>
+                </a>
+                <a href="#" class="text-center link_menu">  
+                    <i class="fa-regular fa-clipboard"></i>
+                    <span>Chamados</span>
+                </a>
+                <a href="#" class="text-center link_menu">  
+                    <i class="fa-regular fa-file-powerpoint"></i>
+                    <span>Portal NFE</span>
+                </a>            
+                <a href="#" class="text-center link_menu">  
+                    <i class="fa-regular fa-folder"></i>
+                    <span>Documentos</span>
+                </a>
+                <a href="#" class="text-center link_menu">  
+                    <i class="fa-solid fa-globe"></i>
+                    <span>Site</span>
+                </a>
+                <a href="#" class="text-center link_menu">  
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Busca</span>
+                </a>
+            </div>
+            <!-- <div>
+                <input class="form-control" type="text" placeholder="Busca rápida"></input>
+            </div>              -->
+        </div>
+        <div class="missao_header">
+            <div class="container h-100 d-flex align-items-center justify-content-center">
+                <span class="fw-lighter">
+                    Crescer com Resultado, Autonomia Financeira e Valorização do Relacionamento com o Associado
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <div class="footer">
+        <p>© 2022 - {% now 'Y' %} Cotrisoja. Todos os direitos reservados.</p>
+    </div>
+    <script src="{% static 'base/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
+    {% block scripts %}{% endblock %}
+    {% django_browser_reload_script %}
+</body>
+
+</html>
+
+
+<!-- <ul class="nav">
                         <li><a href="/" >Página Inicial</a></li>
                         <li><a href="/agenda" >Ramais</a></li>
-                        <li><a href="https://cotrisoja.com.br/" target="_blank">Site</a></li>
-                        <li><a href="https://mail.cotrisoja.com.br/" target="_blank">E-mails</a></li>
-                        <li><a href="http://nfe/" target="_blank">Portal NFE</a></li>
                         <li>
-                            <a class="navbar-collapse-button" href="#documentos" data-bs-toggle="collapse" aria-expanded="false">Documentações</a>
+                            <a class="navbar-collapse-button" href="#documentos" data-bs-toggle="collapse" aria-expanded="false">Documentos</a>
                             <div class="navbar-collapse collapse" id="documentos">
                             {% for categoria in categorias %}
                             {% if categoria.parente == none %}
@@ -52,20 +109,13 @@
                             {% endfor %}
                             </div>
                         </li>
-                        <li><a href="http://chamados.cotrisoja.com.br/" target="_blank">Chamados</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <div class="content">
-            {% block content %}{% endblock %}
-        </div>
-        <div class="footer">
-            <p>© 2022 - {% now 'Y' %} Cotrisoja. Todos os direitos reservados.</p>
-        </div>
-        <script src="{% static 'base/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
-        {% block scripts %}{% endblock %}
-        {% django_browser_reload_script %}
-    </body>
-</html>
+                        <li>
+                            <a class="navbar-collapse-button" href="#links" data-bs-toggle="collapse" aria-expanded="false">Acessos Cotrisoja</a>
+                            <div class="navbar-collapse collapse" id="links">
+                                <a href="https://cotrisoja.com.br/" target="_blank">Site Cotrisoja</a>
+                                <a href="https://mail.cotrisoja.com.br/" target="_blank">E-mail Cotriosja</a>
+                                <a href="http://chamados.cotrisoja.com.br/" target="_blank">Chamados Cotrisoja</a>
+                                <a href="http://nfe/" target="_blank">Portal NFE</a>
+                            </div>
+                        </li>
+                    </ul> -->

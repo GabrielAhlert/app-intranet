@@ -6,50 +6,14 @@ html{
     width: 100%;
 }
 body{
-    /* background-image: url("/static/base/bg.png"); */
-    background-color: #e6ebe8 !important;
-    background-size: 100%;
-    background-attachment: fixed;
-    background-color: #aaaaaa28; 
-    align-items: center;
-    top: 0;
-    left: 0;
-    width: 100%;
+    background-color:#e6ebe8;
 }
 .header{
-    position: fixed;
-    top: 0;
     width: 100%;
-    display: flex;
     background-color: #01634a;
-    align-items: center;
-    height: 50px;
-    z-index: 1000;
-}
-.header ul{
-    align-items: center;
-}
-.header a{
-    color: white;
-    font-size: 15px;
-    font-weight: 300;
-    text-decoration: none;
-    padding-inline: 16px;
-    transition: color 0.3s ease
 }
 .header .logo{
-    height: 50px;
-}
-.header li::before{
-    content: "|";
-    color: #777777;
-    font-size: 20px;
-}
-.header li:first-child::before{
-    content: "";
-}
-.header a:hover{
-    color: #26a861;
+    height: 90px;
 }
 .navbar-collapse{
     display: flex;
@@ -83,10 +47,6 @@ body{
     margin-left: 15px;
 
 }
-.content{
-    min-height: calc(96vh);
-    display: flex;
-}
 .footer{
     display: flex;
     background-color: #01634a;
@@ -94,6 +54,8 @@ body{
     min-height: 25px;
     height: 4vh;
     min-width: 100%;
+    position: fixed;
+    bottom: 0;
     justify-content: center;
     align-items: center;
 }
@@ -102,4 +64,30 @@ body{
     font-size: 16px;
     padding: 0;
     margin: 0;
+}
+
+.missao_header {
+    background-color: #004938;
+    height: 35px;
+}
+
+.missao_header span {
+   color: #e6ebe8;
+}
+
+.link_menu{
+    width: 80px;
+    height: auto;
+    text-decoration: none;
+    color: #e6ebe8;
+    margin: 0 10px;
+}
+
+.link_menu:hover {
+    color: #004938;
+}
+
+.link_menu i {
+    font-size: 30px;
+    display: block;
 }
