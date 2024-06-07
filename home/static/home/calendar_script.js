@@ -1,6 +1,6 @@
 const daysTag = document.querySelector(".days"), 
-    currentDate = document.querySelector(".current-date"),
-    prevNextIcon = document.querySelectorAll(".icons span");
+currentDate = document.querySelector(".current-date"),
+prevNextIcon = document.querySelectorAll(".icons span");
 
 let date = new Date(),
 currYear = date.getFullYear(),
@@ -10,7 +10,8 @@ const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Jul
 
 async function put_event_popover(days){
     const events = await fetch(`/get_eventos_mes/${currMonth+1}-${currYear}/`);
-    const eventsJson = await events.json();
+    const eventsJson = await events.json();    
+    
     days.forEach(day => {
         const date = new Date(currYear, currMonth, day);
         const events_day = eventsJson.filter(event => event.data == day);
@@ -18,15 +19,17 @@ async function put_event_popover(days){
         li.setAttribute("data-bs-toggle", "popover");
         li.setAttribute("title", `Eventos do dia ${date.toLocaleDateString()}`);
         let content = "";
+
         events_day.forEach(event => {
             content += `<p>${event.titulo} - ${event.local}</p>`;
-            });
+        });
+
         li.setAttribute("data-bs-content", content);
         li.setAttribute("data-bs-html", "true");
         li.setAttribute("data-bs-placement", "top");
         li.setAttribute("data-bs-trigger", "hover");
-    });
-
+    });   
+    
     const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
     const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 }
@@ -38,11 +41,8 @@ async function put_event_badge(){
         const li = document.querySelector(`.days li[id="${day}"]`);
         li.classList.add("day-with-event");
     });
-    //put_event_popover(eventsJson);
+    put_event_popover(eventsJson);
 }
-
-
-
 
 const renderCalendar = () => {
     let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(),
@@ -77,12 +77,13 @@ const renderCalendar = () => {
                 console.log("No SelectedDay class");
             }
             day.classList.add("SelectedDay");
-            loadEvents(new Date(currYear, currMonth, day.id));
+            // loadEvents(new Date(currYear, currMonth, day.id));
         });
     });
     
     put_event_badge();
 }
+
 renderCalendar();
 
 prevNextIcon.forEach(icon => {
@@ -104,22 +105,6 @@ prevNextIcon.forEach(icon => {
     });
 });
 
-async function loadEvents(date){
-    const h1 = document.getElementById("h1-eventos");
-    const ul = document.getElementById("ul-eventos");
-    h1.innerHTML = "Eventos do dia " + date.toLocaleDateString();
-    const events = await fetch(`/get_eventos/${date.toLocaleDateString().replace(/\//g, "-")}/`);
-    const eventsJson = await events.json();
-    ul.innerHTML = "";
-    eventsJson.forEach(event => {
-        const li = document.createElement("li");
-        li.innerHTML = event.titulo + " - " + event.local;
-        ul.appendChild(li);
-    });
-
-}
-
-loadEvents(date);
 
 
 
