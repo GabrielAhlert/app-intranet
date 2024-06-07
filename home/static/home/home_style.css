@@ -10,4 +10,16 @@
     text-overflow: ellipsis; 
 }
 
+.img_func {
+    width: 60px;
+    height: 60px;
+}
+
+.img_func>img {   
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
 /* Path: home/static/home/home_style.css */
