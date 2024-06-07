@@ -2,97 +2,188 @@
 {% load static %}
 {% load django_browser_reload %}
 <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-width">
+        <title>{% block title %}Intranet Cotrisoja{% endblock %}</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-width">
-    <title>{% block title %}Intranet Cotrisoja{% endblock %}</title>
+        <link rel="icon" href="{% static 'base/cropped-favicon-32x32.png' %}" sizes="32x32" />
+        <link rel="icon" href="{% static 'base/cropped-favicon-192x192.png' %}" sizes="192x192" />
+        <link rel="apple-touch-icon" href="{% static 'base/cropped-favicon-180x180.png' %}" />
+        <link href="{% static 'base/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/2755f85e88.js" crossorigin="anonymous"></script>
+        {% block styles %}{% endblock %}
 
-    <link rel="icon" href="{% static 'base/cropped-favicon-32x32.png' %}" sizes="32x32" />
-    <link rel="icon" href="{% static 'base/cropped-favicon-192x192.png' %}" sizes="192x192" />
-    <link rel="apple-touch-icon" href="{% static 'base/cropped-favicon-180x180.png' %}" />
-    <link href="{% static 'base/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/2755f85e88.js" crossorigin="anonymous"></script>
-    {% block styles %}{% endblock %}
+        <link rel="stylesheet" href="{% static 'base/base_style.css' %}">
+    </head>
 
-    <link rel="stylesheet" href="{% static 'base/base_style.css' %}">
-</head>
-
-<body>
-    <div class="header">
-        <div class="container-xxl">
-            <div class="row align-items-center">
-                <div class="col-2">
-                    <a href="/">
-                        <img src="{% static 'base/Logo Cotrisoja.png' %}" class="logo">
-                    </a>
+    <body>
+        <div class="header">
+            <div class="container-xxl">
+                <div class="row align-items-center">
+                    <div class="col-2">
+                        <a href="/">
+                            <img src="{% static 'base/Logo Cotrisoja.png' %}" class="logo">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex justify-content-end">    
+                            <a href="/" class="text-center link_menu hide_on_search">  
+                                <i class="fa-solid fa-home"></i>
+                                <span>Home</span>
+                            </a>      
+                            <a href="#" class="text-center link_menu hide_on_search" data-bs-toggle="modal" data-bs-target="#modalRamais">  
+                                <i class="fa-regular fa-address-book"></i>
+                                <span>Ramais</span>
+                            </a>
+                            <a href="/documentos" class="text-center link_menu hide_on_search">  
+                                <i class="fa-regular fa-folder"></i>
+                                <span>Documentos</span>
+                            </a>
+                            <a href="https://mail.cotrisoja.com.br:8443/" target="_blank" class="text-center link_menu hide_on_search">  
+                                <i class="fa-regular fa-envelope"></i>
+                                <span>E-mail</span>
+                            </a>
+                            <a href="http://chamados.cotrisoja.com.br/" target="_blank" class="text-center link_menu hide_on_search">  
+                                <i class="fa-regular fa-clipboard"></i>
+                                <span>Chamados</span>
+                            </a>
+                            <a href="http://192.0.0.221:8080/adged" target="_blank" class="text-center link_menu hide_on_search">  
+                                <i class="fa-regular fa-file-powerpoint"></i>
+                                <span>PortalNFE</span>
+                            </a>          
+                            <a href="https://cotrisoja.com.br/" target="_blank" class="text-center link_menu hide_on_search">  
+                                <i class="fa-solid fa-globe"></i>
+                                <span>Site</span>
+                            </a>
+                            <div id="box_search" class="align-content-center" style="display: none; position: relative;">
+                                <input id="input_search" class="form-control" type="text" placeholder="Busca rápida" autocomplete="off"></input>
+                                <div id="responses_search" class="dropdown_responses_search">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <span>Nome Sobrenome - Função - Matriz</span><br>
+                                            <span>Ramal 135 - nome.sobrenome@cotrisoja.com.br</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span>Nome Sobrenome - Função - Matriz</span><br>
+                                            <span>Ramal 135 - nome.sobrenome@cotrisoja.com.br</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="#" class="text-center link_menu" id="toggle_search">  
+                                <i id="icon_search" class="fa-solid fa-magnifying-glass"></i>
+                                <span id="label_search">Busca</span>
+                            </a>                           
+                        </div>
+                    </div>
+                </div>          
+            </div>
+            <div class="missao_header">
+                <div class="h-100 d-flex align-items-center justify-content-center">
+                    <span class="fw-lighter">
+                        Crescer com Resultado, Autonomia Financeira e Valorização do Relacionamento com o Associado
+                    </span>
                 </div>
-                <div class="col">
-                    <div class="d-flex justify-content-end">    
-                        <a href="/" class="text-center link_menu">  
-                            <i class="fa-solid fa-home"></i>
-                            <span>Home</span>
-                        </a>      
-                        <a href="#" class="text-center link_menu" data-bs-toggle="modal" data-bs-target="#modalRamais">  
-                            <i class="fa-regular fa-address-book"></i>
-                            <span>Ramais</span>
-                        </a>
-                        <a href="/documentos" class="text-center link_menu">  
-                            <i class="fa-regular fa-folder"></i>
-                            <span>Documentos</span>
-                        </a>
-                        <a href="https://mail.cotrisoja.com.br:8443/" target="_blank" class="text-center link_menu">  
-                            <i class="fa-regular fa-envelope"></i>
-                            <span>E-mail</span>
-                        </a>
-                        <a href="http://chamados.cotrisoja.com.br/" target="_blank" class="text-center link_menu">  
-                            <i class="fa-regular fa-clipboard"></i>
-                            <span>Chamados</span>
-                        </a>
-                        <a href="http://192.0.0.221:8080/adged" target="_blank" class="text-center link_menu">  
-                            <i class="fa-regular fa-file-powerpoint"></i>
-                            <span>PortalNFE</span>
-                        </a>          
-                        <a href="https://cotrisoja.com.br/" target="_blank" class="text-center link_menu">  
-                            <i class="fa-solid fa-globe"></i>
-                            <span>Site</span>
-                        </a>
-                        <a href="#" class="text-center link_menu">  
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <span>Busca</span>
-                        </a>
+            </div>
+        </div>
+
+        <div class="content mt-4">
+            {% block content %}{% endblock %}
+        </div>
+        <div class="footer">
+            <p>© 2022 - {% now 'Y' %} Cotrisoja. Todos os direitos reservados.</p>
+        </div>
+        <div class="modal fade" id="modalRamais" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">                                
+                        <h4 class="modal-title fw-bold">Ramais</h4>
+                        <input class="txtSearch ms-3" type="text" placeholder="Buscar" aria-label="Search">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">         
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr class="head">
+                                    <th scope="col" class="table-col-1">Ramal</th>
+                                    <th scope="col" class="table-col-2">Telefone</th>
+                                    <th scope="col" class="table-col-3">Nome</th>
+                                    <th scope="col" class="table-col-4">E-mail</th>
+                                    <th scope="col" class="table-col-5">Cargo</th>
+                                    <th scope="col" class="table-col-6">Unidade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for contato in Contatos %}
+                                <tr>
+                                    <th scope="row">{{contato.ramal}}</th>
+                                    <td>{{contato.telefone}}</td>
+                                    <td>{{contato.nome}}</td>
+                                    <td>{{contato.email}}</td>
+                                    <td>{{contato.funcao}}</td>
+                                    <td>{{contato.unidade}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
-            
-            
-            <div style="display: none;">
-                <input  class="form-control" type="text" placeholder="Busca rápida"></input>
-            </div>           
-        </div>
-        <div class="missao_header">
-            <div class="h-100 d-flex align-items-center justify-content-center">
-                <span class="fw-lighter">
-                    Crescer com Resultado, Autonomia Financeira e Valorização do Relacionamento com o Associado
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <div class="content mt-4">
-        {% block content %}{% endblock %}
-    </div>
-    <div class="footer">
-        <p>© 2022 - {% now 'Y' %} Cotrisoja. Todos os direitos reservados.</p>
-    </div>
-    <script src="{% static 'base/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
-    {% block scripts %}{% endblock %}
-    {% django_browser_reload_script %}
-</body>
-
+        </div>            
+    </body>
 </html>
 
+{% block scripts %}{% endblock %}
+<script src="{% static 'base/filter.js' %}" crossorigin="anonymous"></script> 
+<script src="{% static 'base/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    function toggleInputQuickSearch() {
+        if ($('.hide_on_search').css("display") == "none") {
+            $('.hide_on_search').show();
+            $('#box_search').hide();
+            $("#icon_search").toggleClass('fa-magnifying-glass fa-xmark');
+            $("#label_search").text("Busca");
+            $("#input_search").val('');
+            $("#responses_search").hide();
+        } else {
+            $('.hide_on_search').hide();
+            $('#box_search').show();
+            $("#icon_search").toggleClass('fa-xmark fa-magnifying-glass');
+            $("#label_search").text("Fechar");
+            $("#input_search").val('');
+            $("#responses_search").hide();
+        }
+    }
+    $("#toggle_search").on("click", function() {
+        toggleInputQuickSearch();
+    });
+
+    $(document).on("click", function(event) {
+        var $target = $(event.target);
+        if (!$target.closest('#toggle_search').length) {            
+            $("#responses_search").hide();
+        }
+    });
+
+    $("#responses_search").on("click", function(event) {
+        event.stopPropagation(); 
+    });
+
+    $("#input_search").on("input", function() {
+        var inputLength = $("#input_search").val().length;
+        if (inputLength > 2) {
+            $("#responses_search").slideDown();
+        } else {
+            $("#responses_search").slideUp();
+        }
+    });
+</script>
+{% django_browser_reload_script %}
 
 <!-- <ul class="nav">
                         <li><a href="/" >Página Inicial</a></li>
@@ -132,44 +223,6 @@
                         </li>
                     </ul> -->
 
-                    <div class="modal fade" id="modalRamais" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-xl modal-dialog-scrollable">
-                          <div class="modal-content">
-                            <div class="modal-header">                                
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Ramais</h1>
-                              <input class="txtSearch ms-3" type="text" placeholder="Buscar" aria-label="Search">
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">                              
-                                <table class="table table-borderless">
-                                    <thead>
-                                        <tr class="head">
-                                            <th scope="col" class="table-col-1">Ramal</th>
-                                            <th scope="col" class="table-col-2">Telefone</th>
-                                            <th scope="col" class="table-col-3">Nome</th>
-                                            <th scope="col" class="table-col-4">E-mail</th>
-                                            <th scope="col" class="table-col-5">Cargo</th>
-                                            <th scope="col" class="table-col-6">Unidade</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for contato in Contatos %}
-                                        <tr>
-                                            <th scope="row">{{contato.ramal}}</th>
-                                            <td>{{contato.telefone}}</td>
-                                            <td>{{contato.nome}}</td>
-                                            <td>{{contato.email}}</td>
-                                            <td>{{contato.funcao}}</td>
-                                            <td>{{contato.unidade}}</td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                    </table>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                      
+                    
+
+
