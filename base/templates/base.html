@@ -21,46 +21,58 @@
 
 <body>
     <div class="header">
-        <div class="container d-flex align-items-center justify-content-between">
-            <a href="/">
-                <img src="{% static 'base/Logo Cotrisoja.png' %}" class="logo">
-            </a>
-            <div class="d-flex flex-wrap justify-content-center">          
-                <a href="#" class="text-center link_menu">  
-                    <i class="fa-regular fa-address-book"></i>
-                    <span>Ramais</span>
-                </a>
-                <a href="#" class="text-center link_menu">  
-                    <i class="fa-regular fa-envelope"></i>
-                    <span>E-mail</span>
-                </a>
-                <a href="#" class="text-center link_menu">  
-                    <i class="fa-regular fa-clipboard"></i>
-                    <span>Chamados</span>
-                </a>
-                <a href="#" class="text-center link_menu">  
-                    <i class="fa-regular fa-file-powerpoint"></i>
-                    <span>Portal NFE</span>
-                </a>            
-                <a href="#" class="text-center link_menu">  
-                    <i class="fa-regular fa-folder"></i>
-                    <span>Documentos</span>
-                </a>
-                <a href="#" class="text-center link_menu">  
-                    <i class="fa-solid fa-globe"></i>
-                    <span>Site</span>
-                </a>
-                <a href="#" class="text-center link_menu">  
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <span>Busca</span>
-                </a>
+        <div class="container-xxl">
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <a href="/">
+                        <img src="{% static 'base/Logo Cotrisoja.png' %}" class="logo">
+                    </a>
+                </div>
+                <div class="col">
+                    <div class="d-flex justify-content-end">    
+                        <a href="/" class="text-center link_menu">  
+                            <i class="fa-solid fa-home"></i>
+                            <span>Home</span>
+                        </a>      
+                        <a href="#" class="text-center link_menu" data-bs-toggle="modal" data-bs-target="#modalRamais">  
+                            <i class="fa-regular fa-address-book"></i>
+                            <span>Ramais</span>
+                        </a>
+                        <a href="/documentos" class="text-center link_menu">  
+                            <i class="fa-regular fa-folder"></i>
+                            <span>Documentos</span>
+                        </a>
+                        <a href="https://mail.cotrisoja.com.br:8443/" target="_blank" class="text-center link_menu">  
+                            <i class="fa-regular fa-envelope"></i>
+                            <span>E-mail</span>
+                        </a>
+                        <a href="http://chamados.cotrisoja.com.br/" target="_blank" class="text-center link_menu">  
+                            <i class="fa-regular fa-clipboard"></i>
+                            <span>Chamados</span>
+                        </a>
+                        <a href="http://192.0.0.221:8080/adged" target="_blank" class="text-center link_menu">  
+                            <i class="fa-regular fa-file-powerpoint"></i>
+                            <span>PortalNFE</span>
+                        </a>          
+                        <a href="https://cotrisoja.com.br/" target="_blank" class="text-center link_menu">  
+                            <i class="fa-solid fa-globe"></i>
+                            <span>Site</span>
+                        </a>
+                        <a href="#" class="text-center link_menu">  
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>Busca</span>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <!-- <div>
-                <input class="form-control" type="text" placeholder="Busca rápida"></input>
-            </div>              -->
+            
+            
+            <div style="display: none;">
+                <input  class="form-control" type="text" placeholder="Busca rápida"></input>
+            </div>           
         </div>
         <div class="missao_header">
-            <div class="container h-100 d-flex align-items-center justify-content-center">
+            <div class="h-100 d-flex align-items-center justify-content-center">
                 <span class="fw-lighter">
                     Crescer com Resultado, Autonomia Financeira e Valorização do Relacionamento com o Associado
                 </span>
@@ -68,7 +80,7 @@
         </div>
     </div>
 
-    <div class="content">
+    <div class="content mt-4">
         {% block content %}{% endblock %}
     </div>
     <div class="footer">
@@ -119,3 +131,45 @@
                             </div>
                         </li>
                     </ul> -->
+
+                    <div class="modal fade" id="modalRamais" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                          <div class="modal-content">
+                            <div class="modal-header">                                
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Ramais</h1>
+                              <input class="txtSearch ms-3" type="text" placeholder="Buscar" aria-label="Search">
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">                              
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr class="head">
+                                            <th scope="col" class="table-col-1">Ramal</th>
+                                            <th scope="col" class="table-col-2">Telefone</th>
+                                            <th scope="col" class="table-col-3">Nome</th>
+                                            <th scope="col" class="table-col-4">E-mail</th>
+                                            <th scope="col" class="table-col-5">Cargo</th>
+                                            <th scope="col" class="table-col-6">Unidade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for contato in Contatos %}
+                                        <tr>
+                                            <th scope="row">{{contato.ramal}}</th>
+                                            <td>{{contato.telefone}}</td>
+                                            <td>{{contato.nome}}</td>
+                                            <td>{{contato.email}}</td>
+                                            <td>{{contato.funcao}}</td>
+                                            <td>{{contato.unidade}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    </table>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                      

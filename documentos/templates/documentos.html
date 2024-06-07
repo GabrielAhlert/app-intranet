@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Documentos - Intranet Cotrisoja{% endblock %}
-
+{{doc.icon}}
 {% load static %}
 
 {% block styles %}
@@ -11,29 +11,101 @@
 {% block content %}
 <div class="container main">
     <div class="main-itens L1">
-    {%for parent in parents%}
-            <div trigger={{parent.id}} class="card">
-                <div class="card-body">
-                    <i class="fa-solid fa-folder" style="font-size: 60px;"></i>
-                    <h5>{{parent.nome}}</h5>
-                </div>
+    {% for cat in C1%}
+        <div id="cat{{cat.id}}" class="card">
+            <div class="card-body">
+                <i class="fa-solid {{ cat.icone|default:"fa-folder"}}" style="font-size: 60px;"></i>
+                <h5>{{cat.nome}}</h5>
             </div>
-    {%endfor%}
+        </div>
+    {% endfor %}
     </div>
-    {%for parent in parents%}
-    <div id={{parent.id}} class="main-itens hidden L2">
-    {%for child in parent.children%}
-            <div class="card">
+    <div class="main-itens L2">
+        {% for cat in C2%}
+        <div id="cat{{cat.id}}" class="card hidden" parent="cat{{cat.parente.id}}">
+            <div class="card-body">
+                <i class="fa-solid {{ cat.icone|default:"fa-folder"}}" style="font-size: 60px;"></i>
+                <h5>{{cat.nome}}</h5>
+            </div>
+        </div> 
+        {% endfor %}
+        {% for doc in D2%}
+        <div id="doc{{doc.id}}" class="card doc hidden" parent="cat{{doc.categoria_id}}">
+            <a href="/download/{{doc.id}}" target="_blank">
                 <div class="card-body">
-                            <i class="fa-solid fa-folder" style="font-size: 60px;"></i>
-                        <h5>{{child.nome}}</h5>
+                    <i class="fa-solid {{doc.icon}}" style="font-size: 60px;"></i>
+                    <h5>{{doc.nome}}</h5>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="main-itens L3">
+        {% for cat in C3%}
+        <div id="cat{{cat.id}}" class="card hidden" parent="cat{{cat.parente.id}}">
+            <div class="card-body">
+                <i class="fa-solid {{ cat.icone|default:"fa-folder"}}" style="font-size: 60px;"></i>
+                <h5>{{cat.nome}}</h5>
+            </div>
+        </div> 
+        {% endfor %}
+        {% for doc in D3%}
+        <div id="doc{{doc.id}}" class="card doc hidden" parent="cat{{doc.categoria_id}}">
+            <a href="download/{{doc.id}}" target="_blank">
+                <div class="card-body">
+                    <i class="fa-solid {{doc.icon}}" style="font-size: 60px;"></i>
+                    <h5>{{doc.nome}}</h5>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="main-itens L4">
+        {% for cat in C4%}
+        <div id="cat{{cat.id}}" class="card hidden" parent="cat{{cat.parente.id}}">
+            <div class="card-body">
+                <i class="fa-solid {{ cat.icone|default:"fa-folder"}}" style="font-size: 60px;"></i>
+                <h5>{{cat.nome}}</h5>
+            </div>
+        </div> 
+        {% endfor %}
+        {% for doc in D4%}
+        <div id="doc{{doc.id}}" class="card doc hidden" parent="cat{{doc.categoria_id}}">
+            <a href="download/{{doc.id}}" target="_blank">
+                <div class="card-body">
+                    <i class="fa-solid {{doc.icon}}" style="font-size: 60px;"></i>
+                    <h5>{{doc.nome}}</h5>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="main-itens L5">
+        {% for cat in C5%}
+        <a href="download/{{doc.id}}">
+            <div id="cat{{cat.id}}" class="card hidden" parent="cat{{cat.parente.id}}">
+                <div class="card-body">
+                    <i class="fa-solid {{ cat.icone|default:"fa-folder"}}" style="font-size: 60px;"></i>
+                    <h5>{{cat.nome}}</h5>
                 </div>
             </div>
-    {%endfor%}
-</div>
-{%endfor%}
+        </a>
+        {% endfor %}
+        {% for doc in D5%}
+        <div id="doc{{doc.id}}" class="card doc hidden" parent="cat{{doc.categoria_id}}">
+            <a href="download/{{doc.id}}" target="_blank">
+                <div class="card-body">
+                    <i class="fa-solid {{doc.icon}}" style="font-size: 60px;"></i>
+                    <h5>{{doc.nome}}</h5>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
 
 </div>
+
 {% endblock %}
 
 {% block scripts %}

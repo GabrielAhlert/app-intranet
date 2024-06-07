@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content:start;
     align-content: start;
+    flex-wrap: nowrap;
     flex-grow: 0;
 }
 .main > *{
@@ -45,11 +46,11 @@
 .card:hover .card-body{
     color: white;
 }
-.active{
+.active:not(.doc){
     background-color: #01634A;
     color: white;
 }
-.active .card-body{
+.active:not(.doc) .card-body{
     color: white;
 }
 .side-bar{

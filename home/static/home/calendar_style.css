@@ -6,8 +6,8 @@
     flex-direction: column;
     width: 100%;
     aspect-ratio: 1 / 1.15;
-    background: #fff;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    /* background: #fff;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); */
     justify-content: space-evenly;
     padding: 10px;
 }
@@ -50,7 +50,8 @@
 
 .calendar {
     padding: 0px;
-    aspect-ratio: 1 / 1;
+    height: 450px;
+    /* aspect-ratio: 1 / 1; */
 }
 .calendar *{
     padding: 0;

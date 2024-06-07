@@ -1,6 +1,16 @@
 * {
     font-family: Poppins, sans-serif;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #01634a;
+}
+
 html{
     height: 100%;
     width: 100%;
@@ -13,7 +23,7 @@ body{
     background-color: #01634a;
 }
 .header .logo{
-    height: 90px;
+    height: 80px;
 }
 .navbar-collapse{
     display: flex;
@@ -75,19 +85,40 @@ body{
    color: #e6ebe8;
 }
 
-.link_menu{
-    width: 80px;
-    height: auto;
+.link_menu {    
     text-decoration: none;
     color: #e6ebe8;
-    margin: 0 10px;
 }
 
 .link_menu:hover {
-    color: #004938;
+    color: #49CA66;
 }
 
 .link_menu i {
-    font-size: 30px;
-    display: block;
+    margin: 0 35px;
+    font-size: 26px;
+    display: block;   
 }
+
+.link_menu span {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+.txtSearch{
+    border-radius: 15px;
+    border: 1px solid #014b38;
+    padding: 10px;
+    margin-top: 5px;
+    size-adjust: 10px;
+}
+
+.txtSearch[type='text']{
+    font-size: 14px;
+}
+  
+.modal-title {
+    color: #01634a;
+}
+

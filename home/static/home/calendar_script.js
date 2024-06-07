@@ -38,7 +38,7 @@ async function put_event_badge(){
         const li = document.querySelector(`.days li[id="${day}"]`);
         li.classList.add("day-with-event");
     });
-    put_event_popover(eventsJson);
+    //put_event_popover(eventsJson);
 }
 
 
@@ -104,19 +104,23 @@ prevNextIcon.forEach(icon => {
     });
 });
 
-function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-      console.log( "Geolocation is not supported by this browser.");
-    }
-  }
-  
-  function showPosition(position) {
-    console.log( "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude)
-  }
+async function loadEvents(date){
+    const h1 = document.getElementById("h1-eventos");
+    const ul = document.getElementById("ul-eventos");
+    h1.innerHTML = "Eventos do dia " + date.toLocaleDateString();
+    const events = await fetch(`/get_eventos/${date.toLocaleDateString().replace(/\//g, "-")}/`);
+    const eventsJson = await events.json();
+    ul.innerHTML = "";
+    eventsJson.forEach(event => {
+        const li = document.createElement("li");
+        li.innerHTML = event.titulo + " - " + event.local;
+        ul.appendChild(li);
+    });
 
-  getLocation();
+}
+
+loadEvents(date);
+
+
 
 

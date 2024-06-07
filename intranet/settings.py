@@ -70,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'documentos.context_processors.categorias',
+                'agenda.context_processors.contatos',
             ],
         },
     },
