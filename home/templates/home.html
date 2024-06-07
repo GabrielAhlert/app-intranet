@@ -25,7 +25,7 @@
                         <span id="next" class="material-symbols-rounded">chevron_right</span>
                     </div>
                 </header>
-                <div class="calendar">
+                <div class="calendar mb-auto">
                     <ul class="weeks">
                         <li>Dom</li>
                         <li>Seg</li>
@@ -42,15 +42,14 @@
         <div class="col">
             <div id="carouselHome" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">                    
-                    {% for banner in Banners %} {% if forloop.counter0 == 0 %}
-                    <div class="carousel-item active">
+                    {% for banner in Banners %}
+                        {% if forloop.counter0 == 0 %}
+                            <div class="carousel-item active">                                
+                            {% else %}
+                            <div class="carousel-item">                                
+                        {% endif %}
                         <img src={{banner.imagem.url}} class="d-block w-100">
-                    </div>
-                    {% else %}
-                    <div class="carousel-item">
-                        <img src={{banner.imagem.url}} class="d-block w-100">
-                    </div>
-                    {% endif %}
+                        </div>
                     {% endfor %}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
@@ -64,7 +63,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-4">
             <h4 class="text-center fw-semibold" style="color: #01634A;">Recados</h4>           
             <ul class="list-group">
