@@ -57,7 +57,7 @@
                                 <i class="fa-solid fa-globe"></i>
                                 <span>Site</span>
                             </a>
-                            <div id="box_search" class="align-content-center" style="display: none; position: relative;">
+                            <div id="box_search" class="box_quick_search align-content-center" style="display: none; position: relative;">
                                 <input id="input_search" class="form-control" type="text" placeholder="Busca rápida" autocomplete="off"></input>
                                 <div id="responses_search" class="dropdown_responses_search">
                                     <ul class="list-group">
@@ -143,18 +143,32 @@
 <script src="{% static 'base/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
 <script type="text/javascript">
     function toggleInputQuickSearch() {
-        if ($('.hide_on_search').css("display") == "none") {
-            $('.hide_on_search').show();
-            $('#box_search').hide();
+        // if ($('.hide_on_search').css("display") == "none") {
+        //     $('.hide_on_search').show();
+        //     $('#box_search').hide();
+        //     $("#icon_search").toggleClass('fa-magnifying-glass fa-xmark');
+        //     $("#label_search").text("Busca");
+        //     $("#input_search").val('');
+        //     $("#responses_search").hide();
+        // } else {
+        //     $('.hide_on_search').hide();
+        //     $('#box_search').show();
+        //     $("#icon_search").toggleClass('fa-xmark fa-magnifying-glass');
+        //     $("#label_search").text("Fechar");
+        //     $("#input_search").val('');
+        //     $("#responses_search").hide();
+        // }
+
+        if ($('#box_search').css("display") == "none") {
             $("#icon_search").toggleClass('fa-magnifying-glass fa-xmark');
-            $("#label_search").text("Busca");
+            $("#label_search").text("Fechar");
             $("#input_search").val('');
             $("#responses_search").hide();
-        } else {
-            $('.hide_on_search').hide();
             $('#box_search').show();
+        } else {
+            $('#box_search').hide();
             $("#icon_search").toggleClass('fa-xmark fa-magnifying-glass');
-            $("#label_search").text("Fechar");
+            $("#label_search").text("Busca");
             $("#input_search").val('');
             $("#responses_search").hide();
         }

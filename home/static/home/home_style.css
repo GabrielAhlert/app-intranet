@@ -3,11 +3,13 @@
 }
 
 .recado {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+    /* display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical; */
+    width: 75%;
     overflow: hidden;
     text-overflow: ellipsis; 
+    text-wrap: nowrap;
 }
 
 .img_func {

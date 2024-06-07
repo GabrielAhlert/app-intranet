@@ -126,6 +126,12 @@
     top: 10px;
     right: 10px;
 }
+
+.days li.today::after {
+    background: white !important;
+    border: 1px solid green;
+}
+
 .popover-header{
     background-color: #01634A !important;
     color: white;

@@ -71,20 +71,23 @@
             <ul class="list-group">
                 <div id="carouselRecados" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
                     <div class="carousel-inner">                        
-                        {% for recado in Recados %}
+                        {% for recados in Recados %}
                             {% if forloop.counter0 == 0 %}
                                 <div class="carousel-item active rounded">
                             {% else %}
                                 <div class="carousel-item rounded">
                             {% endif %}
+
+                            {% for recado in recados %}                           
                                 <li class="list-group-item">                                        
-                                    <a href="#" onclick="modalRecados('{{recado.id}}')" data-bs-toggle="modal" data-bs-target="#modalRecado"> 
-                                        <span class="col fw-bold" style="font-size: 18px;">{{recado.titulo}}</span>                                                                            
-                                        <div class="fw-lighter recado">
-                                            {{recado.texto}}
-                                        </div> 
+                                    <a href="#" style="position: relative;" onclick="modalRecados('{{recado.id}}')" data-bs-toggle="modal" data-bs-target="#modalRecado">                                                                            
+                                        <div class="fw-semibold recado">
+                                            {{recado.titulo}}
+                                        </div>    
+                                        <span style="position: absolute; right: 0; bottom: 0;">Veja mais</span>                                     
                                     </a>    
-                                </li>    
+                                </li>   
+                            {% endfor %}
                             </div> 
                         {% endfor %}    
                     </div>
