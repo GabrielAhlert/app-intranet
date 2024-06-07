@@ -76,12 +76,11 @@
                                 <div class="carousel-item rounded">
                             {% endif %}
                                 <li class="list-group-item">                                        
-                                    <a href="#" id="trigger_recados" data-bs-toggle="modal" data-bs-target="#modalRecado"> 
+                                    <a href="#" onclick="modalRecados('{{recado.id}}')" data-bs-toggle="modal" data-bs-target="#modalRecado"> 
                                         <span class="col fw-semibold">{{recado.titulo}}</span>                                                                            
                                         <div class="fw-lighter recado">
                                             {{recado.texto}}
                                         </div> 
-                                        <input id="recado_id" type="text" style="display: none;" value="{{ recado.id }}" /> 
                                     </a>    
                                 </li>    
                             </div> 
@@ -194,7 +193,7 @@
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="tituloModalRecado">Título Recado</h1>
+                    <h5 class="modal-title" id="tituloModalRecado"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body px-4" id="corpoModalRecado" style="color: black;"></div>
@@ -212,28 +211,27 @@
     <script src="{% static 'home/lightbox/js/lightbox-plus-jquery.js' %}" crossorigin="anonymous"></script>
     <script src="{% static 'home/calendar_script.js' %}"></script>
     <script type="text/javascript">
-        $("#trigger_recados").on("click", function() {
-            var recado_id = $("#recado_id").val();
+        function modalRecados(id) {
+            var url = "/get_recado/"+id;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(data) { 
+                    $("#tituloModalRecado").empty();
+                    $("#corpoModalRecado").empty();
 
-            if (recado_id) {
-                var url = "/get_recado/"+recado_id;
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    success: function(data) {  
-                        $("#tituloModalRecado").text(data[0].titulo);                      
-                        $("#corpoModalRecado").append(`
-                            <img src='`+data[0].image+`' class='me-3 mb-3 rounded' style='width: 35vw; float: left;'/>
-                            <p class='flex-grow-1'>
-                                `+data[0].texto+`
-                            </p>
-                        `);
-                    },
-                    error: function(xhr, textStatus, errorThrown) {
-                        console.error('Erro na solicitação:', textStatus, errorThrown);
-                    }
-                });
-            }
-        });
+                    $("#tituloModalRecado").text(data[0].titulo);                      
+                    $("#corpoModalRecado").append(`
+                        <img src='`+data[0].image+`' class='me-3 mb-3 rounded' style='width: 35vw; float: left;'/>
+                        <p class='flex-grow-1'>
+                            `+data[0].texto+`
+                        </p>
+                    `);
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.error('Erro na solicitação:', textStatus, errorThrown);
+                }
+            });
+        };
     </script>
 {% endblock %}
