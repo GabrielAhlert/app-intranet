@@ -13,6 +13,7 @@
         <link rel="apple-touch-icon" href="{% static 'base/cropped-favicon-180x180.png' %}" />
         <link href="{% static 'base/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/2755f85e88.js" crossorigin="anonymous"></script>
+        <script src="{% static 'home/lightbox/js/lightbox-plus-jquery.js' %}" crossorigin="anonymous"></script>
         {% block styles %}{% endblock %}
 
         <link rel="stylesheet" href="{% static 'base/base_style.css' %}">
@@ -63,7 +64,7 @@
                                     <ul class="list-group" id="list_results_quicksearch"></ul>
                                 </div>
                             </div>
-                            <a href="#" class="text-center link_menu" id="toggle_search">  
+                            <a class="text-center link_menu" id="toggle_search" style="cursor: pointer;">  
                                 <i id="icon_search" class="fa-solid fa-magnifying-glass"></i>
                                 <span id="label_search">Busca</span>
                             </a>                           
@@ -135,39 +136,43 @@
 <script type="text/javascript">
     function toggleInputQuickSearch() {
         //Fecha os icones e abre a pesquisa
-        // if ($('.hide_on_search').css("display") == "none") {
-        //     $('.hide_on_search').show();
-        //     $('#box_search').hide();
+        if ($('.hide_on_search').css("display") == "none") {
+            $('#box_search').hide(10, function() {
+                $('.hide_on_search').show();
+                $("#icon_search").toggleClass('fa-magnifying-glass fa-xmark');
+                $("#label_search").text("Busca");
+                $("#input_search").val('');
+                $("#responses_search").hide();
+            });          
+        } else {
+            $('.hide_on_search').hide(10, function() {
+                $("#icon_search").toggleClass('fa-xmark fa-magnifying-glass');
+                $("#label_search").text("Fechar");
+                $("#input_search").val('');            
+                $("#responses_search").hide();
+                $('#box_search').show(0, function() {
+                    $("#input_search").focus();
+                });
+            });            
+        }
+
+        //Abre a pesquisa sem fechar os icones
+        // if ($('#box_search').css("display") == "none") {
         //     $("#icon_search").toggleClass('fa-magnifying-glass fa-xmark');
+        //     $("#label_search").text("Fechar");
+        //     $("#input_search").val('');
+        //     $("#input_search").focus();
+        //     $("#responses_search").hide();
+        //     $('#box_search').show(30, function() {
+        //         $("#input_search").focus();
+        //     });
+        // } else {
+        //     $('#box_search').hide();
+        //     $("#icon_search").toggleClass('fa-xmark fa-magnifying-glass');
         //     $("#label_search").text("Busca");
         //     $("#input_search").val('');
         //     $("#responses_search").hide();
-        // } else {
-        //     $('.hide_on_search').hide();
-        //     $('#box_search').show();
-        //     $("#icon_search").toggleClass('fa-xmark fa-magnifying-glass');
-        //     $("#label_search").text("Fechar");
-        //     $("#input_search").val('');
-        //     $("#responses_search").hide();
         // }
-
-        //Abre a pesquisa sem fechar os icones
-        if ($('#box_search').css("display") == "none") {
-            $("#icon_search").toggleClass('fa-magnifying-glass fa-xmark');
-            $("#label_search").text("Fechar");
-            $("#input_search").val('');
-            $("#input_search").focus();
-            $("#responses_search").hide();
-            $('#box_search').show(30, function() {
-                $("#input_search").focus();
-            });
-        } else {
-            $('#box_search').hide();
-            $("#icon_search").toggleClass('fa-xmark fa-magnifying-glass');
-            $("#label_search").text("Busca");
-            $("#input_search").val('');
-            $("#responses_search").hide();
-        }
     }
 
     $("#toggle_search").on("click", function() {
@@ -189,7 +194,7 @@
     $("#input_search").on("input", function() {
         var inputLength = $("#input_search").val().length;
         if (inputLength > 2) {
-            $("#responses_search").slideDown();
+            $("#responses_search").show();
 
             $.ajax({
                 method: "GET",
@@ -234,7 +239,7 @@
                                 const dados = $("<span>").text(item.categoria).addClass("fw-lighter");
                                 const br = $("<br>");
 
-                                const titulo = $("<span>").append($("<a>").append(nome).attr("href", item.link)).append(" - ").append(dados);
+                                const titulo = $("<span>").append($("<a>").append(nome).attr("href", '/documentos/download/'+item.id)).append(" - ").append(dados);
                                 list.append(titulo);                                
 
                                 documentos_ul.append(list);
@@ -250,7 +255,7 @@
                 }
             });
         } else {
-            $("#responses_search").slideUp();
+            $("#responses_search").hide();
         }
     });
 

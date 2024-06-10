@@ -24,6 +24,7 @@ urlpatterns = [
     path('documentos/', include('documentos.urls')),
     path('search/', include('search.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:

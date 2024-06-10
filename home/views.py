@@ -49,8 +49,7 @@ def get_recado(request, id_recado):
         recadoData.append({
             "id": recado.id,
             "titulo": recado.titulo,
-            "texto": recado.texto,
-            "image": recado.image.url
+            "texto": recado.texto
         })
     return HttpResponse(json.dumps(recadoData), content_type='application/json')
 
