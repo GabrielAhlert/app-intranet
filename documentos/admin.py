@@ -3,13 +3,12 @@ from .models import Categoria, Documento
 
 class CategoriaAdmin(admin.ModelAdmin):
     #readonly_fields = ['profundidade',]
-    list_display = ('nome', 'parente', 'categoria_ativa')
+    list_display = ('nome', '__str__', 'parente', 'categoria_ativa')
     search_fields = ['nome']
     
 class documentoAdmin(admin.ModelAdmin):
     list_display = ('nome', 'categoria', 'arquivo', 'link')
     search_fields = ['nome']
-    
 
 
 admin.site.register(Categoria, CategoriaAdmin)

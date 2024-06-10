@@ -16,20 +16,31 @@
     justify-content: center;
     align-items: center;
     flex-grow: 0;
+    margin-bottom: 20px;
 }
 .hidden{
     display: none;
+}
+.L1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    flex-wrap: wrap;
 }
 .card{
     background-color: #f8f9fa;
     border: 1px solid #f8f9fa;
     border-radius: 10px;
-    margin-bottom: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 180px;
-    height: 150px;
+    width: 200px;
+    height: 160px;
     justify-content: center;
     margin: 10px;
+}
+.card-body i{
+    font-size: 2.2em;
 }
 .card-body{
     display: flex;
@@ -38,13 +49,19 @@
     justify-content: center;
     color: #01634A;
     cursor: pointer;
+    font-size: 1.0em !important;
 }
+
 .card:hover{
     background-color: #01634A;
     color: white;
 }
 .card:hover .card-body{
     color: white;
+}
+.card p{
+    margin: 0;
+    text-align: center;
 }
 .active:not(.doc){
     background-color: #01634A;

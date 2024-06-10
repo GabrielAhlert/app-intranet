@@ -20,7 +20,9 @@ class Categoria(models.Model):
     def save(self, *args, **kwargs):
         if self.parente:
             if self.parente.parente:
-                    raise ValidationError('Categoria não pode ter mais de 2 níveis de profundidade')
+                if self.parente.parente.parente:
+                    if self.parente.parente.parente.parente:
+                        raise ValidationError('Categoria não pode ter mais de 2 níveis de profundidade')
         super(Categoria, self).save(*args, **kwargs)
         
 class Documento(models.Model):

@@ -44,11 +44,7 @@ def index(request):
     D3 = get_document(C2)
     D4 = get_document(C3)
     D5 = get_document(C4)
-    
-    print(C1)
-    print(C2)
-    print(C3)
-    print(C4)
+
 
     
     template = loader.get_template('documentos.html')
