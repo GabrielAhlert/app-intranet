@@ -196,13 +196,17 @@
                 url: "/search/get_quicksearch/"+$("#input_search").val(),
                 success: function(response) {
                     $("#list_results_quicksearch").empty();
-                    for (const key in response) {
-                        if (key === 'contatos') {
+                    for (const key in response) {                        
+                        if (key === 'contatos' && response[key].length > 0) {
                             const contatos = response[key];
+                            const cabecalho = $("<span>").text("Contatos").addClass("fw-bold");
+                            const contatos_li = $("<li>").addClass("list-group-item").append(cabecalho);
+                            const contatos_ul = $("<ul>").addClass("list-group list-group-flush");
+                                    
                             contatos.forEach(item => {
                                 const list = $("<li>").addClass("list-group-item");
                                 const nome = $("<span>").addClass("fw-semibold").text(item.nome);
-                                const desc = $("<span>").addClass("fw-light").text(item.funcao);
+                                const desc = $("<span>").addClass("fw-lighter").text(item.funcao);
                                 const ramal = $("<span>").text("Ramal "+item.ramal);
                                 const dados = $("<span>").text(item.email);
                                 const br = $("<br>");
@@ -211,8 +215,33 @@
 
                                 list.append(titulo, br.clone(), desc, br.clone(), dados);
 
-                                $("#list_results_quicksearch").append(list);
+                                contatos_ul.append(list);
+                            });                            
+
+                            $(contatos_li).append(contatos_ul);
+                            $("#list_results_quicksearch").append(contatos_li);
+
+                        } else if (key === 'documentos' && response[key].length > 0) {
+                            const documentos = response[key];
+
+                            const cabecalho = $("<span>").text("Documentos").addClass("fw-bold");
+                            const documentos_li = $("<li>").addClass("list-group-item").append(cabecalho);
+                            const documentos_ul = $("<ul>").addClass("list-group list-group-flush");
+
+                            documentos.forEach(item => {
+                                const list = $("<li>").addClass("list-group-item");
+                                const nome = $("<span>").addClass("fw-semibold").text(item.nome);
+                                const dados = $("<span>").text(item.categoria).addClass("fw-lighter");
+                                const br = $("<br>");
+
+                                const titulo = $("<span>").append($("<a>").append(nome).attr("href", item.link)).append(" - ").append(dados);
+                                list.append(titulo);                                
+
+                                documentos_ul.append(list);
                             });
+
+                            $(documentos_li).append(documentos_ul);
+                            $("#list_results_quicksearch").append(documentos_li);
                         }
                     }
                 },

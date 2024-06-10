@@ -8,7 +8,6 @@ import json
 def get_quicksearch(request, data):
     response = {
         'contatos': [],
-        'categorias': [],
         'documentos': []
     }
 
@@ -21,10 +20,9 @@ def get_quicksearch(request, data):
         Q(email__icontains=data) |
         Q(funcao__nome__icontains=data) |
         Q(unidade__nome__icontains=data)
-    )[:5]
-    
-    categorias = Categoria.objects.filter()
-    documentos = Documento.objects.filter()
+    )[:5]    
+
+    documentos = Documento.objects.filter(Q(nome__icontains=data))
 
     for contato in contatos:   
         contatos_dict = {
@@ -36,5 +34,14 @@ def get_quicksearch(request, data):
         }
 
         response['contatos'].append(contatos_dict)
+    
+    for documento in documentos:
+        documentos_dict = {
+            'nome': documento.nome,
+            'categoria': documento.categoria.nome,
+            'link': documento.link
+        }
+
+        response['documentos'].append(documentos_dict)
 
     return HttpResponse(json.dumps(response), content_type='application/json')
