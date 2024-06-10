@@ -6,7 +6,6 @@
     /* display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical; */
-    width: 75%;
     overflow: hidden;
     text-overflow: ellipsis; 
     text-wrap: nowrap;
