@@ -41,141 +41,151 @@
         </div>
         <div class="col">
             <div id="carouselHome" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">                    
+                <div class="carousel-inner">
                     {% for banner in Banners %}
-                        {% if forloop.counter0 == 0 %}
-                            <div class="carousel-item active">                                
-                            {% else %}
-                            <div class="carousel-item">                                
-                        {% endif %}
-                        <a style="width: 100%;" href="{{banner.imagem.url}}" data-lightbox="image-1">
-                            <img src={{banner.imagem.url}} class="d-block w-100">
-                        </a>
+                    {% if forloop.counter0 == 0 %}
+                    <div class="carousel-item active">
+                        {% else %}
+                        <div class="carousel-item">
+                            {% endif %}
+                            <a style="width: 100%;" href="{{banner.imagem.url}}" data-lightbox="image-1">
+                                <img src={{banner.imagem.url}} class="d-block w-100">
+                            </a>
                         </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselHome"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-4">
-            <h4 class="text-center fw-semibold" style="color: #01634A;">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#modalRecados">Recados</a>
-            </h4>           
-            <ul class="list-group">
+        <div class="row mt-3" id="second_row">
+            <div class="col-4">
                 <div id="carouselRecados" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
-                    <div class="carousel-inner">                        
-                        {% for recados in Recados %}
-                            {% if forloop.counter0 == 0 %}
-                                <div class="carousel-item active rounded">
-                            {% else %}
-                                <div class="carousel-item rounded">
-                            {% endif %}
-
-                            {% for recado in recados %}                           
-                                <li class="list-group-item">                                        
-                                    <a href="#" onclick="modalRecados('{{recado.id}}')" data-bs-toggle="modal" data-bs-target="#modalRecado">                                                                            
-                                        <div class="fw-semibold recado">
-                                            {{recado.titulo}}
-                                        </div>    
-                                        <span class="d-block text-end">Veja mais</span>                                     
-                                    </a>    
-                                </li>   
-                            {% endfor %}
-                            </div> 
-                        {% endfor %}    
+                    <div class="d-flex justify-content-between">
+                        <button style="position: relative;" class="carousel-control-prev" type="button" data-bs-target="#carouselRecados" data-bs-slide="prev">
+                            <i style="color: #01634A; font-size: 23px;" class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <h4 class="text-center fw-semibold" style="color: #01634A;">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalRecados">Recados</a>
+                        </h4>
+                        <button style="position: relative;" class="carousel-control-next" type="button" data-bs-target="#carouselRecados" data-bs-slide="next">
+                            <i style="color: #01634A; font-size: 23px;" class="fa-solid fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>                                              
-            </ul>
-        </div>              
-        <div class="col">
-            <h4 class="text-center fw-semibold" style="color: #01634A;">Novos Colaboradores</h4>
-            <ul class="list-group">
-                <div id="carouselBirthdays" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
-                    <div class="carousel-inner">                        
-                        {% for pessoas in Admitidos %}
-                            {% if forloop.counter0 == 0 %}
-                                <div class="carousel-item active rounded">
-                            {% else %}
-                                <div class="carousel-item rounded">
-                            {% endif %}
-                            {% for pessoa in pessoas %}                                
-                                <li class="list-group-item">
-                                    <div class="row py-auto">
-                                        <div class="col-2">
-                                            <div class="img_func rounded">
-                                                <img src="{{ pessoa.image_url }}"></img>
-                                            </div>
-                                        </div>
-                                        <div class="ms-3 col align-content-center">
-                                            <span class="fw-semibold">{{pessoa.nome}}</span><br> 
-                                            <span>{{pessoa.funcao}} - {{pessoa.unidade}}</span>
-                                        </div> 
-                                    </div>
-                                </li>                                     
-                            {% endfor %}  
-                            </div> 
-                        {% endfor %}    
-                    </div>
-                </div>                                              
-            </ul>
-        </div>
-        <div class="col">
-            <h4 class="text-center fw-semibold">
-                <a href="#" style="color: #01634A;" data-bs-toggle="modal" data-bs-target="#modalAniversariantes">
-                    {{Aniversariantes.0}}
-                </a>
-            </h4>            
-            <ul class="list-group">
-                <div id="carouselBirthdays" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
-                    <div class="carousel-inner">                        
-                        {% for pessoas in Aniversariantes.1 %}
-                            {% if forloop.counter0 == 0 %}
-                                <div class="carousel-item active rounded">
-                            {% else %}
-                                <div class="carousel-item rounded">
-                            {% endif %}
-                            {% for aniversariante in pessoas %}                                
-                                <li class="list-group-item">
-                                    <div class="row py-auto">
-                                        <div class="col-2">
-                                            <div class="img_func rounded">
-                                                <img src="{{ aniversariante.image_url }}"></img>
-                                            </div>
-                                        </div>
-                                        <div class="ms-3 col align-content-center">
-                                            <span class="fw-semibold">{{aniversariante.nome}}</span><br> 
-                                            <span>{{aniversariante.funcao}} - {{aniversariante.unidade}}</span>
-                                        </div> 
-                                    </div>
-                                </li>                                
-                            {% endfor %}  
-                            </div> 
-                        {% endfor %}    
-                    </div>
-                </div>                                              
-            </ul>
-        </div>
-    </div>   
-    
-    <div class="modal fade" id="modalAniversariantes" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modalAniversariantesLabel">Aniversariantes do Mês</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
                     <ul class="list-group">
-                        {% for pessoas in Aniversariantes_Mes %}                    
+                        <div class="carousel-inner">
+                            {% for recados in Recados %}
+                                {% if forloop.counter0 == 0 %}
+                                    <div class="carousel-item active rounded">
+                                {% else %}
+                                    <div class="carousel-item rounded">
+                                {% endif %}
+                                    {% for recado in recados %}
+                                        <li class="list-group-item">
+                                            <a href="#" onclick="modalRecados('{{recado.id}}')" data-bs-toggle="modal"
+                                                data-bs-target="#modalRecado">
+                                                <div class="fw-semibold recado">
+                                                    {{recado.titulo}}
+                                                </div>
+                                                <span class="d-block text-end">Veja mais</span>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <h4 class="text-center fw-semibold" style="color: #01634A;">Novos Colaboradores</h4>
+                <ul class="list-group">
+                    <div id="carouselBirthdays" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+                        <div class="carousel-inner">
+                            {% for pessoas in Admitidos %}
+                            {% if forloop.counter0 == 0 %}
+                            <div class="carousel-item active rounded">
+                                {% else %}
+                                <div class="carousel-item rounded">
+                                    {% endif %}
+                                    {% for pessoa in pessoas %}
+                                    <li class="list-group-item">
+                                        <div class="row py-auto">
+                                            <div class="col-2">
+                                                <div class="img_func rounded">
+                                                    <img src="{{ pessoa.image_url }}"></img>
+                                                </div>
+                                            </div>
+                                            <div class="ms-3 col align-content-center">
+                                                <span class="fw-semibold">{{pessoa.nome}}</span><br>
+                                                <span>{{pessoa.funcao}} - {{pessoa.unidade}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                </ul>
+            </div>
+            <div class="col">
+                <h4 class="text-center fw-semibold">
+                    <a href="#" style="color: #01634A;" data-bs-toggle="modal" data-bs-target="#modalAniversariantes">
+                        {{Aniversariantes.0}}
+                    </a>
+                </h4>
+                <ul class="list-group">
+                    <div id="carouselBirthdays" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+                        <div class="carousel-inner">
+                            {% for pessoas in Aniversariantes.1 %}
+                            {% if forloop.counter0 == 0 %}
+                            <div class="carousel-item active rounded">
+                                {% else %}
+                                <div class="carousel-item rounded">
+                                    {% endif %}
+                                    {% for aniversariante in pessoas %}
+                                    <li class="list-group-item">
+                                        <div class="row py-auto">
+                                            <div class="col-2">
+                                                <div class="img_func rounded">
+                                                    <img src="{{ aniversariante.image_url }}"></img>
+                                                </div>
+                                            </div>
+                                            <div class="ms-3 col align-content-center">
+                                                <span class="fw-semibold">{{aniversariante.nome}}</span><br>
+                                                <span>{{aniversariante.funcao}} - {{aniversariante.unidade}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                </ul>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalAniversariantes" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalAniversariantesLabel">Aniversariantes do Mês</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group">
+                            {% for pessoas in Aniversariantes_Mes %}
                             <li class="list-group-item">
                                 <div class="row">
                                     <div class="col-2">
@@ -184,101 +194,107 @@
                                         </div>
                                     </div>
                                     <div class="ms-2 col align-content-center">
-                                        <span class="fw-semibold">{{pessoas.nome}}</span><br> 
+                                        <span class="fw-semibold">{{pessoas.nome}}</span><br>
                                         <span>{{pessoas.funcao}} - {{pessoas.unidade}}</span>
-                                    </div> 
+                                    </div>
                                     <div class="col text-end align-content-center">
-                                        <span class="border-success border-bottom">{{pessoas.nascimento.day|stringformat:"02d"}}/{{pessoas.nascimento.month|stringformat:"02d"}}</span>
+                                        <span
+                                            class="border-success border-bottom">{{pessoas.nascimento.day|stringformat:"02d"}}/{{pessoas.nascimento.month|stringformat:"02d"}}</span>
                                     </div>
                                 </div>
-                            </li>                     
-                        {% endfor %}  
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="modalRecado" tabindex="-1">
-        <div class="modal-dialog modal-xl modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="tituloModalRecado"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body px-4" id="corpoModalRecado" style="color: black;"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <div class="modal fade" id="modalRecado" tabindex="-1">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="tituloModalRecado"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-4" id="corpoModalRecado" style="color: black;"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-      
-    <div class="modal fade" id="modalRecados" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5">Recados</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="accordion" id="accordionExample">
-                    {% for recados in Recados %}                           
-                        {% for recado in recados %}                    
+
+        <div class="modal fade" id="modalRecados" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Recados</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="accordion" id="accordionRecados">
+                            {% for recados in Recados %}
+                            {% for recado in recados %}
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{recado.id}}" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse-{{recado.id}}" aria-expanded="false"
+                                        aria-controls="collapseTwo">
                                         {{recado.titulo}}
                                     </button>
                                 </h2>
-                                <div id="collapse-{{recado.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div id="collapse-{{recado.id}}" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionRecados">
                                     <div class="accordion-body">
-                                        {{recado.texto}}
+                                        <div>{{ recado.texto|safe }}></div>
                                     </div>
                                 </div>
                             </div>
-                        {% endfor %}
-                    {% endfor %}                    
+                            {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
         </div>
-      </div>
-      
-      
-{% endblock content %}
 
-{% block scripts %}
-    <script src="{% static 'home/lightbox/js/lightbox-plus-jquery.js' %}" crossorigin="anonymous"></script>
-    <script src="{% static 'home/calendar_script.js' %}"></script>
-    <script type="text/javascript">
-        function modalRecados(id) {
-            var url = "/get_recado/"+id;
-            $.ajax({
-                url: url,
-                type: 'GET',
-                success: function(data) { 
-                    $("#tituloModalRecado").empty();
-                    $("#corpoModalRecado").empty();
 
-                    $("#tituloModalRecado").text(data[0].titulo);                      
-                    $("#corpoModalRecado").append(`
-                        <img src='`+data[0].image+`' class='me-3 mb-3 rounded' style='width: 35vw; float: left;'/>
-                        <p class='flex-grow-1'>
-                            `+data[0].texto+`
-                        </p>
-                    `);
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    console.error('Erro na solicitação:', textStatus, errorThrown);
-                }
+        {% endblock content %}
+
+        {% block scripts %}
+        <script src="{% static 'home/lightbox/js/lightbox-plus-jquery.js' %}" crossorigin="anonymous"></script>
+        <script src="{% static 'home/calendar_script.js' %}"></script>
+        <script type="text/javascript">
+            // Fixa o tamanho da row
+            $("document").ready(function () {
+                $("#second_row").css("height", $("#second_row").height());
             });
-        };
-    </script>
-{% endblock %}
+
+            function modalRecados(id) {
+                var url = "/get_recado/" + id;
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function (data) {
+                        $("#tituloModalRecado").empty();
+                        $("#corpoModalRecado").empty();
+
+                        $("#tituloModalRecado").text(data[0].titulo);
+                        $("#corpoModalRecado").append(`
+                        <div class='text-wrap' style='width: 100%; word-wrap: break-word;'>`+ data[0].texto + `</div>
+                    `);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.error('Erro na solicitação:', textStatus, errorThrown);
+                    }
+                });
+            };
+        </script>
+        {% endblock %}
