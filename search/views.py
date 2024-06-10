@@ -26,6 +26,7 @@ def get_quicksearch(request, data):
 
     for contato in contatos:   
         contatos_dict = {
+            'id': contato.id,
             'nome': contato.nome,
             'ramal': contato.ramal,
             'email': contato.email,
@@ -37,6 +38,7 @@ def get_quicksearch(request, data):
     
     for documento in documentos:
         documentos_dict = {
+            'id': documento.id,
             'nome': documento.nome,
             'categoria': documento.categoria.nome,
             'link': documento.link

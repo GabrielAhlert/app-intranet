@@ -13,6 +13,7 @@
         <link rel="apple-touch-icon" href="{% static 'base/cropped-favicon-180x180.png' %}" />
         <link href="{% static 'base/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/2755f85e88.js" crossorigin="anonymous"></script>
+        <script src="{% static 'home/lightbox/js/lightbox-plus-jquery.js' %}" crossorigin="anonymous"></script>
         {% block styles %}{% endblock %}
 
         <link rel="stylesheet" href="{% static 'base/base_style.css' %}">
@@ -63,7 +64,7 @@
                                     <ul class="list-group" id="list_results_quicksearch"></ul>
                                 </div>
                             </div>
-                            <a href="#" class="text-center link_menu" id="toggle_search">  
+                            <a class="text-center link_menu" id="toggle_search" style="cursor: pointer;">  
                                 <i id="icon_search" class="fa-solid fa-magnifying-glass"></i>
                                 <span id="label_search">Busca</span>
                             </a>                           
@@ -238,7 +239,7 @@
                                 const dados = $("<span>").text(item.categoria).addClass("fw-lighter");
                                 const br = $("<br>");
 
-                                const titulo = $("<span>").append($("<a>").append(nome).attr("href", item.link)).append(" - ").append(dados);
+                                const titulo = $("<span>").append($("<a>").append(nome).attr("href", '/documentos/download/'+item.id)).append(" - ").append(dados);
                                 list.append(titulo);                                
 
                                 documentos_ul.append(list);

@@ -229,7 +229,7 @@
         </div>
 
         <div class="modal fade" id="modalRecados" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5">Recados</h1>
@@ -238,23 +238,26 @@
                     <div class="modal-body">
                         <div class="accordion" id="accordionRecados">
                             {% for recados in Recados %}
-                            {% for recado in recados %}
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse-{{recado.id}}" aria-expanded="false"
-                                        aria-controls="collapseTwo">
-                                        {{recado.titulo}}
-                                    </button>
-                                </h2>
-                                <div id="collapse-{{recado.id}}" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionRecados">
-                                    <div class="accordion-body">
-                                        <div>{{ recado.texto|safe }}></div>
+                                {% for recado in recados %}
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse-{{recado.id}}" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                            {{recado.titulo}}
+                                        </button>
+                                    </h2>
+                                    <div id="collapse-{{recado.id}}" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionRecados">
+                                        <div class="accordion-body">
+                                            <div style="max-height: 150px; overflow: hidden; text-overflow: ellipsis;">
+                                                <a style="cursor: pointer; color: #01634A;" onclick="modalRecados('{{recado.id}}')" data-bs-toggle="modal" data-bs-target="#modalRecado">Ver publicação completa - </a>
+                                                {{ recado.texto|safe }}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            {% endfor %}
+                                {% endfor %}
                             {% endfor %}
                         </div>
                     </div>
@@ -269,10 +272,9 @@
         {% endblock content %}
 
         {% block scripts %}
-        <script src="{% static 'home/lightbox/js/lightbox-plus-jquery.js' %}" crossorigin="anonymous"></script>
         <script src="{% static 'home/calendar_script.js' %}"></script>
         <script type="text/javascript">
-            // Fixa o tamanho da row
+            // Fixa o tamanho da row de baixo
             $("document").ready(function () {
                 $("#second_row").css("height", $("#second_row").height());
             });
