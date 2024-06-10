@@ -143,6 +143,7 @@
 <script src="{% static 'base/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
 <script type="text/javascript">
     function toggleInputQuickSearch() {
+        //Fecha os icones e abre a pesquisa
         // if ($('.hide_on_search').css("display") == "none") {
         //     $('.hide_on_search').show();
         //     $('#box_search').hide();
@@ -159,6 +160,7 @@
         //     $("#responses_search").hide();
         // }
 
+        //Abre a pesquisa sem fechar os icones
         if ($('#box_search').css("display") == "none") {
             $("#icon_search").toggleClass('fa-magnifying-glass fa-xmark');
             $("#label_search").text("Fechar");
@@ -173,6 +175,7 @@
             $("#responses_search").hide();
         }
     }
+
     $("#toggle_search").on("click", function() {
         toggleInputQuickSearch();
     });
@@ -193,10 +196,22 @@
         var inputLength = $("#input_search").val().length;
         if (inputLength > 2) {
             $("#responses_search").slideDown();
+
+            $.ajax({
+                method: "GET",
+                url: "/search/get_quicksearch/"+$("#input_search").val(),
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
         } else {
             $("#responses_search").slideUp();
         }
     });
+
 </script>
 
 {% django_browser_reload_script %}

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'recados.apps.RecadosConfig',
     'agenda.apps.AgendaConfig',
     'home.apps.HomeConfig',
+    'search.apps.SearchConfig',
     'documentos.apps.DocumentosConfig',
     'django.contrib.admin',
     'django.contrib.auth',

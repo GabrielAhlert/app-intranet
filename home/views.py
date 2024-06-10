@@ -101,5 +101,3 @@ def get_eventos_mes(request, month_year):
             'data': aniversariante.nascimento.strftime('%d'),
         })
     return HttpResponse(json.dumps(eventos_json), content_type='application/json')
-
-
