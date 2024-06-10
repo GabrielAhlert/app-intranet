@@ -58,18 +58,9 @@
                                 <span>Site</span>
                             </a>
                             <div id="box_search" class="box_quick_search align-content-center" style="display: none; position: relative;">
-                                <input id="input_search" class="form-control" type="text" placeholder="Busca rápida" autocomplete="off"></input>
+                                <input id="input_search" class="form-control" type="text" placeholder="Busca rápida" autocomplete="off" tabindex="-1"></input>
                                 <div id="responses_search" class="dropdown_responses_search">
-                                    <ul class="list-group">
-                                        <li class="list-group-item">
-                                            <span>Nome Sobrenome - Função - Matriz</span><br>
-                                            <span>Ramal 135 - nome.sobrenome@cotrisoja.com.br</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span>Nome Sobrenome - Função - Matriz</span><br>
-                                            <span>Ramal 135 - nome.sobrenome@cotrisoja.com.br</span>
-                                        </li>
-                                    </ul>
+                                    <ul class="list-group" id="list_results_quicksearch"></ul>
                                 </div>
                             </div>
                             <a href="#" class="text-center link_menu" id="toggle_search">  
@@ -165,8 +156,11 @@
             $("#icon_search").toggleClass('fa-magnifying-glass fa-xmark');
             $("#label_search").text("Fechar");
             $("#input_search").val('');
+            $("#input_search").focus();
             $("#responses_search").hide();
-            $('#box_search').show();
+            $('#box_search').show(30, function() {
+                $("#input_search").focus();
+            });
         } else {
             $('#box_search').hide();
             $("#icon_search").toggleClass('fa-xmark fa-magnifying-glass');
@@ -201,7 +195,26 @@
                 method: "GET",
                 url: "/search/get_quicksearch/"+$("#input_search").val(),
                 success: function(response) {
-                    console.log(response);
+                    $("#list_results_quicksearch").empty();
+                    for (const key in response) {
+                        if (key === 'contatos') {
+                            const contatos = response[key];
+                            contatos.forEach(item => {
+                                const list = $("<li>").addClass("list-group-item");
+                                const nome = $("<span>").addClass("fw-semibold").text(item.nome);
+                                const desc = $("<span>").addClass("fw-light").text(item.funcao);
+                                const ramal = $("<span>").text("Ramal "+item.ramal);
+                                const dados = $("<span>").text(item.email);
+                                const br = $("<br>");
+
+                                const titulo = $("<span>").append(nome).append(" - ").append(ramal);
+
+                                list.append(titulo, br.clone(), desc, br.clone(), dados);
+
+                                $("#list_results_quicksearch").append(list);
+                            });
+                        }
+                    }
                 },
                 error: function(error) {
                     console.error(error);

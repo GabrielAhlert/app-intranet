@@ -132,6 +132,10 @@ body{
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #e6ebe8;
+    width: max-content;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
 }
 
 
