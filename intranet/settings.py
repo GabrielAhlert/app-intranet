@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django_browser_reload",
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'base.apps.BaseConfig',
+    
 ]
 
 MIDDLEWARE = [
