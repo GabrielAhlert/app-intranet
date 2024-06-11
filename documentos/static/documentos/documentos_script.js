@@ -29,23 +29,27 @@ document.addEventListener("DOMContentLoaded", () => {
            const target = document.querySelector("."+target_str);
            console.log(target_str);
            console.log(target);
-           target.scrollIntoView({behavior: "smooth"});
+
 
            if (target_str == "L1"){
                hiddenAll([L2,L3,L4,L5]);
                inativeAll([L1,L2,L3,L4,L5]);
+               document.querySelector(".header").scrollIntoView({behavior: "smooth"});
            }
             if (target_str == "L2"){
-            hiddenAll([L3,L4,L5]);
-            inativeAll([L2,L3,L4,L5]);
+                hiddenAll([L3,L4,L5]);
+                inativeAll([L2,L3,L4,L5]);
+                target.scrollIntoView({behavior: "smooth"});
             }
             if (target_str == "L3"){
                 hiddenAll([L4,L5]);
                 inativeAll([L3,L4,L5]);
+                target.scrollIntoView({behavior: "smooth"});
             } 
             if (target_str == "L4"){
                 hiddenAll([L5]);
                 inativeAll([L4,L5]);
+                target.scrollIntoView({behavior: "smooth"});
             }
         });
     });
