@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
 
     L1.forEach(l1 => {
-        if(!l1.classList.contains("back") || l1.classList.contains("doc"))
+        if(!l1.classList.contains("back") && !l1.classList.contains("doc"))
             l1.addEventListener("click", (Event) => {
                 hiddenAll([L2,L3,L4,L5]);
                 if (!Event.currentTarget.classList.contains("active")){
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     L2.forEach(l2 => {
-        if(!l2.classList.contains("back") || l2.classList.contains("doc"))
+        if(!l2.classList.contains("back") && !l2.classList.contains("doc"))
             l2.addEventListener("click", (Event) => {
                 hiddenAll([L3,L4,L5]);
                 if (!Event.currentTarget.classList.contains("active")){
@@ -81,14 +81,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         else
                             l3.classList.add("hidden");
                     });
-                    L3[0].scrollIntoView({behavior: "smooth", inline: "nearest"});
+                    document.querySelector(".L3").scrollIntoView({behavior: "smooth", inline: "nearest"});
                 }
                 Event.currentTarget.classList.toggle("active");
             });
     });
 
     L3.forEach(l3 => {
-        if(!l3.classList.contains("back") && l3.classList.contains("doc"))
+        if(!l3.classList.contains("back") && !l3.classList.contains("doc"))
             l3.addEventListener("click", (Event) => {
                 hiddenAll([L4,L5]);
                 if (!Event.currentTarget.classList.contains("active")){
@@ -99,14 +99,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         else
                             l4.classList.add("hidden");
                     });
-                    L4[0].scrollIntoView({behavior: "smooth", inline: "nearest"});
+                    document.querySelector(".L4").scrollIntoView({behavior: "smooth", inline: "nearest"});
                 }
                 Event.currentTarget.classList.toggle("active");
             });
     });
 
     L4.forEach(l4 => {
-        if(!l4.classList.contains("back") || l4.classList.contains("doc"))
+        if(!l4.classList.contains("back") && !l4.classList.contains("doc"))
             l4.addEventListener("click", (Event) => {
                 hiddenAll([L5]);
                 if (!Event.currentTarget.classList.contains("active")){

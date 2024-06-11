@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
+from base import views
 
 admin.site.site_header = "Administração da Intranet Cotrisoja"
 
@@ -27,6 +28,7 @@ urlpatterns = [
     path('search/', include('search.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('cotacao/', views.get_cotacao, name='get_cotacao'),
 ]
 
 if settings.DEBUG:
