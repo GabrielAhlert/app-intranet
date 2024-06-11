@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 
+admin.site.site_header = "Administração da Intranet Cotrisoja"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
