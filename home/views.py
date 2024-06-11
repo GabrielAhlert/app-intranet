@@ -10,7 +10,6 @@ import json
 
 
 # Create your views here.
-
 def index(request):
     template = loader.get_template('home.html')
     today = datetime.datetime.now()
