@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import datetime
+from django.db.models import Q
 from recados.models import Recado, ImagemRecado
 from agenda.models import Contato
 from django.http import HttpResponse
@@ -15,8 +16,12 @@ def index(request):
     today = datetime.datetime.now()
     seven_days_ago = today - datetime.timedelta(days=7)
 
-    pessoas = Contato.objects.filter(nascimento__month=today.month, pessoa_ativo=True).order_by('nascimento__day')
+    # Aniversariantes do Mês
+    # pessoas = Contato.objects.filter(nascimento__month=today.month, pessoa_ativo=True).order_by('nascimento__day')
     
+    # Próximos Aniversariantes
+    pessoas = Contato.objects.filter(Q(nascimento__day__gt=today.day) | Q(nascimento__day__lt=today.day), pessoa_ativo=True).order_by('nascimento__day')[:15]
+
     proxAniversariantes = Contato.objects.filter(nascimento__day__gt=today.day, nascimento__month=today.month, pessoa_ativo=True).order_by('nascimento__day')[:4]
     AniversariantesData = Contato.objects.filter(nascimento__day=today.day, nascimento__month=today.month)
 
