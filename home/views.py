@@ -118,19 +118,13 @@ def get_eventos_mes(request, month_year):
 def get_proximos_aniversariantes():
     today = datetime.date.today()
     
-    aniversariantes_mes_atual = Contato.objects.filter(
-        nascimento__month=today.month,
-        nascimento__day__gte=today.day,
+    aniversariantes = Contato.objects.filter(
+        Q(nascimento__month=today.month, nascimento__day__gte=today.day) |
+        Q(nascimento__month__gt=today.month) |
+        Q(nascimento__month__lt=today.month, nascimento__day__gte=today.day),
         pessoa_ativo=True
-    )
+    ).order_by(
+        'nascimento__month', 'nascimento__day'
+    )[:15]
 
-    aniversariantes_proximos_meses = Contato.objects.filter(
-        Q(nascimento__month__gt=today.month) | (Q(nascimento__month=today.month) & Q(nascimento__day__gte=today.day)),
-        pessoa_ativo=True
-    ).order_by('nascimento__month', 'nascimento__day')
-
-    proximos_aniversariantes = list(aniversariantes_mes_atual) + list(aniversariantes_proximos_meses)
-
-    proximos_aniversariantes.sort(key=lambda x: (x.nascimento.month, x.nascimento.day))
-
-    return proximos_aniversariantes[:15]
+    return aniversariantes
