@@ -10,4 +10,4 @@ def get_cotacao(request):
         url_cotacao = url + requests.get(url + 'dashboard', headers=headers).json()['agricultural_quotation']['formats']['large']['url']
         return HttpResponseRedirect(url_cotacao)
     except:
-        return Http.HttpResponseBadRequest('Erro ao buscar cotação')
+        return Http('Erro ao buscar cotação')
