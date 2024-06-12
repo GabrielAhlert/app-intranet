@@ -2,6 +2,7 @@ from django.shortcuts import render
 import requests
 from decouple import config
 from django.http import HttpResponseRedirect, HttpResponse as Http
+from django.http import HttpResponseBadRequest
 
 def get_cotacao(request):
     try:
@@ -10,4 +11,4 @@ def get_cotacao(request):
         url_cotacao = url + requests.get(url + 'dashboard', headers=headers).json()['agricultural_quotation']['formats']['large']['url']
         return HttpResponseRedirect(url_cotacao)
     except:
-        return Http('Erro ao buscar cotação')
+        return HttpResponseBadRequest('Erro ao buscar cotação')

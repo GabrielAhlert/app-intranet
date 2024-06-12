@@ -70,38 +70,40 @@
             <div class="col-4">
                 <div id="carouselRecados" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
                     <div class="d-flex justify-content-between">
-                        <button style="position: relative;" class="carousel-control-prev" type="button" data-bs-target="#carouselRecados" data-bs-slide="prev">
+                        <button style="position: relative;" class="carousel-control-prev" type="button"
+                            data-bs-target="#carouselRecados" data-bs-slide="prev">
                             <i style="color: #01634A; font-size: 23px;" class="fa-solid fa-arrow-left"></i>
                         </button>
                         <h4 class="text-center fw-semibold" style="color: #01634A;">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#modalRecados">Recados</a>
                         </h4>
-                        <button style="position: relative;" class="carousel-control-next" type="button" data-bs-target="#carouselRecados" data-bs-slide="next">
+                        <button style="position: relative;" class="carousel-control-next" type="button"
+                            data-bs-target="#carouselRecados" data-bs-slide="next">
                             <i style="color: #01634A; font-size: 23px;" class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                     <ul class="list-group">
                         <div class="carousel-inner">
                             {% for recados in Recados %}
-                                {% if forloop.counter0 == 0 %}
-                                    <div class="carousel-item active rounded">
+                            {% if forloop.counter0 == 0 %}
+                            <div class="carousel-item active rounded">
                                 {% else %}
-                                    <div class="carousel-item rounded">
-                                {% endif %}
+                                <div class="carousel-item rounded">
+                                    {% endif %}
                                     {% for recado in recados %}
-                                        <li class="list-group-item">
-                                            <a href="#" onclick="modalRecados('{{recado.id}}')" data-bs-toggle="modal"
-                                                data-bs-target="#modalRecado">
-                                                <div class="fw-semibold recado">
-                                                    {{recado.titulo}}
-                                                </div>
-                                                <span class="d-block text-end">Veja mais</span>
-                                            </a>
-                                        </li>
+                                    <li class="list-group-item">
+                                        <a style="cursor: pointer;" id="direct_toggle" onclick="modalRecados('{{recado.id}}', this)" data-bs-toggle="modal"
+                                            data-bs-target="#modalRecado">
+                                            <div class="fw-semibold recado">
+                                                {{recado.titulo}}
+                                            </div>
+                                            <span class="d-block text-end">Veja mais</span>
+                                        </a>
+                                    </li>
                                     {% endfor %}
                                 </div>
-                            {% endfor %}
-                        </div>
+                                {% endfor %}
+                            </div>
                     </ul>
                 </div>
             </div>
@@ -220,9 +222,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body px-4" id="corpoModalRecado" style="color: black;"></div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    </div>
+                    <div class="modal-footer" id="modal_recado_footer"></div>
                 </div>
             </div>
         </div>
@@ -231,34 +231,27 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5">Recados</h1>
+                        <span class="modal-title fw-bold" style="font-size: 1.6em;">Recados</span>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="accordion" id="accordionRecados">
-                            {% for recados in Recados %}
+                        <ul class="list-group">
+                            {% for recados in Recados %}                            
                                 {% for recado in recados %}
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse-{{recado.id}}" aria-expanded="false"
-                                            aria-controls="collapseTwo">
-                                            {{recado.titulo}}
-                                        </button>
-                                    </h2>
-                                    <div id="collapse-{{recado.id}}" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordionRecados">
-                                        <div class="accordion-body">
-                                            <div style="max-height: 150px; overflow: hidden; text-overflow: ellipsis;">
-                                                <a style="cursor: pointer; color: #01634A;" onclick="modalRecados('{{recado.id}}')" data-bs-toggle="modal" data-bs-target="#modalRecado">Ver publicação completa - </a>
+                                    <li class="list-group-item">
+                                        <button id="button_collapse" class="w-100 text-start collapse_recados fw-semibold collapse-button" data-bs-toggle="collapse" data-bs-target="#collapse_recado_{{recado.id}}">
+                                            {{recado.titulo}}                                             
+                                        </button>     
+                                        <div class="collapse" id="collapse_recado_{{recado.id}}">
+                                            <div class="mt-2" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                                                 {{ recado.texto|safe }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            </div> <br>
+                                            <a style="cursor: pointer; color: #01634A;" id="navigational_toggle" onclick="modalRecados('{{recado.id}}', this)" data-bs-toggle="modal" data-bs-target="#modalRecado">Ver publicação completa</a>
+                                        </div>   
+                                    </li>                    
                                 {% endfor %}
                             {% endfor %}
-                        </div>
+                        </ul>                       
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -276,26 +269,49 @@
             // Fixa o tamanho da row de baixo
             $("document").ready(function () {
                 $("#second_row").css("height", $("#second_row").height());
-            });
+            });       
 
-            function modalRecados(id) {
+            function modalRecados(id, clickedElement) {
                 var url = "/get_recado/" + id;
+
                 $.ajax({
                     url: url,
                     type: 'GET',
                     success: function (data) {
                         $("#tituloModalRecado").empty();
                         $("#corpoModalRecado").empty();
+                        $("#modal_recado_footer").empty();
 
                         $("#tituloModalRecado").text(data[0].titulo);
                         $("#corpoModalRecado").append(`
-                        <div class='text-wrap' style='width: 100%; word-wrap: break-word;'>`+ data[0].texto + `</div>
-                    `);
+                            <div class='text-wrap' style='width: 100%; word-wrap: break-word;'>`+ data[0].texto + `</div>
+                        `);
+
+                        const boxImage = $("<div>").addClass("d-flex w-100 flex-wrap mt-3 justify-content-center");
+
+                        data[0].image.forEach(item => {
+                            boxImage.append(`
+                                <a href="`+item.image_url+`" class="mx-1 border" data-lightbox="image-3">
+                                    <img src='`+ item.image_url + `' class='miniatura_img_recado'></src>                              
+                                </a>
+                            `);
+                        });
+
+                        $("#corpoModalRecado").append(boxImage);
+
+                        let backButton = '';
+                        if ($(clickedElement).attr("id") === "navigational_toggle") {
+                            backButton = '<button type="button" class="btn btn-secondary" data-bs-target="#modalRecados" data-bs-toggle="modal">Voltar</button>';
+                        } else if ($(clickedElement).attr("id") === "direct_toggle") {
+                            backButton = '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>';
+                        }
+
+                        $("#modal_recado_footer").append(backButton);
                     },
                     error: function (xhr, textStatus, errorThrown) {
                         console.error('Erro na solicitação:', textStatus, errorThrown);
                     }
                 });
-            };
+            };            
         </script>
         {% endblock %}
