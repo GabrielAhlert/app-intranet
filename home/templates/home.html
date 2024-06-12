@@ -68,7 +68,7 @@
         </div>
         <div class="row mt-3" id="second_row">
             <div class="col-4">
-                <div id="carouselRecados" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+                <div id="carouselRecados" class="carousel slide">
                     <div class="d-flex justify-content-between">
                         <button style="position: relative;" class="carousel-control-prev" type="button"
                             data-bs-target="#carouselRecados" data-bs-slide="prev">
@@ -178,7 +178,7 @@
         </div>
 
         <div class="modal fade" id="modalAniversariantes" tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="modalAniversariantesLabel">Aniversariantes do Mês</h1>
@@ -188,21 +188,20 @@
                         <ul class="list-group">
                             {% for pessoas in Aniversariantes_Mes %}
                             <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-2">
+                                <div class="d-flex align-items-center">
+                                    <div>
                                         <div class="rounded img_func">
                                             <img src="{{ pessoas.image_url }}"></img>
                                         </div>
                                     </div>
-                                    <div class="ms-2 col align-content-center">
+                                    <div class="mx-3 align-content-center">
                                         <span class="fw-semibold">{{pessoas.nome}}</span><br>
-                                        <span>{{pessoas.funcao}} - {{pessoas.unidade}}</span>
+                                        <span style="font-size: 0.9em;">{{pessoas.funcao}} - {{pessoas.unidade}}</span>
                                     </div>
-                                    <div class="col text-end align-content-center">
-                                        <span
-                                            class="border-success border-bottom">{{pessoas.nascimento.day|stringformat:"02d"}}/{{pessoas.nascimento.month|stringformat:"02d"}}</span>
+                                    <div class="text-end align-content-center ms-auto">
+                                        <span class="border-success border-bottom">{{pessoas.nascimento.day|stringformat:"02d"}}/{{pessoas.nascimento.month|stringformat:"02d"}}</span>
                                     </div>
-                                </div>
+                                </div>                                
                             </li>
                             {% endfor %}
                         </ul>
