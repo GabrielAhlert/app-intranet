@@ -17,7 +17,7 @@ from .models import Categoria, Documento
 #     return children
             
 def get_document(categorys):
-    documents = Documento.objects.filter(categoria__in=categorys).values()
+    documents = Documento.objects.filter(categoria__in=categorys).order_by('nome').values()
     for document in documents:
         if document['arquivo'].endswith('.pdf'):
             document['icon'] = "fa-file-pdf"
@@ -35,10 +35,10 @@ def get_document(categorys):
 
 
 def index(request):
-    C1 = Categoria.objects.filter(parente=None)
-    C2 = Categoria.objects.filter(parente__in=C1)
-    C3 = Categoria.objects.filter(parente__in=C2)
-    C4 = Categoria.objects.filter(parente__in=C3)
+    C1 = Categoria.objects.filter(parente=None).order_by('nome')
+    C2 = Categoria.objects.filter(parente__in=C1).order_by('nome')
+    C3 = Categoria.objects.filter(parente__in=C2).order_by('nome')
+    C4 = Categoria.objects.filter(parente__in=C3).order_by('nome')
     
     D2 = get_document(C1)
     D3 = get_document(C2)
