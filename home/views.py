@@ -133,4 +133,4 @@ def get_proximos_aniversariantes():
 
     proximos_aniversariantes.sort(key=lambda x: (x.nascimento.month, x.nascimento.day))
 
-    return proximos_aniversariantes[:4]
+    return proximos_aniversariantes[:15]
