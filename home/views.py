@@ -19,7 +19,7 @@ def index(request):
     # pessoas = Contato.objects.filter(nascimento__month=today.month, pessoa_ativo=True).order_by('nascimento__day')
     
     # Próximos Aniversariantes
-    pessoas = Contato.objects.filter(nascimento__day__gt=today.day, pessoa_ativo=True).order_by('nascimento__day')[:20]
+    pessoas = Contato.objects.filter(nascimento__day__gt=today.day, pessoa_ativo=True).order_by('nascimento__month', 'nascimento__day')[:20]
 
     proxAniversariantes = Contato.objects.filter(nascimento__day__gt=today.day, nascimento__month=today.month, pessoa_ativo=True).order_by('nascimento__day')[:4]
     AniversariantesData = Contato.objects.filter(nascimento__day=today.day, nascimento__month=today.month)
