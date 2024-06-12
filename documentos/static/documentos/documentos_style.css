@@ -1,0 +1,104 @@
+.main{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
+    align-content: start;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+}
+.main > *{
+    color: black;
+}
+.main-itens{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    margin-bottom: 50px;
+    margin-top:-50px;
+    padding-top:50px;
+}
+.hidden{
+    display: none;
+}
+.L1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    flex-wrap: wrap;
+}
+.card{
+    background-color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    height: 160px;
+    justify-content: center;
+    margin: 10px;
+}
+.card-body i{
+    font-size: 3.7em;
+}
+.card-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: #01634A;
+    cursor: pointer;
+    font-size: 1.2em !important;
+}
+
+.card:hover{
+    background-color: #01634A;
+    color: white;
+}
+.card:hover .card-body{
+    color: white;
+}
+.card p{
+    margin: 0;
+    text-align: center;
+}
+.active:not(.doc){
+    background-color: #01634A;
+    color: white;
+}
+.active:not(.doc) .card-body{
+    color: white;
+}
+.side-bar{
+    color: black;
+    min-height: 80vh;
+    padding-top: 10px;
+}
+.btn-nav{
+    animation: none;
+    color: #fff;
+    text-decoration: none;
+    transition: color .35s ease;
+    text-align: center;
+}
+.btn-nav:hover{
+    color: rgba(0, 0, 0, .85);
+    transition: color .35s ease;
+}
+.btn-toggle::before {
+    content: url("/static/documentos/seta.svg");
+    transition: transform .35s ease;
+    transform-origin: .5em 50%;
+    margin-right: 5px;
+    vertical-align:middle;
+}
+.btn-toggle[aria-expanded="true"] {
+    color: rgba(0, 0, 0, .85);
+  }
+.btn-toggle[aria-expanded="true"]::before {
+    content: url("/static/documentos/seta rotated.svg");
+    transition: transform .35s ease;
+}

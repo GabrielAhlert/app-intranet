@@ -19,7 +19,7 @@ class AgendaAdmin(admin.ModelAdmin):
     autocomplete_fields = ['unidade', 'funcao']
     list_filter = (AgendaMonthFilter, 'unidade', 'ramal_ativo', 'pessoa_ativo', 'funcao')
     search_fields = ['nome', 'ramal', 'telefone', 'unidade__nome', 'funcao__nome']
-    list_display = ('nome', 'ramal', 'telefone',  'ramal_ativo', 'pessoa_ativo', 'nascimento')
+    list_display = ('nome', 'ramal', 'telefone',  'ramal_ativo', 'pessoa_ativo', 'nascimento', 'admissao', 'image')
     list_max_show_all = 5000
     
 class FuncaoAdmin(admin.ModelAdmin):

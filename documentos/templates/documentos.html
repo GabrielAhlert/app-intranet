@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Documentos - Intranet Cotrisoja{% endblock %}
+{{doc.icon}}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'documentos/documentos_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<p class="title">{{cotacao}}</p>
+<div class="container main">
+    <div class="main-itens L1">
+    {% for cat in C1%}
+        <div id="cat{{cat.id}}" class="card">
+            <div class="card-body">
+                <i class="fa-solid {{ cat.icone|default:"fa-folder"}}"></i>
+                <p>{{cat.nome}}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="main-itens L2">
+        <div class="back card hidden" target="L1">
+            <div class="card-body">
+                <i class="fa-solid fa-arrow-left"></i>
+                <p>Voltar</p>
+            </div>
+        </div>
+        {% for cat in C2%}
+        <div id="cat{{cat.id}}" class="card hidden" parent="cat{{cat.parente.id}}">
+            <div class="card-body">
+                <i class="fa-solid {{ cat.icone|default:"fa-folder"}}"></i>
+                <p>{{cat.nome}}</p>
+            </div>
+        </div> 
+        {% endfor %}
+        {% for doc in D2%}
+        <div id="doc{{doc.id}}" class="card doc hidden" parent="cat{{doc.categoria_id}}">
+            <a href="/download/{{doc.id}}" target="_blank">
+                <div class="card-body">
+                    <i class="fa-solid {{doc.icon}}"></i>
+                    <p>{{doc.nome}}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="main-itens L3">
+        <div class="back card hidden" target="L2">
+            <div class="card-body">
+                <i class="fa-solid fa-arrow-left"></i>
+                <p>Voltar</p>
+            </div>
+        </div>
+        {% for cat in C3%}
+        <div id="cat{{cat.id}}" class="card hidden" parent="cat{{cat.parente.id}}">
+            <div class="card-body">
+                <i class="fa-solid {{ cat.icone|default:"fa-folder"}}"></i>
+                <p>{{cat.nome}}</p>
+            </div>
+        </div> 
+        {% endfor %}
+        {% for doc in D3%}
+        <div id="doc{{doc.id}}" class="card doc hidden" parent="cat{{doc.categoria_id}}">
+            <a href="download/{{doc.id}}" target="_blank">
+                <div class="card-body">
+                    <i class="fa-solid {{doc.icon}}"></i>
+                    <p>{{doc.nome}}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="main-itens L4">
+        <div class="back card hidden" target="L3">
+            <div class="card-body">
+                <i class="fa-solid fa-arrow-left"></i>
+                <p>Voltar</p>
+            </div>
+        </div>
+        {% for cat in C4%}
+        <div id="cat{{cat.id}}" class="card hidden" parent="cat{{cat.parente.id}}">
+            <div class="card-body">
+                <i class="fa-solid {{ cat.icone|default:"fa-folder"}}"></i>
+                <p>{{cat.nome}}</p>
+            </div>
+        </div> 
+        {% endfor %}
+        {% for doc in D4%}
+        <div id="doc{{doc.id}}" class="card doc hidden" parent="cat{{doc.categoria_id}}">
+            <a href="download/{{doc.id}}" target="_blank">
+                <div class="card-body">
+                    <i class="fa-solid {{doc.icon}}"></i>
+                    <p>{{doc.nome}}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="main-itens L5">
+        <div class="back card hidden" target="L4">
+            <div class="card-body">
+                <i class="fa-solid fa-arrow-left"></i>
+                <p>Voltar</p>
+            </div>
+        </div>
+        {% for cat in C5%}
+        <a href="download/{{doc.id}}">
+            <div id="cat{{cat.id}}" class="card hidden" parent="cat{{cat.parente.id}}">
+                <div class="card-body">
+                    <i class="fa-solid {{ cat.icone|default:"fa-folder"}}"></i>
+                    <p>{{cat.nome}}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% for doc in D5%}
+        <div id="doc{{doc.id}}" class="card doc hidden" parent="cat{{doc.categoria_id}}">
+            <a href="download/{{doc.id}}" target="_blank">
+                <div class="card-body">
+                    <i class="fa-solid {{doc.icon}}"></i>
+                    <p>{{doc.nome}}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div style="height:100vh">
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'documentos/documentos_script.js' %}"></script>
+{% endblock %}

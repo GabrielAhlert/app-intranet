@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+* {
+    font-family: Poppins, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #01634a;
+}
+
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    background-color:#e6ebe8;
+}
+.header{
+    width: 100%;
+    background-color: #01634a;
+}
+.header .logo{
+    height: 80px;
+    margin: 5px 0;
+}
+.navbar-collapse{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    position:absolute;
+    top: 100%;
+    background-color: #01634a;
+}
+.navbar-collapse a{
+    margin: 5px;
+}
+.navbar-collapse-button[aria-expanded="true"]{
+  color: #26a861;
+  transition: color .35s ease;
+}
+.collapse-button::after{
+  content: url("/static/base/seta_down.svg");
+  transition: transform .35s ease;
+  transform-origin: .5em 50%;
+  margin-right: 5px;
+  vertical-align:middle;
+}
+
+.collapse-button[aria-expanded="true"]::after {
+  content: url("/static/base/seta_up.svg");
+  transition: transform .35s ease;
+}
+
+.navbar-collapse div{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+
+}
+.footer{
+    display: flex;
+    background-color: #01634a;
+    text-align: center;
+    min-height: 25px;
+    height: 4vh;
+    min-width: 100%;
+    position: relative;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.footer p{
+    color: white;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+.missao_header {
+    background-color: #004938;
+    height: 35px;
+}
+
+.missao_header span {
+   color: #e6ebe8;
+}
+
+.link_menu {    
+    text-decoration: none;
+    color: #e6ebe8;
+}
+
+.link_menu:hover {
+    color: #49CA66;
+}
+
+.link_menu i {
+    margin: 0 35px;
+    font-size: 26px;
+    display: block;   
+}
+
+.link_menu span {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+.txtSearch {
+    border-radius: 10px;
+    border: 1px solid #014b38;
+    padding: 8px;
+    size-adjust: 10px;
+}
+
+.txtSearch:focus {
+    outline: none !important;
+    border: 2px solid #014b38;
+}
+  
+.modal-title {
+    color: #01634a;
+}
+
+.dropdown_responses_search {
+    display: none;
+    position: absolute;
+    margin-top: 5px;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #e6ebe8;
+    width: max-content;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+}
+
+
+
+

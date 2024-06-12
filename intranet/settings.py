@@ -35,12 +35,19 @@ INSTALLED_APPS = [
     'recados.apps.RecadosConfig',
     'agenda.apps.AgendaConfig',
     'home.apps.HomeConfig',
+    'search.apps.SearchConfig',
+    'documentos.apps.DocumentosConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_browser_reload",
+    'ckeditor',
+    'ckeditor_uploader',
+    'base.apps.BaseConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -51,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'intranet.urls'
@@ -58,7 +66,7 @@ ROOT_URLCONF = 'intranet.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / 'base/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'documentos.context_processors.categorias',
+                'agenda.context_processors.contatos',
             ],
         },
     },
@@ -138,6 +148,8 @@ STATIC_ROOT =  "./static/"
 STATICFILES_DIRS = [
     './agenda/static/agenda/',
     './home/static/home/',
+    './'
+    './base/static/',
 ]
 MEDIA_URL =  "/media/"
 MEDIA_ROOT =  "./media/"
@@ -150,3 +162,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_COOKIE_SECURE = False
 
 CSRF_COOKIE_SECURE = False
+
+CKEDITOR_UPLOAD_PATH = "uploads_recados/"

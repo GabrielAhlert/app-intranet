@@ -1,0 +1,45 @@
+.list-group-item {
+    background-color: rgba(0,0,0,0);
+}
+
+.recado {
+    /* display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical; */
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    text-wrap: nowrap;
+}
+
+.img_func {
+    width: 60px;
+    height: 60px;
+}
+
+.img_func>img {   
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.collapse_recados {
+    border: 0;
+    background-color: rgba(0,0,0,0);
+    outline: 0;
+    margin: 0;
+    padding: 2px;
+}
+
+.miniatura_img_recado {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    transition: transform .2s;
+}
+
+.miniatura_img_recado:hover {
+    transform: scale(1.1);
+}
+
+/* Path: home/static/home/home_style.css */
