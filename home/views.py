@@ -1,6 +1,5 @@
 from django.shortcuts import render
 import datetime
-from django.db.models import Q
 from recados.models import Recado, ImagemRecado
 from agenda.models import Contato
 from django.http import HttpResponse
@@ -16,12 +15,8 @@ def index(request):
     today = datetime.datetime.now()
     seven_days_ago = today - datetime.timedelta(days=7)
 
-    # Aniversariantes do Mês
-    # pessoas = Contato.objects.filter(nascimento__month=today.month, pessoa_ativo=True).order_by('nascimento__day')
+    pessoas = Contato.objects.filter(nascimento__month=today.month, pessoa_ativo=True).order_by('nascimento__day')
     
-    # Próximos Aniversariantes
-    pessoas = get_proximos_aniversariantes()
-
     proxAniversariantes = Contato.objects.filter(nascimento__day__gt=today.day, nascimento__month=today.month, pessoa_ativo=True).order_by('nascimento__day')[:4]
     AniversariantesData = Contato.objects.filter(nascimento__day=today.day, nascimento__month=today.month)
 
@@ -114,17 +109,3 @@ def get_eventos_mes(request, month_year):
     #         'data': aniversariante.nascimento.strftime('%d'),
     #     })
     return HttpResponse(json.dumps(eventos_json), content_type='application/json')
-
-def get_proximos_aniversariantes():
-    today = datetime.date.today()
-    
-    aniversariantes = Contato.objects.filter(
-        Q(nascimento__month=today.month, nascimento__day__gte=today.day) |
-        Q(nascimento__month__gt=today.month) |
-        Q(nascimento__month__lt=today.month, nascimento__day__gte=today.day),
-        pessoa_ativo=True
-    ).order_by(
-        'nascimento__month', 'nascimento__day'
-    )[:15]
-
-    return aniversariantes
