@@ -41,7 +41,6 @@ def get_quicksearch(request, data):
             'id': documento.id,
             'nome': documento.nome,
             'categoria': documento.categoria.nome,
-            'link': documento.link
         }
 
         response['documentos'].append(documentos_dict)

@@ -7,7 +7,7 @@ class CategoriaAdmin(admin.ModelAdmin):
     search_fields = ['nome']
     
 class documentoAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'categoria', 'arquivo', 'link')
+    list_display = ('nome', 'categoria', 'arquivo')
     search_fields = ['nome']
 
 
