@@ -21,7 +21,13 @@ async function put_event_popover(days){
         let content = "";
 
         events_day.forEach(event => {
-            content += `<p>${event.titulo} - ${event.local}</p>`;
+            let local = '';
+            
+            if (event.local != null) {
+                local = ' - ' + event.local;
+            }
+
+            content += `<p>${event.titulo} ${local}</p>`;
         });
 
         li.setAttribute("data-bs-content", content);
