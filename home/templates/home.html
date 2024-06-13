@@ -227,7 +227,7 @@
         </div>
 
         <div class="modal fade" id="modalRecados" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <span class="modal-title fw-bold" style="font-size: 1.6em;">Recados</span>
@@ -238,8 +238,9 @@
                             {% for recados in Recados %}                            
                                 {% for recado in recados %}
                                     <li class="list-group-item">
-                                        <button id="button_collapse" class="w-100 text-start collapse_recados fw-semibold collapse-button" data-bs-toggle="collapse" data-bs-target="#collapse_recado_{{recado.id}}">
-                                            {{recado.titulo}}                                             
+                                        <button class="w-100 d-flex justify-content-between collapse_recados fw-semibold collapse-button" data-bs-toggle="collapse" data-bs-target="#collapse_recado_{{recado.id}}">
+                                            <span class="text-start">{{recado.titulo}}</span> 
+                                            <span class="arrow_collape"></span>                                             
                                         </button>     
                                         <div class="collapse" id="collapse_recado_{{recado.id}}">
                                             <div class="mt-2" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
