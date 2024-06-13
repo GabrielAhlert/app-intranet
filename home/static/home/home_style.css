@@ -48,12 +48,12 @@
     transform-origin: .5em 50%;
     margin-right: 5px;
     vertical-align:middle;
-  }
+}
   
-  .arrow_collape[aria-expanded="true"]::after {
+.arrow_collape[aria-expanded="true"]::after {
     content: url("/static/base/seta_up.svg");
     transition: transform .35s ease;
-  }
+}
 
 
 /* Path: home/static/home/home_style.css */

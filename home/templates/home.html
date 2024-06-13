@@ -243,10 +243,10 @@
                                             <span class="arrow_collape"></span>                                             
                                         </button>     
                                         <div class="collapse" id="collapse_recado_{{recado.id}}">
-                                            <div class="mt-2" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
-                                                {{ recado.texto|safe }}
-                                            </div> <br>
                                             <a style="cursor: pointer; color: #01634A;" id="navigational_toggle" onclick="modalRecados('{{recado.id}}', this)" data-bs-toggle="modal" data-bs-target="#modalRecado">Ver publicação completa</a>
+                                            <div class="mt-2 text-center" style="height: 40vh; overflow: scroll; overflow-x: hidden; text-wrap: wrap; white-space: wrap;">
+                                                {{ recado.texto|safe }}
+                                            </div>                                       
                                         </div>   
                                     </li>                    
                                 {% endfor %}
