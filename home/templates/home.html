@@ -238,14 +238,13 @@
                             {% for recados in Recados %}                            
                                 {% for recado in recados %}
                                     <li class="list-group-item">
-                                        <button class="w-100 d-flex justify-content-between collapse_recados fw-semibold collapse-button" data-bs-toggle="collapse" data-bs-target="#collapse_recado_{{recado.id}}">
-                                            <span class="text-start">{{recado.titulo}}</span> 
-                                            <span class="arrow_collape"></span>                                             
+                                        <button class="w-100 text-start collapse_recados fw-semibold collapse-button" data-bs-toggle="collapse" data-bs-target="#collapse_recado_{{recado.id}}">
+                                            {{recado.titulo}}                             
                                         </button>     
                                         <div class="collapse" id="collapse_recado_{{recado.id}}">
                                             <a style="cursor: pointer; color: #01634A;" id="navigational_toggle" onclick="modalRecados('{{recado.id}}', this)" data-bs-toggle="modal" data-bs-target="#modalRecado">Ver publicação completa</a>
-                                            <div class="mt-2 text-center" style="height: 40vh; overflow: scroll; overflow-x: hidden; text-wrap: wrap; white-space: wrap;">
-                                                {{ recado.texto|safe }}
+                                            <div class="mt-2 previa_recado" style="max-height: 40vh; overflow: auto; overflow-x: none; text-wrap: wrap; white-space: wrap;">
+                                                {{ recado.texto|safe|slice:"0:500" }}
                                             </div>                                       
                                         </div>   
                                     </li>                    

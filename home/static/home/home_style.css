@@ -42,18 +42,9 @@
     transform: scale(1.1);
 }
 
-.arrow_collape::after{
-    content: url("/static/base/seta_down.svg");
-    transition: transform .35s ease;
-    transform-origin: .5em 50%;
-    margin-right: 5px;
-    vertical-align:middle;
+.previa_recado img {
+    width: 100% !important;
+    height: auto !important;
 }
-  
-.arrow_collape[aria-expanded="true"]::after {
-    content: url("/static/base/seta_up.svg");
-    transition: transform .35s ease;
-}
-
 
 /* Path: home/static/home/home_style.css */

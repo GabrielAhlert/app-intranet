@@ -124,7 +124,7 @@ $("#input_search").on("input", function () {
                             const dados = $("<span>").text(item.categoria).addClass("fw-lighter");
                             const br = $("<br>");
 
-                            const titulo = $("<span>").append($("<a>").append(nome).attr("href", '/documentos/download/' + item.id)).append(" - ").append(dados);
+                            const titulo = $("<span>").append($("<a>").append(nome).attr("href", '/documentos/download/' + item.id).attr("target", '_blank')).append(" - ").append(dados);
                             list.append(titulo);
 
                             documentos_ul.append(list);
