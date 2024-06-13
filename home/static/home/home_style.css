@@ -48,4 +48,17 @@
     height: auto !important;
 }
 
+.nome_funcionario {
+    font-size: 1em;
+}
+
+.funcao_funcionario {
+    font-size: 0.9em;
+    text-wrap: wrap;
+}
+
+.unidade_funcionario {
+    font-size: 0.9em;
+}
+
 /* Path: home/static/home/home_style.css */
