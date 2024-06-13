@@ -109,7 +109,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover sortable">
                         <thead>
                             <tr class="head">
                                 <th scope="col" class="table-col-1">Ramal</th>
@@ -144,7 +144,7 @@
     <script src="{% static 'base/filter.js' %}" crossorigin="anonymous"></script>
     <script src="{% static 'base/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
     <script src="{% static 'base/base_script.js' %}" crossorigin="anonymous"></script>
-    
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
     {% django_browser_reload_script %}
 </body>
 </html>

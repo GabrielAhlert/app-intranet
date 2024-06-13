@@ -11,14 +11,14 @@ function toggleInputQuickSearch() {
     if ($('.hide_on_search').css("display") == "none") {
         $('#box_search').hide(10, function () {
             $('.hide_on_search').show();
-            $("#icon_search").toggleClass('fa-magnifying-glass fa-xmark');
+            $("#icon_search").removeClass('fa-xmark').addClass('fa-magnifying-glass');
             $("#label_search").text("Busca");
             $("#input_search").val('');
             $("#responses_search").hide();
         });
     } else {
         $('.hide_on_search').hide(10, function () {
-            $("#icon_search").toggleClass('fa-xmark fa-magnifying-glass');
+            $("#icon_search").removeClass('fa-magnifying-glass').addClass('fa-xmark');
             $("#label_search").text("Fechar");
             $("#input_search").val('');
             $("#responses_search").hide();
