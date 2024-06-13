@@ -4,9 +4,9 @@ from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 class Recado(models.Model):
-    titulo = models.CharField(max_length=64, blank=True)
+    titulo = models.CharField(max_length=104, blank=True)
     # texto = models.TextField(blank=True)
-    texto = RichTextUploadingField()
+    texto = RichTextUploadingField(blank=True, null=True)
     data_inicio = models.DateField()
     data_fim = models.DateField()
     ativo = models.BooleanField(default=True)
