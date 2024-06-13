@@ -42,7 +42,7 @@ body{
   color: #26a861;
   transition: color .35s ease;
 }
-.collapse-button::after{
+/* .collapse-button::after{
   content: url("/static/base/seta_down.svg");
   transition: transform .35s ease;
   transform-origin: .5em 50%;
@@ -53,7 +53,7 @@ body{
 .collapse-button[aria-expanded="true"]::after {
   content: url("/static/base/seta_up.svg");
   transition: transform .35s ease;
-}
+} */
 
 .navbar-collapse div{
     display: flex;
