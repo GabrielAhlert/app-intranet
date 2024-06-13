@@ -43,9 +43,13 @@
     transform: scale(1.1);
 }
 
-.previa_recado img {
-    width: 100% !important;
-    height: auto !important;
+.previa_recado {
+    max-height: 30vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;    
 }
 
 .nome_funcionario {
