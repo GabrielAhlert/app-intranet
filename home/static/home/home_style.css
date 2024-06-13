@@ -32,10 +32,11 @@
 }
 
 .miniatura_img_recado {
-    width: 100px;
-    height: 100px;
+    width: 210px;
+    height: 210px;
     object-fit: cover;
-    transition: transform .2s;
+    border-radius: 8px;
+    transition: transform .3s;
 }
 
 .miniatura_img_recado:hover {
