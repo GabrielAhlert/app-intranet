@@ -4,9 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const L3 = document.querySelectorAll(".L3 > div");
     const L4 = document.querySelectorAll(".L4 > div");
     const L5 = document.querySelectorAll(".L5 > div");
-    back = document.querySelectorAll(".back");
+    const header = document.querySelector(".header");
+    const footer = document.querySelector(".footer");
+    const back = document.querySelectorAll(".back");
 
 
+    header.classList.add("sticky-top");
+    footer.classList.add("sticky-bottom");
 
     function hiddenAll(Listas){
         Listas.forEach(lista => {
@@ -34,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
            if (target_str == "L1"){
                hiddenAll([L2,L3,L4,L5]);
                inativeAll([L1,L2,L3,L4,L5]);
-               document.querySelector(".header").scrollIntoView({behavior: "smooth"});
+               document.querySelector("body").scrollIntoView({behavior: "smooth"});
            }
             if (target_str == "L2"){
                 hiddenAll([L3,L4,L5]);
