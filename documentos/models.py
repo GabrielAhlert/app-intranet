@@ -29,7 +29,6 @@ class Documento(models.Model):
     nome = models.CharField(max_length=100)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     arquivo = models.FileField(upload_to='documentos')
-    link = models.URLField(blank=True)
     
     def __str__(self):
         return self.nome
