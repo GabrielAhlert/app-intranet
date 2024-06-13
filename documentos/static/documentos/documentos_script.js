@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         else
                             l5.classList.add("hidden");
                     });
+                    document.querySelector(".L5").scrollIntoView({behavior: "smooth", inline: "nearest"});
                 }
                 Event.currentTarget.classList.toggle("active");
             });
