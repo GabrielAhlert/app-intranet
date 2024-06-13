@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.db import models
-from django.forms import ModelForm, FileInput
+from django.forms import ClearableFileInput
 
 # Register your models here.
 
@@ -11,7 +11,7 @@ class ImagemRecadoInline(admin.TabularInline):
     model = ImagemRecado
     extra = 1
     formfield_overrides = {
-        models.FileField: {'widget': FileInput(attrs={'multiple': True})},
+        models.FileField: {'widget': ClearableFileInput(attrs={'allow_multiple_selected': True})},
     }
 
     def save_model(self, request, obj, form, change):
