@@ -31,8 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         b.addEventListener("click", (Event) => {
            const target_str =  Event.currentTarget.getAttribute("target");
            const target = document.querySelector("."+target_str);
-           console.log(target_str);
-           console.log(target);
 
 
            if (target_str == "L1"){
