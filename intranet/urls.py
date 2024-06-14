@@ -23,7 +23,6 @@ admin.site.site_header = "Administração da Intranet Cotrisoja"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    path('agenda/', include('agenda.urls')),
     path('documentos/', include('documentos.urls')),
     path('search/', include('search.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
