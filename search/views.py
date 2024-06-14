@@ -37,10 +37,19 @@ def get_quicksearch(request, data):
         response['contatos'].append(contatos_dict)
     
     for documento in documentos:
+        p = documento.categoria        
+
+        top_parent = p
+
+        while p:
+            top_parent = p
+            p = p.parente 
+        
+
         documentos_dict = {
             'id': documento.id,
             'nome': documento.nome,
-            'categoria': documento.categoria.nome,
+            'categoria': top_parent.nome if top_parent else None,
         }
 
         response['documentos'].append(documentos_dict)

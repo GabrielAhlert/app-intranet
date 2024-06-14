@@ -111,7 +111,7 @@ $("#input_search").on("input", function () {
                         $(contatos_li).append(contatos_ul);
                         $("#list_results_quicksearch").append(contatos_li);
 
-                    } else if (key === 'documentos' && response[key].length > 0) {
+                    } else if (key === 'documentos' && response[key].length > 0) {                        
                         const documentos = response[key];
 
                         const cabecalho = $("<span>").text("Documentos").addClass("fw-bold");
@@ -119,6 +119,7 @@ $("#input_search").on("input", function () {
                         const documentos_ul = $("<ul>").addClass("list-group list-group-flush");
 
                         documentos.forEach(item => {
+                            console.log(item);
                             const list = $("<li>").addClass("list-group-item");
                             const nome = $("<span>").addClass("fw-semibold").text(item.nome);
                             const dados = $("<span>").text(item.categoria).addClass("fw-lighter");
