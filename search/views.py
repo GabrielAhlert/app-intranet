@@ -44,12 +44,11 @@ def get_quicksearch(request, data):
         while p:
             top_parent = p
             p = p.parente 
-        
 
         documentos_dict = {
             'id': documento.id,
             'nome': documento.nome,
-            'categoria': top_parent.nome if top_parent else None,
+            'categoria': top_parent.nome,
         }
 
         response['documentos'].append(documentos_dict)
