@@ -63,6 +63,10 @@ $("#responses_search").on("click", function (event) {
     event.stopPropagation();
 });
 
+$("#modalRamais").on("shown.bs.modal", function() {
+    $("#search_ramal").focus();
+})
+
 $("#input_search").on("input", function () {
     var inputLength = $("#input_search").val().length;
     if (inputLength > 2) {

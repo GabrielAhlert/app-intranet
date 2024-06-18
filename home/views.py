@@ -23,9 +23,11 @@ def index(request):
     if (AniversariantesData.count() > 0):
         titleAniversariante = "Aniversariantes"
         Aniversariantes = [AniversariantesData[x:x+4] for x in range(0, len(AniversariantesData), 4)]
+        tipo = "atual"   
     else:
         titleAniversariante = "Próximos Aniversariantes"
-        Aniversariantes = [proxAniversariantes[x:x+4] for x in range(0, len(proxAniversariantes), 4)]
+        Aniversariantes = [proxAniversariantes[x:x+4] for x in range(0, len(proxAniversariantes), 4)] 
+        tipo =  "prox"       
 
     Contatosadmitidos = Contato.objects.filter(admissao__gte=seven_days_ago, admissao__lte=today)
     admitidos = [Contatosadmitidos[x:x+4] for x in range(0, len(Contatosadmitidos), 4)]
@@ -34,7 +36,7 @@ def index(request):
     context = {
         'Recados': Recados,
         'Aniversariantes_Mes': pessoas,
-        'Aniversariantes': [titleAniversariante, Aniversariantes],
+        'Aniversariantes': [titleAniversariante, Aniversariantes, tipo],
         'Admitidos': admitidos,
         'Banners': Banner.objects.all().order_by('id'),
     }
