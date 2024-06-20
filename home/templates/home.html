@@ -104,13 +104,16 @@
                                 </div>
                                 {% endfor %}
                             </div>
+                            <a style="cursor: pointer; color: #01634A;" class="mt-1 me-1 text-end d-block" data-bs-toggle="modal" data-bs-target="#modalAniversariantes">
+                                Ver Mais
+                            </a>
                     </ul>
                 </div>
             </div>
             <div class="col">
-                <h4 class="text-center fw-semibold" style="color: #01634A;">Novos Colaboradores</h4>
+                <h4 class="text-center m-1 fw-semibold" style="color: #01634A;">Novos Colaboradores</h4>
                 <ul class="list-group">
-                    <div id="carouselBirthdays" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+                    <div class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
                         <div class="carousel-inner">
                             {% for pessoas in Admitidos %}
                             {% if forloop.counter0 == 0 %}
@@ -140,12 +143,12 @@
                         </div>
                 </ul>
             </div>
-            <div class="col">
-                <h4 class="text-center fw-semibold">
-                    <a href="#" style="color: #01634A;" data-bs-toggle="modal" data-bs-target="#modalAniversariantes">
-                        {{Aniversariantes.0}}
-                    </a>
-                </h4>
+            <div class="col">   
+                <a style="cursor: pointer; color: #01634A;" data-bs-toggle="modal" data-bs-target="#modalAniversariantes">            
+                    <h4 class="text-center fw-semibold m-1">
+                        {{Aniversariantes.0}}   
+                    </h4>                                    
+                </a>
                 <ul class="list-group">
                     <div id="carouselBirthdays" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
                         <div class="carousel-inner">
@@ -165,9 +168,7 @@
                                                 </div>
                                                 <div class="ms-3 col align-content-center">
                                                     <span class="nome_funcionario fw-semibold">{{aniversariante.nome}}</span><br>
-                                                    {% if Aniversariantes.2 == "prox" %}
-                                                        <span class="border-success border-bottom float-end">{{aniversariante.nascimento.day|stringformat:"02d"}}/{{aniversariante.nascimento.month|stringformat:"02d"}}</span>
-                                                    {% endif %}
+                                                    <span class="border-success border-bottom float-end">{{aniversariante.nascimento.day|stringformat:"02d"}}/{{aniversariante.nascimento.month|stringformat:"02d"}}</span>
                                                     <span class="funcao_funcionario">{{aniversariante.funcao}}</span> <br>
                                                     <span class="unidade_funcionario">{{aniversariante.unidade}}</span>                                                    
                                                 </div>
@@ -175,10 +176,14 @@
                                         </li>
                                     {% endfor %}
                                 </div>
-                                {% endfor %}
-                            </div>
+                                {% endfor %}                                
+                            
                         </div>
-                </ul>
+                        <a style="cursor: pointer; color: #01634A;" class="m-1 text-end d-block" data-bs-toggle="modal" data-bs-target="#modalAniversariantes">
+                            Ver Mais
+                        </a>
+                    </div>
+                </ul>                
             </div>
         </div>
 
