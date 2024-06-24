@@ -38,7 +38,7 @@
         {% endfor %}
         {% for doc in D2%}
         <div id="doc{{doc.id}}" class="card doc hidden" parent="cat{{doc.categoria_id}}">
-            <a href="/download/{{doc.id}}" target="_blank">
+            <a href="download/{{doc.id}}" target="_blank">
                 <div class="card-body">
                     <i class="fa-solid {{doc.icon}}"></i>
                     <p>{{doc.nome}}</p>
