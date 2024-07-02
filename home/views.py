@@ -19,7 +19,7 @@ def index(request):
     pessoas = Contato.objects.filter(nascimento__month=today.month, pessoa_ativo=True).order_by('nascimento__day')
     pessoas = Contato.objects.filter(
         nascimento__day__gte=today.day,
-        nascimento__month__gte=today.month,
+        nascimento__month=today.month,
         pessoa_ativo=True
     ).order_by('nascimento__month', 'nascimento__day')
 
