@@ -16,18 +16,18 @@ def index(request):
     today = datetime.datetime.now()
     seven_days_ago = today - datetime.timedelta(days=7)
 
-    # pessoas = Contato.objects.filter(nascimento__month=today.month, pessoa_ativo=True).order_by('nascimento__day')
+    pessoas = Contato.objects.filter(nascimento__month=today.month, pessoa_ativo=True).order_by('nascimento__day')
+    pessoas = Contato.objects.filter(
+        nascimento__day__gte=today.day,
+        nascimento__month__gte=today.month,
+        pessoa_ativo=True
+    ).order_by('nascimento__month', 'nascimento__day')
+
     # pessoas = Contato.objects.filter(
-    #     nascimento__day__gte=today.day,
-    #     nascimento__month__gte=today.month,
+    #     Q(nascimento__month=today.month, nascimento__day__gte=today.day) |
+    #     Q(nascimento__month__gt=today.month),
     #     pessoa_ativo=True
     # ).order_by('nascimento__month', 'nascimento__day')[:15]
-
-    pessoas = Contato.objects.filter(
-        Q(nascimento__month=today.month, nascimento__day__gte=today.day) |
-        Q(nascimento__month__gt=today.month),
-        pessoa_ativo=True
-    ).order_by('nascimento__month', 'nascimento__day')[:15]
 
     
     proxAniversariantes = Contato.objects.filter(nascimento__day__gt=today.day, nascimento__month=today.month, pessoa_ativo=True).order_by('nascimento__day')[:4]    
