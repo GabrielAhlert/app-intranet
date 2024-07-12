@@ -26,13 +26,12 @@ def get_cotacao(request):
         url = 'https://sp-app.cotrisoja.com.br/api/'
         url_cotacao = url + requests.get(url + 'dashboard', headers=headers).json()['agricultural_quotation']['formats']['large']['url']
         return HttpResponseRedirect(url_cotacao)
-    except HttpRequestError as e:
-        if(e.response.status_code == 401):
-            try:
-                refresh_token()
-                return get_cotacao(request)
-            except:
-                return HttpResponseBadRequest('Erro ao buscar cotação')
-                pass
+    except:
+        try:
+            refresh_token()
+            return get_cotacao(request)
+        except:
+            return HttpResponseBadRequest('Erro ao buscar cotação')
+            pass
     
     
