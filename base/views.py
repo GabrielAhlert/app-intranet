@@ -9,16 +9,21 @@ import json
 
 def refresh_token():
     try:
+        print("REFRESH TOKEN")
         headers = { 'Content-Type': 'application/json'}
         url = config("COTACAO_URL")
-        body = { {"email": config("COTACAO_USER"), "password": config("COTACAO_PASS")}}
+        print(url)
+        body = {"email": config("COTACAO_USER"), "password": config("COTACAO_PASS")}
         token = requests.post(url + 'admin/login', data=json.dumps(body), headers=headers).json()['data']['token']
         os.environ["COTRISOJA_API_TOKEN"] = token
         return token
-    except:
-        return HttpResponseBadRequest('Erro ao buscar cotação')
+    except HttpRequestError as e:
+        print("ERROR")
+        print(e)
+        pass
     
 def getToken():
+    print("GET TOKEN")
     token = os.environ.get("COTRISOJA_API_TOKEN")
     if token:
         return token
