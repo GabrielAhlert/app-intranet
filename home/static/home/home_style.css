@@ -65,4 +65,17 @@
     font-size: 0.9em;
 }
 
+.limit-height-carousel {
+    height: 510px;
+}
+
+.img-carousel {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 /* Path: home/static/home/home_style.css */
