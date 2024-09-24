@@ -1,3 +1,5 @@
+agenda/media_assinatura/assinaturas/*
+
 # Django #
 *.log
 *.pot
@@ -7,6 +9,7 @@ db.sqlite3
 ./media
 media
 ./static/
+static
 
 # DECOUPLE #
 .env
