@@ -49,7 +49,7 @@ def index(request):
         'Aniversariantes_Mes': pessoas,
         'Aniversariantes': [titleAniversariante, Aniversariantes],
         'Admitidos': admitidos,
-        'Banners': Banner.objects.all().order_by('id'),
+        'Banners': Banner.objects.all().order_by('-id'),
     }
     
     return HttpResponse(template.render(context, request))
