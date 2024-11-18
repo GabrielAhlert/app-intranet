@@ -5,7 +5,10 @@ from PIL import Image as PILImage
 from unidecode import unidecode
 from .assinatura import Assinatura
 import os
+import logging
+from decouple import config
 
+PATH = config('ASSINATURAS_PATH')
 
 class Unidade(models.Model):
     nome = models.CharField(max_length=100)
@@ -48,6 +51,7 @@ class Contato(models.Model):
 
     def save(self, *args, **kwargs):
         if self.email and self.email != '-':
+            logger = logging.getLogger(__name__)
             template_image_path = './agenda/media_assinatura/template.png'
             template_image = PILImage.open(template_image_path)
 
@@ -66,9 +70,16 @@ class Contato(models.Model):
             if len(name_parts) == 1:
                 file_name = f"{name_parts[0]}.png"
             else:
-                file_name = f"{name_parts[0]}_{name_parts[-1]}.png"
-            
-            assinatura.save_file(rf"\\dcsamba\dados\setores\INFORMATICA\ASSINATURAS\{file_name}")        
+                file_name = f"{name_parts[0]}_{name_parts[-1]}.png"               
+                
+            try:                
+                if os.path.exists(PATH):
+                    assinatura.save_file(f"{PATH}{file_name}")
+                    logger.info("Arquivo salvo com sucesso")
+                else:
+                    logger.error("Caminho da rede não encontrado")
+            except Exception as e:
+                logger.error(f"Erro ao salvar o arquivo: {e}")    
 
         super(Contato, self).save(*args, **kwargs)
 

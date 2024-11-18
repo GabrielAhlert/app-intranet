@@ -28,6 +28,9 @@ class Assinatura:
         elif (unidade == "Trevo Selbach" or unidade == "Selbach"):
             address = "Unidade Regional - Selbach/RS"
             contactRow += "(54) 3387-1256"
+        elif (unidade == "Santa Clara do Ingaí"):
+            address = f"Unidade Regional - Santa Clara do Ingaí"
+            contactRow += "(54) 3324-9270"
 
         contactRow += " - Ramal " + ramal
 
