@@ -148,3 +148,51 @@ $("#input_search").on("input", function () {
         $("#responses_search").hide();
     }
 });
+
+const scrollContainer = document.querySelector('.drag-scroll');
+
+let isDragging = false;
+let startX;
+let scrollLeft;
+let clickTimer;
+
+scrollContainer.addEventListener('mousedown', (e) => {
+    e.preventDefault(); 
+    clickTimer = setTimeout(() => {
+        isDragging = true;
+        scrollContainer.classList.add('dragging');
+        startX = e.pageX - scrollContainer.offsetLeft;
+        scrollLeft = scrollContainer.scrollLeft;
+    }, 150); 
+});
+
+scrollContainer.addEventListener('mouseup', (e) => {
+    clearTimeout(clickTimer); 
+    if (isDragging) {
+        e.preventDefault(); 
+        e.stopPropagation();
+    }
+    isDragging = false;
+    scrollContainer.classList.remove('dragging');
+});
+
+scrollContainer.addEventListener('mouseleave', () => {
+    clearTimeout(clickTimer);
+    isDragging = false;
+    scrollContainer.classList.remove('dragging');
+});
+
+scrollContainer.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainer.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollContainer.scrollLeft = scrollLeft - walk;
+});
+
+scrollContainer.addEventListener('click', (e) => {
+    if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+});

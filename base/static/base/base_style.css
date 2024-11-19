@@ -94,6 +94,7 @@ body{
 .link_menu {    
     text-decoration: none;
     color: #e6ebe8;
+    padding: 3px 0;
 }
 
 .link_menu:hover {
@@ -142,6 +143,33 @@ body{
     transform: translateX(-50%);
 }
 
+.drag-scroll {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    cursor: grab;
+    scrollbar-width: thin;
+    scrollbar-color: #004938 transparent;
+    user-select: none;   
+}
 
+.drag-scroll.dragging .link_menu {
+    pointer-events: none;
+}
 
+.drag-scroll.dragging {
+    cursor: grabbing;
+}
+
+.drag-scroll::-webkit-scrollbar {
+    height: 5px;
+}
+
+.drag-scroll::-webkit-scrollbar-thumb {
+    background-color: #004938; 
+    border-radius: 20px;
+}
+
+.drag-scroll::-webkit-scrollbar-track {
+    background: transparent;    
+}
 
