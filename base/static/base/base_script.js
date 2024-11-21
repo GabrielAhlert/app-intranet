@@ -15,9 +15,10 @@ function toggleInputQuickSearch() {
             $("#label_search").text("Busca");
             $("#input_search").val('');
             $("#responses_search").hide();
+            $("#box_search").removeClass('ms-auto');
         });
     } else {
-        $('.hide_on_search').hide(10, function () {
+        $('.hide_on_search').hide(10, function () {            
             $("#icon_search").removeClass('fa-magnifying-glass').addClass('fa-xmark');
             $("#label_search").text("Fechar");
             $("#input_search").val('');
@@ -25,6 +26,7 @@ function toggleInputQuickSearch() {
             $('#box_search').show(0, function () {
                 $("#input_search").focus();
             });
+            $("#box_search").addClass('ms-auto');
         });
     }
 
