@@ -158,9 +158,9 @@ let startX;
 let scrollLeft;
 let clickTimer;
 
-scrollContainer.addEventListener('mousedown', (e) => {
-    e.preventDefault(); 
+scrollContainer.addEventListener('mousedown', (e) => {     
     clickTimer = setTimeout(() => {
+        e.preventDefault(); 
         isDragging = true;
         scrollContainer.classList.add('dragging');
         startX = e.pageX - scrollContainer.offsetLeft;

@@ -95,6 +95,7 @@ body{
     text-decoration: none;
     color: #e6ebe8;
     padding: 3px 0;
+    user-select: none; 
 }
 
 .link_menu:hover {
@@ -137,7 +138,8 @@ body{
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #e6ebe8;
-    width: max-content;
+    width: max-content;    
+    cursor: auto;
     /* left: 50%; 
     right: auto;
     transform: translateX(-50%);*/
@@ -145,12 +147,10 @@ body{
 
 .drag-scroll {
     overflow-x: auto;
-    overflow-x: hidden;
     scroll-behavior: smooth;
     cursor: grab;
     scrollbar-width: thin;
-    scrollbar-color: #004938 transparent;
-    user-select: none;   
+    scrollbar-color: #004938 transparent;      
 }
 
 .drag-scroll.dragging .link_menu {
