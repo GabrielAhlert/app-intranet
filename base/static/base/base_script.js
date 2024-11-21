@@ -158,9 +158,14 @@ let startX;
 let scrollLeft;
 let clickTimer;
 
-scrollContainer.addEventListener('mousedown', (e) => {     
+scrollContainer.addEventListener('mousedown', (e) => { 
+    if (document.getElementById("list_results_quicksearch").contains(e.target)) {
+        return; 
+    }  
+
+    e.preventDefault(); 
+    
     clickTimer = setTimeout(() => {
-        e.preventDefault(); 
         isDragging = true;
         scrollContainer.classList.add('dragging');
         startX = e.pageX - scrollContainer.offsetLeft;
