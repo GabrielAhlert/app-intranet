@@ -121,7 +121,7 @@ body{
     size-adjust: 10px;
 }
 
-.txtSearch:focus {
+.inputSearch:focus {
     outline: none !important;
     border: 2px solid #0c9774;
 }
