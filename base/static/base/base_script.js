@@ -112,7 +112,9 @@ $("#input_search").on("input", function () {
                 console.error(error);
             }
         });
-    } 
+    } else {
+        $("#list_results_quicksearch").empty();
+    }
 });
 
 $("#modalSearch").on('shown.bs.modal', function () {
