@@ -41,63 +41,55 @@
                 </div>
                 <div class="col-10 drag-scroll">                                          
                     <div class="d-flex">
-                        <a href="/" class="text-center link_menu hide_on_search ms-auto">
+                        <a href="/" class="text-center link_menu ms-auto">
                             <i class="fa-solid fa-home"></i>
                             <span>Home</span>
                         </a>
-                        <a href="#" class="text-center link_menu hide_on_search" data-bs-toggle="modal"
+                        <a href="#" class="text-center link_menu" data-bs-toggle="modal"
                             data-bs-target="#modalRamais">
                             <i class="fa-regular fa-address-book"></i>
                             <span>Ramais</span>
                         </a>
-                        <a id="cotacao" href="/cotacao/" data-lightbox="image-2" class="text-center link_menu hide_on_search">
+                        <a id="cotacao" href="/cotacao/" data-lightbox="image-2" class="text-center link_menu">
                             <i class="fa-solid fa-sack-dollar"></i>
                             <span>Cotação</span>
                         </a>
-                        <a href="/documentos" class="text-center link_menu hide_on_search">
+                        <a href="/documentos" class="text-center link_menu">
                             <i class="fa-regular fa-folder"></i>
                             <span>Documentos</span>
                         </a>
                         <a href="https://mail.cotrisoja.com.br:8443/" target="_blank"
-                            class="text-center link_menu hide_on_search">
+                            class="text-center link_menu">
                             <i class="fa-regular fa-envelope"></i>
                             <span>E-mail</span>
                         </a>
                         <a href="http://chamados.cotrisoja.com.br/" target="_blank"
-                            class="text-center link_menu hide_on_search">
+                            class="text-center link_menu">
                             <i class="fa-regular fa-clipboard"></i>
                             <span>Chamados</span>
                         </a>
                         <a href="http://192.0.0.221:8080/adged" target="_blank"
-                            class="text-center link_menu hide_on_search">
+                            class="text-center link_menu">
                             <i class="fa-regular fa-file-powerpoint"></i>
                             <span>PortalNFE</span>
                         </a>
                         <a href="https://cotrisoja.com.br/" target="_blank"
-                            class="text-center link_menu hide_on_search">
+                            class="text-center link_menu">
                             <i class="fa-solid fa-globe"></i>
                             <span>Site</span>
                         </a>
                         <a href="https://app.smart.coop.br/" target="_blank"
-                            class="text-center link_menu hide_on_search">
+                            class="text-center link_menu">
                             <i class="fa-solid fa-circle-nodes"></i>
                             <span>SmartCoop</span>
                         </a>    
                         <a href="https://app.hisign.com.br/" target="_blank"
-                            class="text-center link_menu hide_on_search"
+                            class="text-center link_menu"
                             title="Assinatura Digital - Hisign">
                             <i class="fa-solid fa-file-signature"></i>
                             <span>Assinatura</span>
-                        </a>    
-                        <div id="box_search" class="box_quick_search align-content-center"
-                            style="display: none;">
-                            <input id="input_search" class="form-control" type="text" placeholder="Busca rápida"
-                                autocomplete="off" tabindex="-1"></input>
-                            <div id="responses_search" class="dropdown_responses_search">
-                                <ul class="list-group" id="list_results_quicksearch"></ul>
-                            </div>                              
-                        </div>     
-                        <a class="text-center link_menu" id="toggle_search" style="cursor: pointer;">
+                        </a>                            
+                        <a class="text-center link_menu" id="toggle_search" href="#" data-bs-toggle="modal" data-bs-target="#modalSearch">
                             <i id="icon_search" class="fa-solid fa-magnifying-glass"></i>
                             <span id="label_search">Busca</span>
                         </a>             
@@ -120,6 +112,19 @@
     <div class="footer">
         <p>© 2022 - {% now 'Y' %} Cotrisoja. Todos os direitos reservados.</p>
     </div>
+    <div class="modal fade" id="modalSearch" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <input class="txtSearch mx-3 w-100" id="input_search" type="text" autocomplete="off" placeholder="Buscar em toda intranet" aria-label="Search">
+                </div>
+                <div class="modal-body" id="list_results_quicksearch"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="modalRamais" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
@@ -132,12 +137,12 @@
                     <table class="table table-striped table-hover sortable">
                         <thead>
                             <tr class="head">
-                                <th scope="col" class="table-col-1">Ramal</th>
-                                <th scope="col" class="table-col-2">Telefone</th>
-                                <th scope="col" class="table-col-3">Nome</th>
-                                <th scope="col" class="table-col-4">E-mail</th>
-                                <th scope="col" class="table-col-5">Cargo</th>
-                                <th scope="col" class="table-col-6">Unidade</th>
+                                <th scope="col" class="table-col-1 hover-pointer">Ramal</th>
+                                <th scope="col" class="table-col-2 hover-pointer">Telefone</th>
+                                <th scope="col" class="table-col-3 hover-pointer">Nome</th>
+                                <th scope="col" class="table-col-4 hover-pointer">E-mail</th>
+                                <th scope="col" class="table-col-5 hover-pointer">Cargo</th>
+                                <th scope="col" class="table-col-6 hover-pointer">Unidade</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -164,7 +169,7 @@
     <script src="{% static 'base/filter.js' %}" crossorigin="anonymous"></script>
     <script src="{% static 'base/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
     <script src="{% static 'base/base_script.js' %}" crossorigin="anonymous"></script>
-    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    <script src="{% static 'base/sorttable.js' %}" crossorigin="anonymous"></script>
     {% django_browser_reload_script %}
 </body>
 </html>

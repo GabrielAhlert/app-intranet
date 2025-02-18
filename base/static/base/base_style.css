@@ -116,33 +116,18 @@ body{
 
 .txtSearch {
     border-radius: 10px;
-    border: 1px solid #014b38;
+    border: 2px solid #014b38;
     padding: 8px;
     size-adjust: 10px;
 }
 
 .txtSearch:focus {
     outline: none !important;
-    border: 2px solid #014b38;
+    border: 2px solid #0c9774;
 }
   
 .modal-title {
     color: #01634a;
-}
-
-.dropdown_responses_search {
-    display: none;
-    position: absolute;
-    margin-top: 5px;
-    border-radius: 5px;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #e6ebe8;
-    width: max-content;    
-    cursor: auto;
-    /* left: 50%; 
-    right: auto;
-    transform: translateX(-50%);*/
 }
 
 .drag-scroll {
@@ -174,3 +159,26 @@ body{
     background: transparent;    
 }
 
+.hover-pointer:hover {
+    cursor: pointer;
+}
+
+.result-quicksearch-type {
+    font-weight: bolder;
+    color: #014b38;
+}
+
+.result-quicksearch-filial-list {
+    padding: 0;
+    margin: 0;
+}
+
+.result-quicksearch-contact-list {
+    margin-left: 1.5%;
+}
+
+.title-filial {
+    font-weight: bold;
+    font-size: large;
+    color: #014b38;
+}

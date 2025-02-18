@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.db.models import Q
 import json
 
-# Create your views here.
+
 def get_quicksearch(request, data):
     response = {
         'contatos': [],
@@ -30,6 +30,7 @@ def get_quicksearch(request, data):
             'nome': contato.nome,
             'ramal': contato.ramal,
             'email': contato.email,
+            'telefone': contato.telefone if contato.telefone and contato.telefone != "-" else None,
             'funcao': contato.funcao.nome if contato.funcao else None,
             'unidade': contato.unidade.nome if contato.unidade else None
         }

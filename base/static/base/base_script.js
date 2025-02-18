@@ -6,74 +6,13 @@ document.querySelector('#cotacao').addEventListener('click', function (Event) {
     Event.currentTarget.setAttribute('href', href + '?cotacao=' + random);
 });
 
-function toggleInputQuickSearch() {
-    //Fecha os icones e abre a pesquisa
-    if ($('.hide_on_search').css("display") == "none") {
-        $('#box_search').hide(10, function () {
-            $('.hide_on_search').show();
-            $("#icon_search").removeClass('fa-xmark').addClass('fa-magnifying-glass');
-            $("#label_search").text("Busca");
-            $("#input_search").val('');
-            $("#responses_search").hide();
-            $("#box_search").removeClass('ms-auto');
-        });
-    } else {
-        $('.hide_on_search').hide(10, function () {            
-            $("#icon_search").removeClass('fa-magnifying-glass').addClass('fa-xmark');
-            $("#label_search").text("Fechar");
-            $("#input_search").val('');
-            $("#responses_search").hide();
-            $('#box_search').show(0, function () {
-                $("#input_search").focus();
-            });
-            $("#box_search").addClass('ms-auto');
-        });
-    }
-
-    //Abre a pesquisa sem fechar os icones
-    // if ($('#box_search').css("display") == "none") {
-    //     $("#icon_search").toggleClass('fa-magnifying-glass fa-xmark');
-    //     $("#label_search").text("Fechar");
-    //     $("#input_search").val('');
-    //     $("#input_search").focus();
-    //     $("#responses_search").hide();
-    //     $('#box_search').show(30, function() {
-    //         $("#input_search").focus();
-    //     });
-    // } else {
-    //     $('#box_search').hide();
-    //     $("#icon_search").toggleClass('fa-xmark fa-magnifying-glass');
-    //     $("#label_search").text("Busca");
-    //     $("#input_search").val('');
-    //     $("#responses_search").hide();
-    // }
-}
-
-$("#toggle_search").on("click", function () {
-    toggleInputQuickSearch();
-});
-
-$(document).on("click", function (event) {
-    var $target = $(event.target);
-
-    if (!$target.closest('#toggle_search').length) {
-        $("#responses_search").hide();
-    }
-});
-
-$("#responses_search").on("click", function (event) {
-    event.stopPropagation();
-});
-
 $("#modalRamais").on("shown.bs.modal", function() {
     $("#search_ramal").focus();
 })
 
 $("#input_search").on("input", function () {
     var inputLength = $("#input_search").val().length;
-    if (inputLength > 2) {
-        $("#responses_search").show();
-
+    if (inputLength > 1) {
         $.ajax({
             method: "GET",
             url: "/search/get_quicksearch/" + $("#input_search").val(),
@@ -82,45 +21,73 @@ $("#input_search").on("input", function () {
                 for (const key in response) {
                     if (key === 'contatos' && response[key].length > 0) {
                         const contatos = response[key];
-                        const cabecalho = $("<span>").text("Contatos").addClass("fw-bold");
-                        const contatos_li = $("<li>").addClass("list-group-item").append(cabecalho);
-                        const contatos_ul = $("<ul>").addClass("list-group list-group-flush");
-
+                    
+                        const groupedByUnidade = {};
+                    
                         contatos.forEach(item => {
-                            const list = $("<li>").addClass("list-group-item");
-                            const nome = $("<span>").addClass("fw-semibold").text(item.nome);
-
-                            let funcao = "";
-                            if (item.funcao) {
-                                funcao = $("<span>").addClass("fw-lighter").text(item.funcao);
+                            const unidade = item.unidade || "Sem unidade";
+                    
+                            if (!groupedByUnidade[unidade]) {
+                                groupedByUnidade[unidade] = [];
                             }
-
-                            let ramal = "";
-                            if (item.ramal) {
-                                ramal = $("<span>").text(" - Ramal " + item.ramal);
-                            }
-
-                            let email = "";
-                            if (item.email || item.email != '-') {
-                                email = $("<span>").text(item.email);
-                            }
-
-                            const br = $("<br>");
-
-                            const titulo = $("<span>").append(nome).append(ramal);
-
-                            list.append(titulo, br.clone(), funcao, br.clone(), email);
-
-                            contatos_ul.append(list);
+                    
+                            groupedByUnidade[unidade].push(item);
                         });
+                    
+                        const cabecalho = $("<h5>").text("Contatos").addClass("result-quicksearch-type");
+                        const contatos_li = $("<li>").addClass("list-group-item").append(cabecalho);
+                        const contatos_ul = $("<ul>").addClass("list-group list-group-flush result-quicksearch-filial-list");
+                    
+                        Object.keys(groupedByUnidade).forEach(unidade => {
+                            const unidadeHeader = $("<li>").addClass("list-group-item fw-bold").append($("<span>").addClass("title-filial").text(unidade));
+                            const unidadeList = $("<ul>").addClass("list-group list-group-flush result-quicksearch-contact-list");                            
+                    
+                            groupedByUnidade[unidade].forEach(item => {
+                                const list = $("<li>").addClass("list-group-item");
+                                const nome = $("<span>").addClass("fw-semibold").text(item.nome);
+                    
+                                let funcao = "";
+                                if (item.funcao) {
+                                    funcao = $("<span>").addClass("fw-lighter").text(item.funcao);
+                                }   
+                                
+                                let telefone = "";
+                                if (item.telefone) {
+                                    telefone = " - " + item.telefone;
+                                }    
+                                
+                                let ramal = "";                                
+                                let email = "";
+                                if (item.ramal) {
+                                    ramal = " - Ramal " + item.ramal;
+                                }
+                                if (item.email && item.email !== '-') {                                    
+                                    email = $("<span>").text(item.email + ramal + telefone);
+                                }
+                    
+                                const br = $("<br>")
+                                const titulo = $("<span>").append(nome);
+                    
+                                list.append(
+                                    titulo, 
+                                    document.createTextNode(" - "), 
+                                    funcao, 
+                                    br.clone(), 
+                                    email
+                                );
+                                unidadeList.append(list);
+                            });
 
+                            contatos_ul.append(unidadeHeader);
+                            contatos_ul.append(unidadeList);
+                        });
+                    
                         $(contatos_li).append(contatos_ul);
-                        $("#list_results_quicksearch").append(contatos_li);
-
+                        $("#list_results_quicksearch").append(contatos_li);              
                     } else if (key === 'documentos' && response[key].length > 0) {                        
                         const documentos = response[key];
 
-                        const cabecalho = $("<span>").text("Documentos").addClass("fw-bold");
+                        const cabecalho = $("<h5>").text("Documentos").addClass("result-quicksearch-type");
                         const documentos_li = $("<li>").addClass("list-group-item").append(cabecalho);
                         const documentos_ul = $("<ul>").addClass("list-group list-group-flush");
 
@@ -146,9 +113,16 @@ $("#input_search").on("input", function () {
                 console.error(error);
             }
         });
-    } else {
-        $("#responses_search").hide();
-    }
+    } 
+});
+
+$("#modalSearch").on('shown.bs.modal', function () {
+    $("#input_search").focus();
+});
+
+$("#modalSearch").on('hide.bs.modal', function () {
+    $("#input_search").val('');
+    $("#list_results_quicksearch").empty();
 });
 
 const scrollContainer = document.querySelector('.drag-scroll');
@@ -159,10 +133,6 @@ let scrollLeft;
 let clickTimer;
 
 scrollContainer.addEventListener('mousedown', (e) => { 
-    if (document.getElementById("list_results_quicksearch").contains(e.target)) {
-        return; 
-    }  
-
     e.preventDefault(); 
     
     clickTimer = setTimeout(() => {
