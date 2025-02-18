@@ -1,9 +1,8 @@
 from agenda.models import Contato
-from documentos.models import Documento, Categoria
+from documentos.models import Documento
 from django.http import HttpResponse
 from django.db.models import Q
 import json
-
 
 def get_quicksearch(request, data):
     response = {
@@ -11,21 +10,32 @@ def get_quicksearch(request, data):
         'documentos': []
     }
 
-    contatos = Contato.objects.filter(
-        pessoa_ativo=True
-    ).filter(
-        Q(nome__icontains=data) |
-        Q(ramal__icontains=data) |
-        Q(telefone__icontains=data) |
-        Q(email__icontains=data) |
-        Q(funcao__nome__icontains=data) |
-        Q(unidade__nome__icontains=data)
-    )[:5]    
+    # Quebrar a busca em palavras separadas
+    search_words = data.split()
 
-    documentos = Documento.objects.filter(Q(nome__icontains=data))
+    # Criar um filtro dinâmico para que todas as palavras estejam contidas no nome, ramal etc.
+    contatos_filter = Q(pessoa_ativo=True)
+    for word in search_words:
+        contatos_filter &= (
+            Q(nome__icontains=word) |
+            Q(ramal__icontains=word) |
+            Q(telefone__icontains=word) |
+            Q(email__icontains=word) |
+            Q(funcao__nome__icontains=word) |
+            Q(unidade__nome__icontains=word)
+        )
 
+    contatos = Contato.objects.filter(contatos_filter)[:5]    
+
+    documentos_filter = Q()
+    for word in search_words:
+        documentos_filter &= Q(nome__icontains=word)
+
+    documentos = Documento.objects.filter(documentos_filter)
+
+    # Construção da resposta
     for contato in contatos:   
-        contatos_dict = {
+        response['contatos'].append({
             'id': contato.id,
             'nome': contato.nome,
             'ramal': contato.ramal,
@@ -33,25 +43,20 @@ def get_quicksearch(request, data):
             'telefone': contato.telefone if contato.telefone and contato.telefone != "-" else None,
             'funcao': contato.funcao.nome if contato.funcao else None,
             'unidade': contato.unidade.nome if contato.unidade else None
-        }
-
-        response['contatos'].append(contatos_dict)
+        })
     
     for documento in documentos:
         p = documento.categoria        
-
         top_parent = p
 
         while p:
             top_parent = p
             p = p.parente 
 
-        documentos_dict = {
+        response['documentos'].append({
             'id': documento.id,
             'nome': documento.nome,
             'categoria': top_parent.nome,
-        }
-
-        response['documentos'].append(documentos_dict)
+        })
 
     return HttpResponse(json.dumps(response), content_type='application/json')

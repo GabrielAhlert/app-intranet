@@ -92,7 +92,6 @@ $("#input_search").on("input", function () {
                         const documentos_ul = $("<ul>").addClass("list-group list-group-flush");
 
                         documentos.forEach(item => {
-                            console.log(item);
                             const list = $("<li>").addClass("list-group-item");
                             const nome = $("<span>").addClass("fw-semibold").text(item.nome);
                             const dados = $("<span>").text(item.categoria).addClass("fw-lighter");
