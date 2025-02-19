@@ -28,6 +28,7 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('cotacao/', views.get_cotacao, name='get_cotacao'),
+    path("chat/", include("chat.urls")),
 ]
 
 if settings.DEBUG:

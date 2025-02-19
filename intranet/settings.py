@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'chat',
     'recados.apps.RecadosConfig',
     'agenda.apps.AgendaConfig',
     'home.apps.HomeConfig',
@@ -47,7 +49,6 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'base.apps.BaseConfig',
-    
 ]
 
 MIDDLEWARE = [
@@ -82,8 +83,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'intranet.wsgi.application'
+ASGI_APPLICATION = "intranet.asgi.application"
 
-
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
