@@ -25,7 +25,7 @@ def get_quicksearch(request, data):
             Q(unidade__nome__icontains=word)
         )
 
-    contatos = Contato.objects.filter(contatos_filter)[:5]    
+    contatos = Contato.objects.filter(contatos_filter)   
 
     documentos_filter = Q()
     for word in search_words:

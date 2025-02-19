@@ -12,7 +12,7 @@ $("#modalRamais").on("shown.bs.modal", function() {
 
 $("#input_search").on("input", function () {
     var inputLength = $("#input_search").val().length;
-    if (inputLength > 1) {
+    if (inputLength > 2) {
         $.ajax({
             method: "GET",
             url: "/search/get_quicksearch/" + $("#input_search").val(),
