@@ -1,34 +1,72 @@
-# Intranet Django
 
-Bem-vindo(a) ao projeto de **Intranet** desenvolvido em **Django**! Este README fornece instruções para construir e executar a aplicação usando **Docker** e **Docker Compose**, além de alguns passos básicos de configuração.
+# 🖥️ App Intranet
 
----
+Este projeto é uma aplicação web desenvolvida em Django, pronta para ser implantada com Docker, proporcionando uma solução robusta e eficiente para gerenciar sua intranet corporativa.
 
-## Índice
-1. [Visão Geral](#visão-geral)  
-2. [Pré-Requisitos](#pré-requisitos)  
-3. [Como Usar](#como-usar)  
-   - [1. Clonar o Repositório](#1-clonar-o-repositório)  
-   - [2. Build da Imagem Docker](#2-build-da-imagem-docker)  
-   - [3. Subir o Contêiner](#3-subir-o-contêiner)  
-   - [4. Criar Superusuário](#4-criar-superusuário)  
-4. [Acessando a Aplicação](#acessando-a-aplicação)  
-5. [Comandos Úteis](#comandos-úteis)  
-6. [Contribuição](#contribuição)  
-7. [Licença](#licença)  
+> **Nota:** Este projeto está atualmente configurado com o layout específico da empresa onde trabalho. Para utilizar em outro ambiente, será necessário personalizar o layout conforme suas necessidades.
+
+> **Nota:** Esta configuração Docker é destinada apenas para uso em ambiente de desenvolvimento.
 
 ---
 
-## Visão Geral
-Este projeto é uma aplicação **Intranet** desenvolvida com o framework **Django**. O objetivo é fornecer um ambiente interno para a organização, com funcionalidades de autenticação, administração, etc. Usamos contêineres Docker para simplificar o processo de configuração e execução, garantindo um ambiente consistente em diferentes máquinas.
+## ⚙️ Funcionalidades
+
+- Gestão simplificada de conteúdo interno
+- Autenticação segura de usuários
+- Administração intuitiva com Django Admin
+- Auto-reload durante o desenvolvimento (salvou, atualizou)
 
 ---
 
-## Pré-Requisitos
-- **Git**: para clonar o repositório (opcional, caso prefira baixar o código de outra forma).
-- **Docker** e **Docker Compose**: para construir e executar a aplicação em contêineres.
+## 🛠️ Requisitos
 
-Verifique se ambos estão instalados e atualizados:
+Certifique-se de ter os seguintes softwares instalados:
+
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
+---
+
+## 🚀 Como executar
+
+Clone este repositório e acesse o diretório:
+
 ```bash
-docker --version
-docker compose version
+git clone https://github.com/GabrielAhlert/app-intranet.git
+cd app-intranet
+```
+
+Em seguida, construa e execute o projeto com os seguintes comandos:
+
+```bash
+docker build -t django-docker .
+docker compose up -d
+```
+
+Crie um usuário administrador para acessar o painel Django Admin:
+
+```bash
+docker-compose exec django-web python manage.py createsuperuser
+```
+
+Acesse a aplicação no navegador através de:
+
+```
+http://localhost:8000
+```
+
+Para acessar o painel administrativo Django, utilize:
+
+```
+http://localhost:8000/admin
+```
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Consulte [LICENSE](LICENSE) para detalhes.
+
+---
+
+✨ **Desenvolvido com Django e Docker** ✨
