@@ -1,12 +1,19 @@
-# Use postgres/example user/password credentials
-version: '3.1'
-
 services:
-  postgres-intranet:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - 5432:5432
-  
+ django-web:
+   build: .
+   container_name: django-docker
+   volumes:
+    - .:/app
+   environment:
+     DJANGO_SUPERUSER_USERNAME: admin
+     DJANGO_SUPERUSER_EMAIL: admin@example.com
+     DJANGO_SUPERUSER_PASSWORD: "admin"
+     ASSINATURAS_PATH: /tmp/assinaturas
+   command: >
+          sh -c "
+          python manage.py migrate --noinput &&
+          python manage.py runserver 0.0.0.0:8000
+          "
+   ports:
+     - "8000:8000"
+
