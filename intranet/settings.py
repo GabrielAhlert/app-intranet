@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'base.apps.BaseConfig',
-    
+    'grupos_familiares',
 ]
 
 MIDDLEWARE = [
