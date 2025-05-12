@@ -5,6 +5,11 @@ class Assinatura:
         self.image = image
         address = ""
         contactRow = ""
+        
+        if len(name) > 26:
+            parts = name.split()
+            if len(parts) >= 2:
+                name = f"{parts[0]} {parts[-1]}"
 
         draw = ImageDraw.Draw(self.image)
         fontName = ImageFont.truetype("./agenda/media_assinatura/fonts/Barlow-Bold.ttf", 25)
@@ -22,17 +27,30 @@ class Assinatura:
         elif (unidade == "Arroio Grande"):
             address = "Unidade Regional - Arroio Grande/RS"
             contactRow += "(54) 3385-3059"
+        elif (unidade == "Victor Graeff"):
+            address = "Unidade Regional - Victor Graeff/RS"
+            contactRow += "(54) 3385-3012"
         elif (unidade == "Posto Victor Graeff"):
             address = "Posto de Combustível - Posto Victor Graeff/RS"
-            contactRow += "(54) 3385-3012"
+            contactRow += "(54) 3385-3025"
         elif (unidade == "Trevo Selbach" or unidade == "Selbach"):
             address = "Unidade Regional - Selbach/RS"
             contactRow += "(54) 3387-1256"
         elif (unidade == "Santa Clara do Ingaí"):
             address = f"Unidade Regional - Santa Clara do Ingaí"
             contactRow += "(54) 3324-9270"
+        elif (unidade == "XV de Novembro"):
+            address = f"Unidade Regional - XV de Novembro"
+            contactRow += "(54) 3324-9260"
+        elif (unidade == "Esq. São José"):
+            address = f"Unidade Regional - Esquina São José"
+            contactRow += "(54) 3324-9250"
+        elif (unidade == "Jóia"):
+            address = f"Unidade Regional - Jóia"
+            contactRow += "(54) 3324-9280"
 
-        contactRow += " - Ramal " + ramal
+        if ramal != '':
+            contactRow += " - Ramal " + ramal
 
         fontAddress = ImageFont.truetype("./agenda/media_assinatura/fonts/Barlow-Bold.ttf", 12)
         positionAddress = (92, 68)
