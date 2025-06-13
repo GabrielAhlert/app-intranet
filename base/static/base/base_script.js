@@ -6,7 +6,7 @@ document.querySelector('#cotacao').addEventListener('click', function (Event) {
     Event.currentTarget.setAttribute('href', href + '?cotacao=' + random);
 });
 
-$("#modalRamais").on("shown.bs.modal", function() {
+$("#modalRamais").on("shown.bs.modal", function () {
     $("#search_ramal").focus();
 })
 
@@ -21,58 +21,58 @@ $("#input_search").on("input", function () {
                 for (const key in response) {
                     if (key === 'contatos' && response[key].length > 0) {
                         const contatos = response[key];
-                    
+
                         const groupedByUnidade = {};
-                    
+
                         contatos.forEach(item => {
                             const unidade = item.unidade || "Sem unidade";
-                    
+
                             if (!groupedByUnidade[unidade]) {
                                 groupedByUnidade[unidade] = [];
                             }
-                    
+
                             groupedByUnidade[unidade].push(item);
                         });
-                    
+
                         const cabecalho = $("<h5>").text("Contatos").addClass("result-quicksearch-type");
                         const contatos_li = $("<li>").addClass("list-group-item").append(cabecalho);
                         const contatos_ul = $("<ul>").addClass("list-group list-group-flush result-quicksearch-filial-list");
-                    
+
                         Object.keys(groupedByUnidade).forEach(unidade => {
                             const unidadeHeader = $("<li>").addClass("list-group-item fw-bold").append($("<span>").addClass("title-filial").text(unidade));
-                            const unidadeList = $("<ul>").addClass("list-group list-group-flush result-quicksearch-contact-list");                            
-                    
+                            const unidadeList = $("<ul>").addClass("list-group list-group-flush result-quicksearch-contact-list");
+
                             groupedByUnidade[unidade].forEach(item => {
                                 const list = $("<li>").addClass("list-group-item");
                                 const nome = $("<span>").addClass("fw-semibold").text(item.nome);
-                    
+
                                 let funcao = "";
                                 if (item.funcao) {
                                     funcao = $("<span>").addClass("fw-lighter").text(item.funcao);
-                                }   
-                                
+                                }
+
                                 let telefone = "";
                                 if (item.telefone) {
                                     telefone = " - " + item.telefone;
-                                }    
-                                
-                                let ramal = "";                                
+                                }
+
+                                let ramal = "";
                                 let email = "";
                                 if (item.ramal) {
                                     ramal = " - Ramal " + item.ramal;
                                 }
-                                if (item.email && item.email !== '-') {                                    
+                                if (item.email && item.email !== '-') {
                                     email = $("<span>").text(item.email + ramal + telefone);
                                 }
-                    
+
                                 const br = $("<br>")
                                 const titulo = $("<span>").append(nome);
-                    
+
                                 list.append(
-                                    titulo, 
-                                    document.createTextNode(" - "), 
-                                    funcao, 
-                                    br.clone(), 
+                                    titulo,
+                                    document.createTextNode(" - "),
+                                    funcao,
+                                    br.clone(),
                                     email
                                 );
                                 unidadeList.append(list);
@@ -81,10 +81,10 @@ $("#input_search").on("input", function () {
                             contatos_ul.append(unidadeHeader);
                             contatos_ul.append(unidadeList);
                         });
-                    
+
                         $(contatos_li).append(contatos_ul);
-                        $("#list_results_quicksearch").append(contatos_li);              
-                    } else if (key === 'documentos' && response[key].length > 0) {                        
+                        $("#list_results_quicksearch").append(contatos_li);
+                    } else if (key === 'documentos' && response[key].length > 0) {
                         const documentos = response[key];
 
                         const cabecalho = $("<h5>").text("Documentos").addClass("result-quicksearch-type");
@@ -133,21 +133,21 @@ let startX;
 let scrollLeft;
 let clickTimer;
 
-scrollContainer.addEventListener('mousedown', (e) => { 
-    e.preventDefault(); 
-    
+scrollContainer.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+
     clickTimer = setTimeout(() => {
         isDragging = true;
         scrollContainer.classList.add('dragging');
         startX = e.pageX - scrollContainer.offsetLeft;
         scrollLeft = scrollContainer.scrollLeft;
-    }, 150); 
+    }, 150);
 });
 
 scrollContainer.addEventListener('mouseup', (e) => {
-    clearTimeout(clickTimer); 
+    clearTimeout(clickTimer);
     if (isDragging) {
-        e.preventDefault(); 
+        e.preventDefault();
         e.stopPropagation();
     }
     isDragging = false;
@@ -173,4 +173,13 @@ scrollContainer.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
     }
+});
+
+$(function () {
+    if (sessionStorage.getItem('videoSeen') === 'yes') return;
+
+    const modal = new bootstrap.Modal('#modalVideo');
+    modal.show();
+
+    sessionStorage.setItem('videoSeen', 'yes');
 });

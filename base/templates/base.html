@@ -6,9 +6,9 @@
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4WHQKR0X4D"></script>
-        <script>
+    <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'G-4WHQKR0X4D');
@@ -39,14 +39,13 @@
                         <img src="{% static 'base/Logo Cotrisoja.png' %}" class="logo">
                     </a>
                 </div>
-                <div class="col-10 drag-scroll">                                          
+                <div class="col-10 drag-scroll">
                     <div class="d-flex">
                         <a href="/" class="text-center link_menu ms-auto">
                             <i class="fa-solid fa-home"></i>
                             <span>Home</span>
                         </a>
-                        <a href="#" class="text-center link_menu" data-bs-toggle="modal"
-                            data-bs-target="#modalRamais">
+                        <a href="#" class="text-center link_menu" data-bs-toggle="modal" data-bs-target="#modalRamais">
                             <i class="fa-regular fa-address-book"></i>
                             <span>Ramais</span>
                         </a>
@@ -58,41 +57,36 @@
                             <i class="fa-regular fa-folder"></i>
                             <span>Documentos</span>
                         </a>
-                        <a href="https://mail.cotrisoja.com.br/" target="_blank"
-                            class="text-center link_menu">
+                        <a href="https://mail.cotrisoja.com.br/" target="_blank" class="text-center link_menu">
                             <i class="fa-regular fa-envelope"></i>
                             <span>E-mail</span>
                         </a>
-                        <a href="http://chamados.cotrisoja.com.br/" target="_blank"
-                            class="text-center link_menu">
+                        <a href="http://chamados.cotrisoja.com.br/" target="_blank" class="text-center link_menu">
                             <i class="fa-regular fa-clipboard"></i>
                             <span>Chamados</span>
                         </a>
-                        <a href="http://192.0.0.221:8080/adged" target="_blank"
-                            class="text-center link_menu">
+                        <a href="http://192.0.0.221:8080/adged" target="_blank" class="text-center link_menu">
                             <i class="fa-regular fa-file-powerpoint"></i>
                             <span>PortalNFE</span>
                         </a>
-                        <a href="https://cotrisoja.com.br/" target="_blank"
-                            class="text-center link_menu">
+                        <a href="https://cotrisoja.com.br/" target="_blank" class="text-center link_menu">
                             <i class="fa-solid fa-globe"></i>
                             <span>Site</span>
                         </a>
-                        <a href="https://app.smart.coop.br/" target="_blank"
-                            class="text-center link_menu">
+                        <a href="https://app.smart.coop.br/" target="_blank" class="text-center link_menu">
                             <i class="fa-solid fa-circle-nodes"></i>
                             <span>SmartCoop</span>
-                        </a>    
-                        <a href="https://app.hisign.com.br/" target="_blank"
-                            class="text-center link_menu"
+                        </a>
+                        <a href="https://app.hisign.com.br/" target="_blank" class="text-center link_menu"
                             title="Assinatura Digital - Hisign">
                             <i class="fa-solid fa-file-signature"></i>
                             <span>Assinatura</span>
-                        </a>                            
-                        <a class="text-center link_menu" id="toggle_search" href="#" data-bs-toggle="modal" data-bs-target="#modalSearch">
+                        </a>
+                        <a class="text-center link_menu" id="toggle_search" href="#" data-bs-toggle="modal"
+                            data-bs-target="#modalSearch">
                             <i id="icon_search" class="fa-solid fa-magnifying-glass"></i>
                             <span id="label_search">Busca</span>
-                        </a>             
+                        </a>
                     </div>
                 </div>
             </div>
@@ -116,7 +110,8 @@
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <input class="inputSearch mx-3 w-100" id="input_search" type="text" autocomplete="off" placeholder="Buscar em toda intranet" aria-label="Search">
+                    <input class="inputSearch mx-3 w-100" id="input_search" type="text" autocomplete="off"
+                        placeholder="Buscar em toda intranet" aria-label="Search">
                 </div>
                 <div class="modal-body" id="list_results_quicksearch"></div>
                 <div class="modal-footer">
@@ -130,7 +125,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title fw-bold">Ramais</h4>
-                    <input class="inputSearch ms-3" id="search_ramal" type="text" placeholder="Buscar" aria-label="Search">
+                    <input class="inputSearch ms-3" id="search_ramal" type="text" placeholder="Buscar"
+                        aria-label="Search">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -165,6 +161,23 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modalVideo" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title fw-bold mb-0">Vídeo Institucional</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="m-3">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube-nocookie.com/embed/LQ3_TFKEWWk" title="Vídeo institucional"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% block scripts %}{% endblock %}
     <script src="{% static 'base/filter.js' %}" crossorigin="anonymous"></script>
     <script src="{% static 'base/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
@@ -172,7 +185,5 @@
     <script src="{% static 'base/sorttable.js' %}" crossorigin="anonymous"></script>
     {% django_browser_reload_script %}
 </body>
+
 </html>
-
-
-
