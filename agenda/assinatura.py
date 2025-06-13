@@ -21,6 +21,9 @@ class Assinatura:
         if unidade == "Tapera":
             address = "Sede Administrativa - Tapera/RS"
             contactRow += "(54) 3385-3000"
+        elif (unidade == "Posto Tapera"):
+            address = "Posto de Combustível - Posto Tapera/RS"
+            contactRow += "(54) 3385-3000"
         elif (unidade == "Ibirubá"):
             address = "Unidade Regional - Ibirubá/RS"
             contactRow += "(54) 3324-9200"
@@ -48,6 +51,12 @@ class Assinatura:
         elif (unidade == "Jóia"):
             address = f"Unidade Regional - Jóia"
             contactRow += "(54) 3324-9280"
+        elif (unidade == "Posto 43"):
+            address = f"Posto de Combustível - Posto Arroio Grande, Selbach/RS"
+            contactRow += "(54) 3385-3059"
+        elif (unidade == "Linha Floresta"):
+            address = f"Unidade Regional - Linha Floresta"
+            contactRow += "(54) 3387-1235"
 
         if ramal != '':
             contactRow += " - Ramal " + ramal
