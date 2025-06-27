@@ -66,11 +66,10 @@
 }
 
 .limit-height-carousel {
-    height: 510px;
+    max-height: 510px;
 }
 
 .img-carousel {
-    position: absolute;
     margin: auto;
     top: 0;
     left: 0;
@@ -79,3 +78,16 @@
 }
 
 /* Path: home/static/home/home_style.css */
+
+.link-card {
+  box-shadow: 2px 5px 7px 0px rgba(0, 53, 40, 0.25); 
+}
+
+.link-card:hover,
+.link-card:focus {
+  box-shadow: 2px 5px 7px 4px rgba(1, 99, 74, 0.35);  
+}
+
+.link-card:active {
+  box-shadow: 0 2px 6px rgba(1, 99, 74, 0.20);  
+}
