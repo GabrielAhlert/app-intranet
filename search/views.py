@@ -1,8 +1,10 @@
 from agenda.models import Contato
 from documentos.models import Documento
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
 import json
+from django.conf import settings
+from pathlib import Path
 
 def get_quicksearch(request, data):
     response = {
@@ -60,3 +62,21 @@ def get_quicksearch(request, data):
         })
 
     return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+def load_ies():
+    json_path = Path(settings.BASE_DIR) / 'data' / 'ies.json'
+    with open(json_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def ie_check(request, data):
+    ies = load_ies()
+    required_nfe = data in ies
+
+    response = {
+        "ie": data,
+        "requiredNfe": required_nfe
+    }
+
+    return JsonResponse(response)
+

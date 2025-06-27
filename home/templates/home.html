@@ -37,7 +37,7 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-        </div>        
+        </div>
         <div class="col-3">
             <div class="wrapper">
                 <header>
@@ -61,14 +61,15 @@
                     <ul class="days"></ul>
                 </div>
             </div>
-        </div>   
+        </div>
         <div class="col-2">
             <h5 class="text-center fw-semibold p-2 rounded" style="color: #e6ebe8; background-color: #01634A;">
                 Acessos
             </h5>
             <div class="row g-2">
                 <div class="col-12 col-md-6">
-                    <a href="https://platform.senior.com.br/login/?redirectTo=https%3A%2F%2Fplatform.senior.com.br%2Fsenior-x%2F&amp;tenant=cotrisoja.com.br" target="_blank"
+                    <a href="https://platform.senior.com.br/login/?redirectTo=https%3A%2F%2Fplatform.senior.com.br%2Fsenior-x%2F&amp;tenant=cotrisoja.com.br"
+                        target="_blank"
                         class="rounded d-flex flex-column align-items-center gap-2 text-decoration-none text-center h-100 p-3 link-card"
                         style="background-color: #01634A; color: #e6ebe8; font-size: 14px;">
                         <i class="fa-solid fa-people-arrows" style="font-size: 18px;"></i>
@@ -91,14 +92,14 @@
                         SmartCoop
                     </a>
                 </div>
-                <!-- <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#modalNFe"
                         class="rounded d-flex flex-column align-items-center gap-2 text-decoration-none text-center h-100 p-3 link-card"
                         style="background-color: #01634A; color: #e6ebe8; font-size: 14px;">
                         <i class="fa-solid fa-file-invoice" style="font-size: 18px;"></i>
                         Consultar
                     </a>
-                </div> -->
+                </div>
                 <div class="col-12 col-md-6">
                     <a href="http://192.0.0.244/" target="_blank"
                         class="rounded d-flex flex-column align-items-center gap-2 text-decoration-none text-center h-100 p-3 link-card"
@@ -108,8 +109,8 @@
                     </a>
                 </div>
             </div>
-        </div>   
-        
+        </div>
+
     </div>
     <div class="row mt-3" id="second_row">
         {% if Recados|length > 0 %}
@@ -252,10 +253,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Digite a inscrição estadual">
-                        <button class="btn btn-outline-secondary" type="button"><i
-                                class="fa-solid fa-magnifying-glass"></i> Pesquisar</button>
+                        <input type="text" id="ie_to_check" class="form-control"
+                            placeholder="Digite a inscrição estadual">
+                        <button class="btn btn-outline-secondary" type="button" id="check_ie_btn"><i
+                                class="fa-solid fa-magnifying-glass"></i> Checar</button>
                     </div>
+
+                    <span id="check_ie_response" class="fw-semibold text-primary fs-6"></span>
                 </div>
             </div>
         </div>
@@ -353,10 +357,51 @@
     {% block scripts %}
     <script src="{% static 'home/calendar_script.js' %}"></script>
     <script type="text/javascript">
-        // Fixa o tamanho da row de baixo
         $("document").ready(function () {
             $("#second_row").css("height", $("#second_row").height());
         });
+
+        $("#check_ie_btn").on("click", function () {
+            const ieNumber = $("#ie_to_check").val().trim();
+            const ie_response = $("#check_ie_response");
+
+            ie_response.removeClass("text-danger text-success text-primary");
+
+            if (ieNumber.length !== 10) {
+                ie_response
+                    .text("IE incorreta!")
+                    .addClass("text-danger");
+                return;
+            }
+
+            ie_response
+                .text("Verificando IE...")
+                .addClass("text-primary");
+
+            $.ajax({
+                url: `/search/ie-check/${ieNumber}/`,
+                type: "GET",
+                success: function (data) {
+                    ie_response
+                        .removeClass("text-danger text-success")
+                        .addClass("text-primary");
+
+                    if (data.requiredNfe === true) {
+                        ie_response.text("Obrigatória a emissão de NFe pelo produtor!");
+                    } else {
+                        ie_response.text("A emissão de NFe pelo produtor não é obrigatória!");
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.error('Erro na solicitação:', textStatus, errorThrown);
+                    ie_response
+                        .text("Erro ao verificar a IE.")
+                        .removeClass("text-primary text-success")
+                        .addClass("text-danger");
+                }
+            });
+        });
+
 
         function modalRecados(id, clickedElement) {
             var url = "/get_recado/" + id;
