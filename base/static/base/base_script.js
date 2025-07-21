@@ -174,12 +174,3 @@ scrollContainer.addEventListener('click', (e) => {
         e.stopPropagation();
     }
 });
-
-$(function () {
-    if (sessionStorage.getItem('videoSeen') === 'yes') return;
-
-    const modal = new bootstrap.Modal('#modalVideo');
-    modal.show();
-
-    sessionStorage.setItem('videoSeen', 'yes');
-});
