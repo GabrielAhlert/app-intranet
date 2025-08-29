@@ -34,7 +34,7 @@ def get_cotacao(request):
     try:
         headers = { 'Authorization' : 'Bearer ' +  getToken(), 'Content-Type': 'application/json'}
         url = 'https://sp-app.cotrisoja.com.br/api/'
-        url_cotacao = url + requests.get(url + 'dashboard', headers=headers).json()['agricultural_quotation']['formats']['large']['url']
+        url_cotacao = url + requests.get(url + 'dashboard', headers=headers).json()['agricultural_quotation']['formats']['small']['url']
         return HttpResponseRedirect(url_cotacao)
     except:
         refresh_token()
