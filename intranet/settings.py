@@ -27,7 +27,10 @@ SECRET_KEY = config('SECRET_KEY', default='Gim6pWfCBuDk@3C&hEfbBTu5zvH@&HXYfs6Vm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ['intranet.cotrisoja.com.br', 'www.intranet.cotrisoja.com.br', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -43,12 +46,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "django_browser_reload",
     'ckeditor',
     'ckeditor_uploader',
-    'base.apps.BaseConfig',
-    
+    'base.apps.BaseConfig', 
 ]
+if DEBUG:
+    INSTALLED_APPS.append("django_browser_reload")
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,8 +61,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
+if DEBUG:
+    MIDDLEWARE.append("django_browser_reload.middleware.BrowserReloadMiddleware")
 
 ROOT_URLCONF = 'intranet.urls'
 
@@ -159,8 +163,8 @@ MEDIA_ROOT =  "./media/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = not DEBUG
 
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = not DEBUG
 
 CKEDITOR_UPLOAD_PATH = "uploads_recados/"
